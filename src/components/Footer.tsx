@@ -1,12 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 import Faq from "@/components/Faq";
 import { footerFaq } from "@/data/faqData";
 
 const Footer = () => {
   return (
-    <footer>      
+    <>
+    <footer>
+      
       <section className="footer_faq_section mb-0 mt-5">
         <div className="container">
           <div className="row">
@@ -117,6 +120,9 @@ const Footer = () => {
         </div>
       </section>
     </footer>
+      {/* Bot247 Widget Script */}
+      <Script src="https://bot247.live/widget.js?tenant=symbiosis-solix-empower" strategy="afterInteractive" />
+    </>
   );
 };
 
