@@ -6,8 +6,7 @@ import { footerFaq } from "@/data/faqData";
 
 const Footer = () => {
   return (
-    <footer>
-      
+    <footer>      
       <section className="footer_faq_section mb-0 mt-5">
         <div className="container">
           <div className="row">
