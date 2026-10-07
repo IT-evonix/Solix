@@ -4,6 +4,7 @@
   font-weight: 400;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Poppins-SemiBold";
   src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
@@ -23,7 +24,7 @@
   font-display: swap;
 }
 body {
-  width: 100%;
+  width: 100%; 
   height: 100%;
   font-family: 'Poppins-Regular';
   font-size: 14px;
@@ -44,22 +45,22 @@ background-color: #fff;
 
 
 /* -----------MAIN-MENU-START---------------- */
-.mainmenubox{
+.menu_mainbox{
   float: right;
   margin: 15px 0 0 0;
 }
-.mainmenubox ul{
+.menu_mainbox ul{
 float: left;
   width: auto;
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.mainmenubox ul li{
+.menu_mainbox ul li{
   float: left;
   margin: 0 3px;
 }
-.mainmenubox li a{
+.menu_mainbox li a{
 float: left;
   border: 1px solid #fff;
   font-family: Poppins-Medium;
@@ -71,9 +72,12 @@ float: left;
   line-height: normal;
   transition-duration: 0.3s;
 }
-.mainmenubox li a:hover{
+.menu_open li a:hover{
   border: 1px solid #E7470B;
   color: #E7470B;
+}
+.toggle_menu{
+  display: none;
 }
 
 /* -----------MAIN-MENU-END---------------- */
@@ -570,7 +574,7 @@ color: #fff;
   width: 100%;
   margin: 0 0 15px 0;
   border-radius: 100px;
-  padding: 10px 18px;
+  padding: 10px 38px;
   font-family: Poppins-Medium;
   text-decoration: none;
   transition-duration: 0.3s;
@@ -604,8 +608,86 @@ color: #fff;
 
 }
 
-
 @media(max-width:991){
+
+/* -----------MAIN-MENU-START---------------- */
+.toggle_menu{
+  z-index: 5;
+  cursor: pointer;
+  background-color: #001d40;
+  border-radius: 8px;
+  justify-content: center;
+  width: 40px;
+  height: 32px;
+  margin: 20px 10px 0 0;
+  padding: 10px;
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 18px;
+  align-items: center;
+}
+.toggle_menu_close{
+  position: absolute;
+}
+.menu_box{
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  padding: 15%;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0 0 0 1000px;
+  transition-duration: 0.5s;
+}
+.menu_open .menu_box{
+  margin: 0;
+}
+.menu_open{
+  position: fixed;
+  width: 100%;
+  left: 0;
+  height: 100%;
+  top: 0;
+  margin: 0;
+}
+.menu_box::after{
+  content: "";
+  width: 0%;
+  height: 100%;
+  background-color: #000;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition-duration: 0.3s;
+}
+
+.menu_open .menu_box::after{
+  width: 100%;
+}
+
+.menu_box ul{
+  display: block;
+  z-index: 5;
+  width: 100%;
+  position: relative;
+}
+.menu_box ul li{
+  width: 100%;
+  border-bottom: 1px dashed #fff6;
+}
+.menu_box li a{
+  color: #fff;
+  border: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+/* -----------MAIN-MENU-END---------------- */
 
 
 /* ------------HOME-SIGNATURE-SECTION-START---------- */
@@ -636,9 +718,15 @@ color: #fff;
 
 
 .heading35_black{
-  font-size: 28px;
+  font-size: 25px;
 }
-
+section{
+  margin: 0 0 50px 0;
+}
+.button_box{
+  padding: 10px 40px 10px 20px;
+  font-size: 14px;
+}
 
 /* ------------HOME-BANNER-SECTION-START---------- */
 .banner_textbox{
@@ -675,7 +763,7 @@ background-color: #000;
 .core_list{
   width: 50%;
   font-size: 14px;
-  padding: 0 0px 50px 0px;
+  padding: 0 10px 50px;
 }
 .core_section{
   padding: 40px 0;
@@ -689,6 +777,11 @@ background-color: #000;
 }
 /* ------------HOME-SIGNATURE-SECTION-END---------- */
 
+/* ------------VENUES-PAGE-START---------- */
+.venues_page_mainbox iframe{
+  border-radius: 0;
+}
+/* ------------VENUES-PAGE-END---------- */
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
 .faq-question .subheading {
@@ -718,6 +811,23 @@ background-color: #000;
 @media(max-width:576px){
 
 
-
+/* ------------FOOTER-SECTION-START---------- */
+.footer_blackbox{
+  text-align: center;
+}
+.footer_menu li {
+  width: 50%;
+  list-style-type: none;
+  border-bottom: 1px dashed #ffffff5e;
+  padding: 8px 0;
+}
+.follow_btnbox{
+display: grid;
+  justify-content: center;
+}
+.follow_btnbox a{
+  width: 230px;
+}
+/* ------------FOOTER-SECTION-END---------- */
 
 }

@@ -30,7 +30,7 @@ const ContactPage = () => {
             <div className="col-lg-12 heading35_black text-center mb-5">EXPERIENCE THE CONCLAVE AT LAVALE</div>
           </div>
           <div className="row">
-            <div className="col-lg-7">
+            <div className="col-lg-7 col-md-7">
               <div className="row">
                 <div className="col-lg-12 mb-4">
                   <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={250} height={95} priority />
@@ -49,7 +49,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-5">
+            <div className="col-lg-5 col-md-5">
               <Image src="/images/venues/hillbase_img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
             </div>
           </div>
@@ -67,7 +67,7 @@ const ContactPage = () => {
             <div className="col-lg-12 heading35_black text-center mb-4">THE CONCLAVE CAMPUS</div>
           </div>
           <div className="row">
-            <div className="col-lg-4 mb-4">
+            <div className="col-lg-4 mb-4 col-md-4">
               <div className="venue_whitebox">
                 <div className="row">
                   <div className="col-lg-12 mb-5">
@@ -88,7 +88,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4 mb-4">
+            <div className="col-lg-4 mb-4 col-md-4">
               <div className="venue_whitebox">
                 <div className="row">
                   <div className="col-lg-12 mb-5">
@@ -109,7 +109,7 @@ const ContactPage = () => {
                 </div>
               </div>
             </div>
-            <div className="col-lg-4">
+            <div className="col-lg-4 col-md-4">
               <div className="venue_whitebox">
                 <div className="row">
                   <div className="col-lg-12 mb-5">
@@ -178,10 +178,10 @@ const ContactPage = () => {
       <section>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-lg-7 p-0">
+            <div className="col-lg-7 p-0 col-md-5">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15131.493336008556!2d73.72964077218812!3d18.534625278071108!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf9caf148cef%3A0x4b9133b7a228d7d0!2sSymbiosis%20International%20(Deemed%20University)!5e0!3m2!1sen!2sin!4v1791269164081!5m2!1sen!2sin" width="100%" height="500" loading="lazy" ></iframe>
             </div>
-            <div className="col-lg-5 p-5 pt-3">
+            <div className="col-lg-5 p-5 col-md-7 pb-0 pt-3">
               <div className="row">
                 <div className="col-lg-12 heading21_black" style={{color:"#c00808"}}>GETTING HERE</div>
                 <div className="col-lg-12 heading35_black mb-2">LOCATION</div>
@@ -212,8 +212,10 @@ const ContactPage = () => {
                   </div>
                 </div>
                 <div className="col-lg-12">
-                  <a href="{{ url('/') }}" className="button_box">View on Map</a>&nbsp;&nbsp;&nbsp;
-                  <a href="{{ url('/') }}" className="button_box">Traval Information</a>
+                  <div className="row">
+                    <div className="col-lg-5 mb-4"><a href="{{ url('/') }}" className="button_box">View on Map</a></div>
+                    <div className="col-lg-6"><a href="{{ url('/') }}" className="button_box">Traval Information</a></div>
+                  </div>
                 </div>
                 <div className="col-lg-12"></div>
               </div>

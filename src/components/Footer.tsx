@@ -33,14 +33,12 @@ const Footer = () => {
                   </div>
                   <div className="col-lg-12 mb-2">
                     <div className="row">
-                      <div className="col-2 text-center"><Image src="/images/footer_date.png" className="img-fluid" alt="Logo" width={15} height={15} /></div>
-                      <div className="col-10">10–12 December 2026</div>
+                      <div className="col-lg-12"><Image src="/images/footer_date.png" className="img-fluid" alt="Logo" width={15} height={15} />&nbsp;&nbsp;&nbsp; 10–12 December 2026</div>
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="row">
-                      <div className="col-2 text-center"><Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={13} height={13} /></div>
-                      <div className="col-10">SIU Lavale Campus, Pune</div>
+                      <div className="col-lg-12"><Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SIU Lavale Campus, Pune</div>
                     </div>
                   </div>
                   <div className="col-lg-12"></div>
@@ -81,14 +79,12 @@ const Footer = () => {
                   <div className="col-lg-12 follow_btnbox mb-4">
                     <a href="#">
                       <div className="row align-items-center">
-                        <div className="col-3 text-center"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /></div>
-                        <div className="col-9 p-0">Register Now</div>
+                        <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register Now</div>
                       </div>
                     </a>
                     <a href="#">
                       <div className="row align-items-center">
-                        <div className="col-3 text-center"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /></div>
-                        <div className="col-9 p-0">Explore Conclave</div>
+                        <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Explore Conclave</div>
                       </div>
                     </a>
                   </div>
