@@ -101,6 +101,10 @@ float: left;
   font-size: 19px;
   color: #000;
 }
+.text16_black{
+  font-size: 16px;
+  color: #000;
+}
 .button_box{
 background-color: #E7470B;
   color: #fff;
@@ -110,6 +114,7 @@ background-color: #E7470B;
   font-family: Poppins-Medium;
   font-size: 16px;
   line-height: normal;
+  border: 0;
   transition-duration: 0.3s;
 }
 .button_box::after{
@@ -466,6 +471,77 @@ background-color: #c00808;
   border-radius: 0 30px 30px 0;
 }
 /* ------------VENUES-PAGE-END---------- */
+
+
+/* ------------REGISTRATION-PAGE-START---------- */
+.register_form_list{
+background-color: #fbf4f2;
+  padding: 30px;
+  border-radius: 20px;
+}
+.input_box{
+  border: 1px solid #00000040;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px 10px;
+  outline: none;
+  width: 100%;
+}
+.input_button_box{
+  background-image: url("/images/white_arrow.png");
+  color: #fff;
+  background-color: #e7470b;
+  background-position: 20px center;
+  background-repeat: no-repeat;
+  background-size: 15px;
+  border: 0;
+  border-radius: 100px;
+  padding: 10px 30px 10px 50px;
+  font-family: Poppins-Medium;
+  font-size: 16px;
+  line-height: normal;
+  text-decoration: none;
+  transition-duration: .3s;
+}
+.input_button_box:hover{
+  margin: 0 0 0 5px;
+}
+
+
+.cat_list label{
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100%; 
+}
+.register_imgbox{
+  background-image: url("/images/register_img.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  min-height: 500px;
+  background-size: cover;
+  border-radius: 30px;
+  position: sticky;
+  top: 0;
+  padding: 0 40px;
+  float: left;
+}
+.register_imgbox span{
+background-image: linear-gradient(to left, #C73131, #E14444);
+  width: 100%;
+  float: left;
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+  font-family: Poppins-Bold;
+  font-size: 19px;
+  margin: -20px 0 0 0;
+}
+/* ------------REGISTRATION-PAGE-END---------- */
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
 .footer_faq_section{

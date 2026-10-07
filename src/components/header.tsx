@@ -69,7 +69,7 @@ const [menuOpen, setMenuOpen] = useState(false);
                   <li onClick={menu}><Link href="/aboutus">About Us</Link></li>
                   <li onClick={menu}><Link href="/programme">Programme</Link></li>
                   <li onClick={menu}><Link href="/speakers">Speakers</Link></li>
-                  <li onClick={menu}><Link href="/hackathon">Hackathon</Link></li>
+                  {/* <li onClick={menu}><Link href="/hackathon">Hackathon</Link></li> */}
                   <li onClick={menu}><Link href="/partners">Partners</Link></li>
                   <li onClick={menu}><Link href="/sponsors">Sponsors</Link></li>
                   <li onClick={menu}><Link href="/venue">Venue</Link></li>

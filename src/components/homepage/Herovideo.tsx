@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 
 
 const Herovideo = () => {
@@ -33,11 +34,11 @@ const Herovideo = () => {
                   <span>CONNECT</span> <span>CREATE</span> <span>TRANSFORM</span>
                 </div>
                 <div className="col-lg-12 banner_buttonbox">
-                  <a href="#">
+                  <Link href="/registration">
                     <div className="row align-items-center">
-                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /> Register Now</div>
+                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register Now</div>
                     </div>
-                  </a>
+                  </Link>
                   <a href="#">
                     <div className="row align-items-center">
                       <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /> Explore the Conclave</div>
