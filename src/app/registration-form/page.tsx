@@ -1,5 +1,6 @@
 import InnerpageBanner from "@/components/InnerpageBanner";
 import Image from "next/image";
+import Link from "next/link";
 import Faq from "@/components/Faq";
 import { Faq_Registration } from "@/data/faqData";
 
@@ -331,8 +332,7 @@ const ContactPage = () => {
                             </div>
                           </div>
                           <div className="col-lg-12" style={{fontSize:"12px"}}>
-                            If Yes,<br></br>
-                            Link to https://www.sandipanihometel.com/ Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
+                            Link to <Link href="https://www.sandipanihometel.com/" target="_blank">https://www.sandipanihometel.com/</Link> Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
                           </div>
 
                         </div>

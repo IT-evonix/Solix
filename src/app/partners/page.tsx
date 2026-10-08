@@ -7,7 +7,7 @@ import { Faq_Speakers } from "@/data/faqData";
 const ContactPage = () => {
   return (
     <section className="aboutus_page_mainbox mb-0">
-      <InnerpageBanner title="Speakers & Experts" />
+      <InnerpageBanner title="Partners" />
       <section className="mb-5">
         <div className="container">
           <div className="row">

@@ -2,76 +2,44 @@ import { FAQItem } from "@/components/Faq";
 
 export const Faq_Home: FAQItem[] = [
   {
-    question: "Who can attend?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "What is the Symbiosis–SOLIXEMPOWER Tech Conclave 2026?",
+    answer: "The Tech Conclave is a multidisciplinary platform bringing together healthcare, technology, data, AI, research and innovation. The Conclave will feature a Conference, Hackathon and TALFest, bringing together academia, healthcare, industry, technology leaders, researchers and innovators.",
   },
   {
-    question: "Dates and venue?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "When and where is the Conclave being held?",
+    answer: "The Conclave will be held from 10 to 12 December 2026 at the Symbiosis International University Lavale Campus, Pune, with key activities hosted at Symbiosis Medical College for Women (SMCW) and Symbiosis University Hospital & Research Centre (SUHRC).",
   },
   {
-    question: "Registration categories?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "Who can attend the Conclave?",
+    answer: "Healthcare professionals, doctors, faculty, students, researchers, technology professionals, industry leaders, innovators, entrepreneurs and others interested in healthcare and technology can attend.",
   },
   {
-    question: "Registration fees?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "What does the Conference registration include?",
+    answer: "Conference registration provides access to the Tech Conference and scheduled Conclave sessions and activities, subject to the final programme.",
   },
   {
-    question: "What does registration include?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "How much is the Conference registration fee?",
+    answer: "The Conference registration fee is ₹1,500/- per participant.",
   },
   {
-    question: "Payment process?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "Do I need to register separately for the Conference and Hackathon?",
+    answer: "Yes. Conference and Hackathon registrations are separate. Participants can choose to attend the Conference, participate in the Hackathon, or follow the respective registration process for each.",
   },
   {
-    question: "Cancellation/refund?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "Where can I find the programme and speaker details?",
+    answer: "The latest programme and confirmed speaker details will be available in the respective Programme and Speakers sections of the website.",
   },
   {
-    question: "Confirmation/registration ID?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "Is accommodation available for participants?",
+    answer: "Yes. Participants may choose their preferred accommodation. On-campus paid accommodation at Sandipani Hometel, Symbiosis International University, Lavale, will be available as an option.",
   },
   {
-    question: "What is the MedTech Innovation Hackathon?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "How can organisations partner or sponsor the Conclave?",
+    answer: "Organisations can explore opportunities for partnerships, sponsorships, exhibitions, technology demonstrations, innovation showcases, challenge statements and industry collaborations through the relevant enquiry options on the website.",
   },
   {
-    question: "Who can participate?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Can I participate individually?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "How are teams formed?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Problem statements?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Mentors and jury?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Evaluation criteria?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Recognition/prizes?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "How can an organisation become a partner/sponsor?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  },
-  {
-    question: "Organising team contact?",
-    answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
+    question: "Where can I find the latest updates about the Conclave?",
+    answer: "The official website will carry the latest information on the programme, speakers, registration, Hackathon, accommodation, venue, partners and announcements.",
   },
 ];
 export const Faq_Registration: FAQItem[] = [

@@ -12,15 +12,11 @@ const CoreProposition = () => {
                         <div className="col-lg-12 heading35_black mb-3" style={{color:"#fff"}}>The Core Proposition</div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-12 mb-3">
+                        <div className="col-lg-12 mb-4">
                             The Conclave brings together healthcare problems and technological capabilities across clinical, technology, engineering, data, research, design and management perspectives. Its purpose is to create meaningful exchange between disciplines and encourage movement from discussion towards practical innovation.
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-12 mb-3">
-                            The website should therefore communicate a simple idea
-                        </div>
-                    </div>
+                    
                     <div className="row">
                         <div className="col-lg-12" style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
                             <div className="core_list">

@@ -71,11 +71,6 @@ const Signature = () => {
                     </div>
                 </div>
             </div>
-            <div className="row">
-                <div className="col-lg-12 text-center mb-4 home_narrative_text">
-                    <span>This narrative should be used consistently across the website as a visual and editorial device, rather than as a decorative tagline alone.</span>
-                </div>
-            </div>
         </div>
     </section>
   );

@@ -183,6 +183,27 @@ const ContactPage = () => {
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
+                          <Image src="/images/aboutus/scie.png" className="img-fluid" alt="" width={540} height={95} priority />
+                        </div>
+                        <div className="col-lg-12 mb-3 text19_black"><i>Global Education • International Engagement • Cross-Cultural Exchange</i></div>
+                        <div className="col-lg-12 mb-4 about_text">
+                          The Symbiosis Centre for International Education (SCIE) is a nodal department of Symbiosis International (Deemed University) created to support and engage with the University’s international student community. Its mandate extends from supporting international students throughout their journey at Symbiosis to creating opportunities for international exposure, academic engagement and cross-cultural learning. 
+                          <br></br><br></br>
+                          SCIE works as a common platform for international students across Symbiosis and supports initiatives including international student orientation, academic exchanges, international collaborations, student and faculty mobility, and global engagement. The centre also contributes to creating an inclusive environment that enables students from diverse countries and cultures to learn and engage within the Symbiosis ecosystem. 
+                        </div>
+                        <div className="col-lg-12">
+                          <div className="box_list">
+                            <b>At the Conclave:</b><br></br>
+                            SCIE brings the strength of international engagement, global academic perspectives, cross-cultural exchange and international student participation.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-lg-6 mb-3">
+                    <div className="about_white_list">
+                      <div className="row">
+                        <div className="col-lg-12 mb-4">
                           <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
@@ -200,15 +221,15 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-12 mb-3">
+                  <div className="col-lg-6 mb-3">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12">
                           <div className="row justify-content-center align-items-center">
-                            <div className="col-lg-1 heading35_black" style={{color:"#c4161c"}}>
+                            <div className="col-lg-2 heading35_black" style={{color:"#c4161c"}}>
                               i4C
                             </div>
-                            <div className="col-lg-11 heading21_black">
+                            <div className="col-lg-10 heading21_black">
                               INDIA INNOVATION & TECHNOLOGY PARTNER
                             </div>
                           </div>
