@@ -2,27 +2,11 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
-import Faq from "@/components/Faq";
-import { footerFaq } from "@/data/faqData";
 
 const Footer = () => {
   return (
     <>
-    <footer>
-      
-      <section className="footer_faq_section mb-0 mt-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 mb-2 heading35_black text-center mb-4">Frequently Asked Questions</div>
-          </div>
-          <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
-              <Faq faqs={footerFaq} />
-            </div>
-          </div>
-        </div>
-      </section>
+    <footer>      
       <section className="footer_blackbox mb-0">
         <div className="container">
           <div className="row">
@@ -55,17 +39,14 @@ const Footer = () => {
                   <div className="col-lg-12">
                     <ul className="footer_menu">
                       <li><Link href="/">Home</Link></li>
-                      <li><Link href="/">About Us</Link></li>
-                      <li><Link href="/">2026 Edition</Link></li>
-                      <li><Link href="/">Hackathon</Link></li>
-                      <li><Link href="/">Programme</Link></li>
-                      <li><Link href="/">Partner With Us</Link></li>
-                      <li><Link href="/">Rules & Timeline</Link></li>
-                      <li><Link href="/">Partners / Sponsors</Link></li>
-                      <li><Link href="/">Speakers</Link></li>
-                      <li><Link href="/">Venue</Link></li>
-                      <li><Link href="/">FAQs</Link></li>
-                      <li><Link href="/">Contact Us</Link></li>
+                      <li><Link href="/aboutus">About Us</Link></li>
+                      <li><Link href="/programme">Programme</Link></li>
+                      <li><Link href="/speakers">Speakers</Link></li>
+                      <li><Link href="/hackathon">Hackathon</Link></li>
+                      <li><Link href="/partners">Partners</Link></li>
+                      <li><Link href="/sponsors">Sponsors</Link></li>
+                      <li><Link href="/venue">Venue</Link></li>
+                      <li><Link href="/privacy-policy">Privacy Policy</Link></li>
                     </ul>
                   </div>
                 </div>
@@ -79,16 +60,16 @@ const Footer = () => {
                 </div>
                 <div className="row">
                   <div className="col-lg-12 follow_btnbox mb-4">
-                    <a href="#">
+                    <Link href="/registration">
                       <div className="row align-items-center">
                         <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register Now</div>
                       </div>
-                    </a>
-                    <a href="#">
+                    </Link>
+                    <Link href="/aboutus">
                       <div className="row align-items-center">
                         <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Explore Conclave</div>
                       </div>
-                    </a>
+                    </Link>
                   </div>
                 </div>
                 <div className="row">

@@ -9,7 +9,7 @@ const CoreProposition = () => {
             <div className="row">
                 <div className="col-lg-12">
                     <div className="row">
-                        <div className="col-lg-12 heading35_black mb-3" style={{color:"#fff"}}>Why This Conclave?</div>
+                        <div className="col-lg-12 heading35_black mb-3" style={{color:"#fff"}}>The Core Proposition</div>
                     </div>
                     <div className="row">
                         <div className="col-lg-12 mb-3">

@@ -42,7 +42,7 @@ const ContactPage = () => {
           </div>
           <div className="row">
             <div className="col-lg-12" style={{display:"flex", justifyContent:"center"}}>
-              <div className="about_datebox"><Image src="/images/footer_date.png" className="img-fluid" alt="Logo" width={18} height={18} /> &nbsp;&nbsp;10–12 December 2026 | SIU Campus, Lavale, Pune</div>
+              <div className="about_datebox"><Image src="/images/footer_date.png" className="img-fluid" alt="Logo" width={18} height={18} /> &nbsp;&nbsp;10–12 December 2026 | SMCW & SUHRC, SIU Campus, Pune</div>
             </div>
           </div>
           <div className="row">
