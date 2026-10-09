@@ -572,6 +572,13 @@ background-image: linear-gradient(to left, #C73131, #E14444);
   font-size: 19px;
   margin: -20px 0 0 0;
 }
+.qr_img img{
+color: transparent;
+  border: 1px solid #0B86C9;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #fff;
+}
 /* ------------REGISTRATION-PAGE-END---------- */
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
