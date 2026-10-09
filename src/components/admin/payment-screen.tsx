@@ -7,7 +7,7 @@ import {
   type PaymentStatus,
   type PaymentTab,
 } from "@/app/lib/payments";
-import { clearAdmin, readAdmin, type AdminSession } from "@/app/lib/session";
+import { clearAdmin, saveAdmin, type AdminSession } from "@/app/lib/session";
 import { RegistrationDetail } from "./registration-detail";
 
 const tabs: PaymentTab[] = ["All", "Pending", "Approved", "Rejected"];
@@ -32,23 +32,40 @@ export function PaymentScreen() {
   }, [preview]);
 
   useEffect(() => {
-    const saved = readAdmin();
-    if (!saved) {
-      router.replace("/admin");
-      return;
+    let active = true;
+    async function start() {
+      const response = await fetch("/api/login");
+      if (!active) return;
+      if (!response.ok) {
+        clearAdmin();
+        router.replace("/admin");
+        return;
+      }
+      const data = (await response.json()) as AdminSession;
+      saveAdmin(data);
+      setAdmin(data);
+      await loadPayments();
     }
-    setAdmin(saved);
-    void loadPayments();
+    void start();
+    return () => {
+      active = false;
+    };
   }, [router]);
 
   async function loadPayments() {
     const response = await fetch("/api/payments");
+    if (response.status === 401 || response.status === 403) {
+      clearAdmin();
+      router.replace("/admin");
+      return;
+    }
     if (!response.ok) return;
     const data = (await response.json()) as Payment[];
     setRows(data);
   }
 
-  function logout() {
+  async function logout() {
+    await fetch("/api/logout", { method: "POST" });
     clearAdmin();
     router.replace("/admin");
   }
@@ -72,6 +89,11 @@ export function PaymentScreen() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id, status }),
     });
+    if (response.status === 401 || response.status === 403) {
+      clearAdmin();
+      router.replace("/admin");
+      return;
+    }
     if (!response.ok) return;
     const updated = (await response.json()) as Payment;
     setRows((current) => current.map((row) => (row.id === id ? updated : row)));

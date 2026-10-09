@@ -70,12 +70,14 @@ const ContactPage = () => {
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
-                          <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={540} height={95} priority />
+                          <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={500} height={500} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>A Multidisciplinary Academic Ecosystem</i></div>
-                        <div className="col-lg-12 mb-4 about_text">
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SIU-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
                           Established in 1971, Symbiosis International (Deemed University) has grown into a multidisciplinary, multicultural and multinational university guided by the philosophy “Vasudhaiva Kutumbakam – The World is One Family.”
-                          <br></br><br></br>
+                        </div>
+                        <div className="col-lg-12 mb-4 about_text">
                           Today, SIU has 40,000+ students from 85+ countries, with 45+ institutions, 200+ programmes and 13 research centres across its academic ecosystem. Its disciplines span medical and health sciences, engineering and technology, management, computer studies, law, media and communication, humanities, social sciences, architecture and design.
                           <br></br><br></br>
                           The programme is designed around a simple principle: **sharp conversations, practical exposure and meaningful interaction**. Sessions will connect the strategic questions shaping future healthcare with technologies, research and examples that are already moving from possibility towards application.
@@ -93,13 +95,15 @@ const ContactPage = () => {
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
-                          <Image src="/images/aboutus/suhrc.png" className="img-fluid" alt="" width={540} height={95} priority />
+                          <Image src="/images/aboutus/suhrc.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Medical Education • Healthcare • Clinical Research</i></div>
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
+                          Symbiosis Medical College for Women (SMCW) is the first medical college in Maharashtra exclusively meant for girl students, created with a vision of empowering women through medical education. 
+                        </div>
                         <div className="col-lg-12 mb-4 about_text">
-                          Symbiosis Medical College for Women (SMCW) is the first medical college in Maharashtra exclusively meant for girl students, created with a vision of empowering women through medical education. SMCW is closely integrated with Symbiosis University Hospital & Research Centre (SUHRC), its dedicated teaching hospital. 
-                          <br></br><br></br>
-                          SUHRC is a 900-bed tertiary-care teaching hospital providing clinical exposure and patient-care experience to medical students alongside comprehensive healthcare services. The hospital includes advanced diagnostic and imaging facilities, operation theatres, intensive care, dialysis, endoscopy, oncology services and 24×7 emergency care.
+                          SMCW is closely integrated with Symbiosis University Hospital & Research Centre (SUHRC), its dedicated teaching hospital. SUHRC is a 900-bed tertiary-care teaching hospital providing clinical exposure and patient-care experience to medical students alongside comprehensive healthcare services. The hospital includes advanced diagnostic and imaging facilities, operation theatres, intensive care, dialysis, endoscopy, oncology services and 24×7 emergency care.
                         </div>
                         <div className="col-lg-12">
                           <div className="box_list">
@@ -117,9 +121,11 @@ const ContactPage = () => {
                           <Image src="/images/aboutus/sit-pune.png" className="img-fluid" alt="" width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Engineering & Technology for a Changing World</i></div>
-                        <div className="col-lg-12 mb-4 about_text">
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITpune-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
                           Established in 2008, Symbiosis Institute of Technology, Pune is a constituent of Symbiosis International (Deemed University), offering a multidisciplinary environment for engineering education, research and innovation.
-                          <br></br><br></br>
+                        </div>
+                        <div className="col-lg-12 mb-4 about_text">
                           The institute brings together disciplines across Computer Science, Artificial Intelligence & Machine Learning, Electronics & Telecommunication, Mechanical Engineering, Civil Engineering, Robotics and emerging technology domains, with an emphasis on practical learning, industry interaction and technology-driven innovation.
                           <br></br><br></br>
                           The institute provides students with opportunities to engage with contemporary technologies, interdisciplinary projects and real-world engineering challenges, preparing them to contribute to a rapidly evolving technology landscape.
@@ -140,9 +146,11 @@ const ContactPage = () => {
                           <Image src="/images/aboutus/sit-nagpur.png" className="img-fluid" alt="" width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Building Future-Ready Technology Professionals</i></div>
-                        <div className="col-lg-12 mb-4 about_text">
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITNagpur-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
                           Established in 2021, Symbiosis Institute of Technology, Nagpur is a constituent of Symbiosis International (Deemed University) focused on contemporary engineering education, emerging technologies and innovation.
-                          <br></br><br></br>
+                        </div>
+                        <div className="col-lg-12 mb-4 about_text">
                           Its academic ecosystem includes Computer Science & Engineering and specialised areas such as Artificial Intelligence & Machine Learning, Cybersecurity, Artificial Intelligence of Things (AIoT), Data Science & Analytics and Cloud Computing.
                           <br></br><br></br>
                           The institute emphasises practical learning, project-based education, industry interaction and exposure to emerging technologies, enabling students to develop the skills required to address evolving technological and societal challenges.
@@ -163,9 +171,11 @@ const ContactPage = () => {
                           <Image src="/images/aboutus/sit-hyderabad.png" className="img-fluid" alt="" width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Shaping the Next Generation of Technology Leaders</i></div>
-                        <div className="col-lg-12 mb-4 about_text">
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITHyderabad-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
                           Established in 2024, Symbiosis Institute of Technology, Hyderabad is a constituent of Symbiosis International (Deemed University), created to provide contemporary engineering education with a strong focus on technology, innovation and future-ready skills.
-                          <br></br><br></br>
+                        </div>
+                        <div className="col-lg-12 mb-4 about_text">
                           The institute's academic programmes span Computer Science & Engineering, Computer Engineering, Computer Science & Technology and Artificial Intelligence & Machine Learning, providing students with exposure to emerging areas of computing and technology.
                           <br></br><br></br>
                           The institute aims to create an environment where students can develop technical capabilities, engage with innovation and research, and understand the evolving role of technology in solving real-world challenges.
@@ -186,10 +196,12 @@ const ContactPage = () => {
                           <Image src="/images/aboutus/scie.png" className="img-fluid" alt="" width={540} height={95} priority />
                         </div>
                         <div className="col-lg-12 mb-3 text19_black"><i>Global Education • International Engagement • Cross-Cultural Exchange</i></div>
+                        <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                        <div className="col-lg-7 mb-3">
+                          The Symbiosis Centre for International Education (SCIE) is a nodal department of Symbiosis International (Deemed University) created to support and engage with the University’s international student community. 
+                        </div>
                         <div className="col-lg-12 mb-4 about_text">
-                          The Symbiosis Centre for International Education (SCIE) is a nodal department of Symbiosis International (Deemed University) created to support and engage with the University’s international student community. Its mandate extends from supporting international students throughout their journey at Symbiosis to creating opportunities for international exposure, academic engagement and cross-cultural learning. 
-                          <br></br><br></br>
-                          SCIE works as a common platform for international students across Symbiosis and supports initiatives including international student orientation, academic exchanges, international collaborations, student and faculty mobility, and global engagement. The centre also contributes to creating an inclusive environment that enables students from diverse countries and cultures to learn and engage within the Symbiosis ecosystem. 
+                          Its mandate extends from supporting international students throughout their journey at Symbiosis to creating opportunities for international exposure, academic engagement and cross-cultural learning. SCIE works as a common platform for international students across Symbiosis and supports initiatives including international student orientation, academic exchanges, international collaborations, student and faculty mobility, and global engagement. The centre also contributes to creating an inclusive environment that enables students from diverse countries and cultures to learn and engage within the Symbiosis ecosystem. 
                         </div>
                         <div className="col-lg-12">
                           <div className="box_list">
@@ -221,7 +233,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  {/* <div className="col-lg-6 mb-3">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12">
@@ -248,7 +260,7 @@ const ContactPage = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="row">
                   <div className="col-lg-12"></div>

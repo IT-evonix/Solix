@@ -31,7 +31,7 @@ export function LoginScreen() {
       const response = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password, remember }),
       });
       const data = (await response.json()) as AdminSession & { message?: string };
       if (!response.ok) {

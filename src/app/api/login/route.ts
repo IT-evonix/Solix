@@ -1,6 +1,12 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { pool } from "@/lib/db";
+import {
+  adminCookieName,
+  adminCookieOptions,
+  createAdminToken,
+  requireAdmin,
+} from "@/app/lib/admin-auth";
 
 type LoginRow = {
   id: string;
@@ -14,10 +20,17 @@ type LoginRow = {
   status: number;
 };
 
+export async function GET(request: Request) {
+  const auth = await requireAdmin(request);
+  if ("response" in auth) return auth.response;
+  return NextResponse.json(auth.admin);
+}
+
 export async function POST(request: Request) {
   const body = await request.json();
   const email = String(body.email ?? "").trim();
   const password = String(body.password ?? "");
+  const remember = body.remember === true;
 
   if (!email || !password) {
     return NextResponse.json(
@@ -61,7 +74,19 @@ export async function POST(request: Request) {
       [user.id],
     );
 
-    return NextResponse.json(updated.rows[0]);
+    let session: { token: string; maxAge: number };
+    try {
+      session = createAdminToken(String(updated.rows[0].id), remember);
+    } catch {
+      return NextResponse.json(
+        { message: "Admin sign-in is not configured." },
+        { status: 500 },
+      );
+    }
+
+    const response = NextResponse.json(updated.rows[0]);
+    response.cookies.set(adminCookieName, session.token, adminCookieOptions(session.maxAge));
+    return response;
   } catch (error) {
     const code =
       typeof error === "object" && error && "code" in error

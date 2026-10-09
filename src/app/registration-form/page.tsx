@@ -25,7 +25,22 @@ const emptyOptions: Options = {
   hearAbout: [],
 };
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const NAME_PATTERN = /^(?=.*[A-Za-z])[A-Za-z. ]+$/;
+const EMAIL_LOCAL_PATTERN = /^[A-Za-z0-9._%+-]+$/;
+const EMAIL_DOMAIN_PATTERN = /^(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,}$/;
+const MOBILE_PATTERN = /^[6-9]\d{9}$/;
+
+function emailError(email: string) {
+  if (!email) return "Email address is required.";
+  const at = email.lastIndexOf("@");
+  const local = at === -1 ? "" : email.slice(0, at);
+  const domain = at === -1 ? "" : email.slice(at + 1);
+  if (!local || !domain || email.indexOf("@") !== at || !EMAIL_LOCAL_PATTERN.test(local)) {
+    return "Enter a valid email address.";
+  }
+  if (!EMAIL_DOMAIN_PATTERN.test(domain)) return "Enter an email address with a valid domain.";
+  return "";
+}
 
 function toggleId(selected: number[], id: number) {
   return selected.includes(id) ? selected.filter((item) => item !== id) : [...selected, id];
@@ -132,10 +147,14 @@ const ContactPage = () => {
     const next: Record<string, string> = {};
     const email = emailAddress.trim();
 
-    if (!fullName.trim()) next.fullName = "Full name is required.";
-    if (!email) next.emailAddress = "Email address is required.";
-    else if (!EMAIL_PATTERN.test(email)) next.emailAddress = "Enter a valid email address.";
-    if (!mobileNumber.trim()) next.mobileNumber = "Mobile number is required.";
+    const name = fullName.trim();
+    if (!name) next.fullName = "Full name is required.";
+    else if (!NAME_PATTERN.test(name)) next.fullName = "Full name can contain only letters, spaces, and dots.";
+    const emailMessage = emailError(email);
+    if (emailMessage) next.emailAddress = emailMessage;
+    const mobile = mobileNumber.trim();
+    if (!mobile) next.mobileNumber = "Mobile number is required.";
+    else if (!MOBILE_PATTERN.test(mobile)) next.mobileNumber = "Enter a valid 10-digit mobile number.";
     if (!country.trim()) next.country = "Country is required.";
     if (!city.trim()) next.city = "City is required.";
     if (participantCategory.length !== 1) next.participantCategory = "Select a participant category.";
@@ -223,19 +242,19 @@ const ContactPage = () => {
                   <div className="col-lg-12 mb-3">
                     <div className="row">
                       <div className="col-lg-12 text16_black mb-1">Full Name:<RequiredMark /></div>
-                      <div className="col-lg-12"><input type="text" className="input_box" value={fullName} onChange={(event) => setFullName(event.target.value)} required aria-required="true" /><FieldError message={errors.fullName} /></div>
+                      <div className="col-lg-12"><input type="text" className="input_box" value={fullName} onChange={(event) => setFullName(event.target.value.replace(/[^A-Za-z. ]/g, ""))} required aria-required="true" autoComplete="name" /><FieldError message={errors.fullName} /></div>
                     </div>
                   </div>
                   <div className="col-lg-6 mb-3">
                     <div className="row">
                       <div className="col-lg-12 text16_black mb-1">Email Address:<RequiredMark /></div>
-                      <div className="col-lg-12"><input type="email" className="input_box" value={emailAddress} onChange={(event) => setEmailAddress(event.target.value)} required aria-required="true" /><FieldError message={errors.emailAddress} /></div>
+                      <div className="col-lg-12"><input type="email" className="input_box" value={emailAddress} onChange={(event) => setEmailAddress(event.target.value)} required aria-required="true" autoComplete="email" /><FieldError message={errors.emailAddress} /></div>
                     </div>
                   </div>
                   <div className="col-lg-6 mb-3">
                     <div className="row">
                       <div className="col-lg-12 text16_black mb-1">Mobile number:<RequiredMark /></div>
-                      <div className="col-lg-12"><input type="tel" className="input_box" value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value)} required aria-required="true" /><FieldError message={errors.mobileNumber} /></div>
+                      <div className="col-lg-12"><input type="tel" className="input_box" inputMode="numeric" maxLength={10} value={mobileNumber} onChange={(event) => setMobileNumber(event.target.value.replace(/\D/g, "").slice(0, 10))} required aria-required="true" autoComplete="tel" /><FieldError message={errors.mobileNumber} /></div>
                     </div>
                   </div>
                   <div className="col-lg-6 mb-3">

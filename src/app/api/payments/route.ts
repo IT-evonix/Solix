@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
+import { requireAdmin } from "@/app/lib/admin-auth";
 import { formatRegistrationId, type Payment, type PaymentStatus } from "@/app/lib/payments";
 
 // registration.status: 1 draft (added by applicant), 2 pending, 3 approved, 0 rejected
@@ -56,7 +57,10 @@ function toPayment(row: PaymentRow): Payment {
   };
 }
 
-export async function GET() {
+export async function GET(request: Request) {
+  const auth = await requireAdmin(request);
+  if ("response" in auth) return auth.response;
+
   try {
     const result = await pool.query<PaymentRow>(
       `SELECT ${selectList}
@@ -75,6 +79,9 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  const auth = await requireAdmin(request);
+  if ("response" in auth) return auth.response;
+
   const body = await request.json();
   const id = String(body.id ?? "");
   const action = String(body.status ?? "") as keyof typeof statusByAction;

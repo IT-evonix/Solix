@@ -26,7 +26,7 @@ const Footer = () => {
                   </div>
                   <div className="col-lg-12">
                     <div className="row">
-                      <div className="col-lg-12"><Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SIU Lavale Campus, Pune</div>
+                      <div className="col-lg-12"><Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SMCW & SUHRC, SIU CAMPUS, Pune</div>
                     </div>
                   </div>
                   <div className="col-lg-12"></div>
@@ -62,24 +62,24 @@ const Footer = () => {
                 </div>
                 <div className="row">
                   <div className="col-lg-12 follow_btnbox mb-4">
-                    <Link href="/registration">
+                    <Link href="/conference">
                       <div className="row align-items-center">
-                        <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register Now</div>
+                        <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register for Conference</div>
                       </div>
                     </Link>
-                    <Link href="/aboutus">
+                    <Link href="/">
                       <div className="row align-items-center">
-                        <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Explore Conclave</div>
+                        <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register for Hackathon</div>
                       </div>
                     </Link>
                   </div>
                 </div>
                 <div className="row">
                   <div className="col-lg-12 footer_social_iconbox">
-                    <a href="#"><Image src="/images/footer_facebook2.png" className="img-fluid" alt="Logo" width={300} height={300} /></a>
-                    <a href="#"><Image src="/images/footer_linkedin2.png" className="img-fluid" alt="Logo" width={300} height={300} /></a>
-                    <a href="#"><Image src="/images/footer_instagram2.png" className="img-fluid" alt="Logo" width={300} height={300} /></a>
-                    <a href="#"><Image src="/images/footer_youtube2.png" className="img-fluid" alt="Logo" width={300} height={300} /></a>
+                    <Link href="#"><Image src="/images/footer_facebook2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_linkedin2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_instagram2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_youtube2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
                   </div>
                 </div>
                 <div className="row">
@@ -97,7 +97,7 @@ const Footer = () => {
               © 2026 Symbiosis–Solix Empower Tech Conclave. All Rights Reserved.
             </div>
             <div className="col-lg-5 col-md-5 craftedby_text">
-              Crafted by <a href="https://www.evonix.co/" target="_blank"><Image src="/images/evonix-logo.png" className="img-fluid" alt="Logo" width={80} height={10} /></a>
+              Crafted by <Link href="https://www.evonix.co/" target="_blank"><Image src="/images/evonix-logo.png" className="img-fluid" alt="Logo" width={80} height={10} /></Link>
             </div>
           </div>
         </div>

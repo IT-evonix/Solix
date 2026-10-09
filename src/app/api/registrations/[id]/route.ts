@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
+import { requireAdmin } from "@/app/lib/admin-auth";
 
 const statusLabel: Record<number, string> = {
   0: "Rejected",
@@ -34,9 +35,12 @@ type RegistrationRow = {
 };
 
 export async function GET(
-  _request: Request,
+  request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const auth = await requireAdmin(request);
+  if ("response" in auth) return auth.response;
+
   const { id } = await context.params;
 
   try {

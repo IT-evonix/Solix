@@ -277,7 +277,7 @@ const ContactPage = () => {
                     </div>
                   </div>
                   <div className="col-lg-6" style={{position:"relative"}}>
-                    <Image src="/images/registration_venue_img.png" className="img-fluid" alt="Logo" style={{borderRadius:"20px"}} width={800} height={800} />
+                    <Image src="/images/registration_venue_img2.png" className="img-fluid" alt="Logo" style={{borderRadius:"20px"}} width={800} height={800} />
                     <div className="register_venu_box">
                       <div className="row text-center">
                         <div className="col-lg-12">SMCW & SUHRC</div>
