@@ -73,13 +73,13 @@ export default function OurTestimonials() {
     <section className="speakers_section">
       <div className="container" style={{position:"relative", zIndex:"5"}}>
         <div className="row">
-            <div className="col-lg-12 heading35_black mb-2 text-center" style={{color:"#fff"}}>Our Speakers</div>
+            <div className="col-lg-12 heading35_black mb-5 text-center" style={{color:"#fff"}}>Our Speakers</div>
         </div>
-        <div className="row">
+        {/* <div className="row">
             <div className="col-lg-12 mb-3 text-center mb-5" style={{color:"#fff"}}>
               The three-day programme provides a strong narrative for the digital experience
             </div>
-        </div>
+        </div> */}
         <div className="row">
           <div className="col-lg-12">
             <div className="our_testimonials_inner">
@@ -128,12 +128,12 @@ export default function OurTestimonials() {
                           <div className="col-lg-12 testi_head mb-1">
                             {testimonial.name}
                           </div>
-                          <div className="col-lg-12 mb-1">
+                          <div className="col-lg-12 mb-3">
                             {testimonial.designation}
                           </div>
-                          <div className="col-lg-12 mb-3">
+                          {/* <div className="col-lg-12 mb-3">
                             {testimonial.content}
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>

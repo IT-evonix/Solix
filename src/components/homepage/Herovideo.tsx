@@ -27,23 +27,23 @@ const Herovideo = () => {
                   </div>
                   <div className="banner_date">
                     <Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={80} height={10} />
-                    SIU Lavale Campus, Pune
+                    SMCW & SUHRC, SIU Campus, Pune
                   </div>
                 </div>
                 <div className="col-lg-12 banner_text2">
                   <span>CONNECT</span> <span>CREATE</span> <span>TRANSFORM</span>
                 </div>
                 <div className="col-lg-12 banner_buttonbox">
-                  <Link href="/registration">
+                  <Link href="/conference">
                     <div className="row align-items-center">
-                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register Now</div>
+                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Conference</div>
                     </div>
                   </Link>
-                  <a href="#">
+                  <Link href="/">
                     <div className="row align-items-center">
-                      <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /> Explore the Conclave</div>
+                      <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Hackathon</div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-lg-12"></div>
               </div>
