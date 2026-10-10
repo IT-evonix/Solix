@@ -1,5 +1,6 @@
 import InnerpageBanner from "@/components/InnerpageBanner";
 import Image from "next/image";
+import Link from "next/link";
 import Faq from "@/components/Faq";
 import { Faq_Venue } from "@/data/faqData";
 
@@ -52,7 +53,7 @@ const ContactPage = () => {
               </div>
             </div>
             <div className="col-lg-5 col-md-5">
-              <Image src="/images/venues/hillbase_img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
+              <Image src="/images/venues/hillbase_img2.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
             </div>
           </div>
           <div className="row">
@@ -158,7 +159,7 @@ const ContactPage = () => {
                 </div>
                 <div className="row">
                     <div className="col-lg-12 mb-4">
-                        <a href="{{ url('/') }}" className="button_box">ACCOMMODATION DETAILS</a>
+                        <Link href="/" className="button_box">ACCOMMODATION DETAILS</Link>
                     </div>
                 </div>
                 <div className="row">
@@ -215,8 +216,8 @@ const ContactPage = () => {
                 </div>
                 <div className="col-lg-12">
                   <div className="row">
-                    <div className="col-lg-5 mb-4"><a href="{{ url('/') }}" className="button_box">View on Map</a></div>
-                    <div className="col-lg-6"><a href="{{ url('/') }}" className="button_box">Traval Information</a></div>
+                    <div className="col-lg-5 mb-4"><Link href="/" className="button_box">View on Map</Link></div>
+                    {/* <div className="col-lg-6"><Link href="/" className="button_box">Traval Information</Link></div> */}
                   </div>
                 </div>
                 <div className="col-lg-12"></div>

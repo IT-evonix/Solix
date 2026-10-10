@@ -1,11 +1,8 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
-import Link from "next/link";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import InnerpageBanner from "@/components/InnerpageBanner";
 import { appPath } from "@/app/lib/app-url";
-import Image from "next/image";
-
 
 type Option = { id: number; name: string };
 
@@ -123,6 +120,38 @@ const ContactPage = () => {
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const [fileKey, setFileKey] = useState(0);
+  const resetTimer = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) window.clearTimeout(resetTimer.current);
+    };
+  }, []);
+
+  function resetForm() {
+    setFullName("");
+    setEmailAddress("");
+    setMobileNumber("");
+    setCountry("");
+    setCity("");
+    setParticipantCategory([]);
+    setOrganisationInstitution("");
+    setDesignation("");
+    setProfessionSpecialisation("");
+    setDepartmentFunctionalArea("");
+    setAreaOfInterest([]);
+    setExploreConclave([]);
+    setOnCampusAccommodation("");
+    setDeclaration([]);
+    setPreferredCommunicationChannel("");
+    setHearAboutConclave([]);
+    setTransactionId("");
+    setScreenshot(null);
+    setErrors({});
+    setMessage("");
+    setFileKey((current) => current + 1);
+  }
 
   useEffect(() => {
     let active = true;
@@ -219,6 +248,10 @@ const ContactPage = () => {
         return;
       }
       setMessage(`Registration saved. Your ID is ${data.registrationCode}.`);
+      if (resetTimer.current) window.clearTimeout(resetTimer.current);
+      resetTimer.current = window.setTimeout(() => {
+        resetForm();
+      }, 3000);
     } catch {
       setMessage("Unable to save registration.");
     } finally {
@@ -399,7 +432,8 @@ const ContactPage = () => {
                             </div>
                           </div>
                           <div className="col-lg-12" style={{fontSize:"12px"}}>
-                            Link to <Link href="https://www.sandipanihometel.com/" target="_blank">https://www.sandipanihometel.com/</Link> Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
+                            If Yes,<br></br>
+                            Link to https://www.sandipanihometel.com/ Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
                           </div>
 
                         </div>
@@ -413,22 +447,18 @@ const ContactPage = () => {
                 <div className="col-lg-12 heading35_black mb-2">Payment</div>
               </div>
               <div className="register_form_list mb-5" style={{backgroundColor:"#E7F9EF"}}>
-                <div className="row justify-content-center align-items-center">
-                  <div className="col-lg-9">
-                    <div className="row">
-                      <div className="col-lg-12 heading19_black mb-2"><b>Conference Registration Fee</b></div>
-                      <div className="col-lg-12 heading19_black mb-2"><b>₹1,500/-</b></div>
-                      <div className="col-lg-12" style={{fontSize:"12px"}}>
-                        Payment will be completed through the authorised payment gateway. (QR Code)
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="col-lg-3 text-center qr_img">
-                    <Image src="/images/qr-code.png" className="img-fluid" alt="" width={540} height={95} priority />
-                  </div>
-                </div>
-              </div>
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="row">
+                      <div className="col-lg-10 heading19_black mb-2"><b>Conference Registration Fee</b></div>                      
+                      <div className="col-lg-2 heading19_black mb-2"><b>₹1,500/-</b></div>                      
+                    </div>
+                  </div>
+                  <div className="col-lg-12" style={{fontSize:"12px"}}>
+                    Payment will be completed through the authorised payment gateway. (QR Code)
+                  </div>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-lg-12 heading35_black mb-2">Declarations & Consent<RequiredMark /></div>
               </div>
@@ -514,7 +544,7 @@ const ContactPage = () => {
                           <div className="row">
                             <div className="col-lg-12 mb-2">
                               <div className="cat_list">
-                                <input type="file" className="input_box" accept="image/png,image/jpeg,image/webp,image/gif" required aria-required="true" onChange={(event) => setScreenshot(event.target.files?.[0] ?? null)} />
+                                <input key={fileKey} type="file" className="input_box" accept="image/png,image/jpeg,image/webp,image/gif" required aria-required="true" onChange={(event) => setScreenshot(event.target.files?.[0] ?? null)} />
                                 <FieldError message={errors.screenshot} />
                               </div>
                             </div>
@@ -546,19 +576,6 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-      {/* <section className="footer_faq_section mb-0 mt-5">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12 mb-2 heading35_black text-center mb-4">Frequently Asked Questions</div>
-          </div>
-          <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
-              <Faq faqs={Faq_Registration} />
-            </div>
-          </div>
-        </div>
-      </section> */}
     </section>    
   );
 };

@@ -3,7 +3,7 @@
   src: url("/fonts/Poppins-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
-}
+} 
 
 @font-face {
   font-family: "Poppins-SemiBold";
@@ -420,7 +420,10 @@ width: auto;
   border-radius: 20px;
   padding: 30px;
 }
-
+.aboutus_page_mainbox .about_college_img img{
+  max-height: inherit;
+  border-radius: 10px;
+}
 .about_white_list img{
 max-height: 50px;
   width: auto;
@@ -562,6 +565,13 @@ background-image: linear-gradient(to left, #C73131, #E14444);
   font-size: 19px;
   margin: -20px 0 0 0;
 }
+.qr_img img{
+color: transparent;
+  border: 1px solid #0b86c9;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #fff;
+}
 /* ------------REGISTRATION-PAGE-END---------- */
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
@@ -651,12 +661,12 @@ background-color: #fff;
 }
 .footer_list2{
   float: left;
-  width: 52%;
+  width: 48%;
   padding: 0 80px 0 0;
 }
 .footer_list3{
   float: left;
-  width: 18%;
+  width: 22%;
 }
 .footer_heading{
 color: #fff;

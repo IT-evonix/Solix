@@ -1,0 +1,403 @@
+@layer theme, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@config "../../../tailwind.admin.config.ts";
+
+@source "../../components/admin";
+@source "./";
+@source "../payments";
+
+html:has(.admin-login),
+body:has(.admin-login) {
+  height: 100%;
+  overflow: hidden;
+}
+
+#admin-root:has(.admin-login) {
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+#admin-root .admin-login {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  background: #f4f7f8;
+}
+
+#admin-root .admin-login-panel {
+  display: none;
+}
+
+#admin-root .admin-login-lines {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+#admin-root .admin-login-glow {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+#admin-root .admin-login-glow-lg {
+  left: -4rem;
+  bottom: -6rem;
+  width: 18rem;
+  height: 18rem;
+  background: rgba(18, 48, 68, 0.7);
+}
+
+#admin-root .admin-login-glow-sm {
+  left: 6rem;
+  bottom: 2.5rem;
+  width: 12rem;
+  height: 12rem;
+  background: rgba(13, 40, 56, 0.8);
+}
+
+#admin-root .admin-login-panel-body,
+#admin-root .admin-login-logo,
+#admin-root .admin-login-copy {
+  position: relative;
+  z-index: 1;
+}
+
+#admin-root .admin-login-logo {
+  background: #fff;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.12);
+}
+
+#admin-root .admin-login-logo img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+#admin-root .admin-login-copy {
+  max-width: 28rem;
+  margin-top: 2rem;
+}
+
+#admin-root .admin-login-copy h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+#admin-root .admin-login-copy p {
+  margin: 1.5rem 0 0;
+  color: #c5dde6;
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+#admin-root .admin-login-points {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+}
+
+#admin-root .admin-login-points li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: #d5eaf0;
+}
+
+#admin-root .admin-login-points li span {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: #16384a;
+  color: #7fe3f0;
+  font-size: 0.75rem;
+}
+
+#admin-root .admin-login-formwrap {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+  max-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+#admin-root .admin-login-card {
+  width: 100%;
+  max-width: 28rem;
+  margin: 0;
+  background: #fff;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 16px 50px rgba(7, 20, 34, 0.08);
+}
+
+#admin-root .admin-login-card h2 {
+  margin: 0;
+  color: #12263a;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+#admin-root .admin-login-card .hint {
+  margin: 0.35rem 0 0;
+  color: #7b8d99;
+  font-size: 0.875rem;
+}
+
+#admin-root .admin-login-card label {
+  display: block;
+  margin: 1.4rem 0 0;
+  color: #12263a;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+#admin-root .admin-login-card input[type="email"],
+#admin-root .admin-login-card input[type="password"] {
+  display: block;
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d7e2e8;
+  border-radius: 0.75rem;
+  background: #fff;
+  color: #12263a;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  box-shadow: none;
+  outline: none;
+}
+
+#admin-root .admin-login-card input[type="email"]:focus,
+#admin-root .admin-login-card input[type="password"]:focus {
+  border-color: #1eb6c9;
+}
+
+#admin-root .admin-login-remember {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+
+#admin-root .admin-login-remember input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #1eb6c9;
+}
+
+#admin-root .admin-login-error {
+  margin: 0.75rem 0 0;
+  color: #d64545;
+  font-size: 0.875rem;
+}
+
+#admin-root .admin-login-submit {
+  display: block;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 0;
+  border-radius: 0.75rem;
+  background: #1eb6c9;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#admin-root .admin-login-submit:hover {
+  background: #189eaf;
+}
+
+#admin-root .admin-login-submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+@media (min-width: 64rem) {
+  #admin-root .admin-login-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    width: 46%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+    padding: 2rem 3rem;
+    background: #071422;
+    color: #fff;
+  }
+}
+
+#admin-root {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #12263a;
+  background: #f4f7f8;
+  min-height: 100vh;
+}
+
+#admin-root button,
+#admin-root input {
+  font-family: inherit;
+}
+
+#admin-root button {
+  appearance: none;
+}
+
+#admin-root .h-16 {
+  width: 3rem !important;
+  height: 4rem !important;
+  max-width: none !important;
+  object-fit: cover !important;
+}
+
+#admin-root .h-56 {
+  height: 14rem !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+}
+
+#admin-root .pay-side {
+  width: 18rem;
+  min-height: 100vh;
+  background: #071422;
+}
+
+#admin-root .pay-head,
+#admin-root .pay-stats {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+#admin-root .pay-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 1.25rem;
+}
+
+#admin-root section.pay-list {
+  margin-top: 1.25rem;
+}
+
+#admin-root .pay-table td {
+  border-top: 1px solid #eef3f5;
+  vertical-align: top;
+}
+
+#admin-root .pay-shot {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  line-height: 0;
+}
+
+#admin-root .pay-shot:hover .pay-thumb {
+  outline: 2px solid #1eb6c9;
+}
+
+#admin-root .pay-thumb {
+  width: 3rem;
+  height: 4rem;
+  max-width: none;
+  object-fit: cover;
+  border: 1px solid #d7e7ec;
+  border-radius: 0.5rem;
+  background: #fff;
+}
+
+#admin-root .pay-name,
+#admin-root .pay-tab,
+#admin-root .pay-action {
+  border: 0;
+  cursor: pointer;
+}
+
+#admin-root .pay-name {
+  display: inline;
+  padding: 0;
+  background: transparent;
+  color: #128fa0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: left;
+}
+
+#admin-root .pay-tab {
+  border-radius: 999px;
+  padding: 0.375rem 1rem;
+  font-size: 0.875rem;
+  background: #eef3f5;
+  color: #5f7380;
+}
+
+#admin-root .pay-tab.is-on {
+  background: #12263a;
+  color: #fff;
+}
+
+#admin-root .pay-status {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+#admin-root .pay-status.approved { background: #e5f7f4; color: #128fa0; }
+#admin-root .pay-status.pending { background: #fff4e2; color: #d0891c; }
+#admin-root .pay-status.rejected { background: #fdecec; color: #d64545; }
+#admin-root .pay-status.draft { background: #eef3f5; color: #5f7380; }
+
+#admin-root .pay-action {
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+#admin-root .pay-action.teal.is-on { background: #1eb6c9; color: #fff; }
+#admin-root .pay-action.teal.is-off { background: #d8f3f6; color: #128fa0; }
+#admin-root .pay-action.red.is-on { background: #e15b64; color: #fff; }
+#admin-root .pay-action.red.is-off { background: #f8dfe1; color: #e15b64; }
+#admin-root .pay-action.amber.is-on { background: #f0b15a; color: #fff; }
+#admin-root .pay-action.amber.is-off { background: #f8ead3; color: #d0891c; }
+
+@media (max-width: 1023px) {
+  #admin-root .pay-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
