@@ -360,7 +360,9 @@ async function saveRegistration(data: RegistrationInsert) {
 
     const row = inserted.rows[0];
     const filename = `${row.id}.${data.extension}`;
-    const directory = path.join(process.cwd(), "public", "uploads");
+    const directory = process.env.UPLOAD_DIR
+      ? path.resolve(process.env.UPLOAD_DIR)
+      : path.join(process.cwd(), "uploads");
     storedFile = path.join(directory, filename);
     await mkdir(directory, { recursive: true });
     await writeFile(storedFile, Buffer.from(await data.screenshot.arrayBuffer()));
@@ -368,7 +370,7 @@ async function saveRegistration(data: RegistrationInsert) {
     await client.query(
       `INSERT INTO registration_payment (registration_id, upload_path, transaction_id)
        VALUES ($1, $2, $3)`,
-      [row.id, `/uploads/${filename}`, data.transactionId],
+      [row.id, `/api/uploads/${filename}`, data.transactionId],
     );
     await client.query("COMMIT");
 
