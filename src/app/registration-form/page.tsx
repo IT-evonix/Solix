@@ -390,7 +390,7 @@ const ContactPage = () => {
                               </label>
                             </div>
                           </div>
-                          <div className="col-lg-6 mb-4">
+                          <div className="col-lg-6 mb-2">
                             <div className="cat_list">
                               <label htmlFor="Accommodation2">
                                 <input type="radio" name="Accommodation" id="Accommodation2" value="no" checked={onCampusAccommodation === "no"} onChange={() => setOnCampusAccommodation("no")} /> &nbsp;&nbsp;
@@ -398,9 +398,9 @@ const ContactPage = () => {
                               </label>
                             </div>
                           </div>
-                          <div className="col-lg-12" style={{fontSize:"12px"}}>
+                          {/* <div className="col-lg-12" style={{fontSize:"12px"}}>
                             Link to <Link href="https://www.sandipanihometel.com/" target="_blank">https://www.sandipanihometel.com/</Link> Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
-                          </div>
+                          </div> */}
 
                         </div>
                       </div>
@@ -413,22 +413,22 @@ const ContactPage = () => {
                 <div className="col-lg-12 heading35_black mb-2">Payment</div>
               </div>
               <div className="register_form_list mb-5" style={{backgroundColor:"#E7F9EF"}}>
-                <div className="row justify-content-center align-items-center">
-                  <div className="col-lg-9">
-                    <div className="row">
-                      <div className="col-lg-12 heading19_black mb-2"><b>Conference Registration Fee</b></div>
-                      <div className="col-lg-12 heading19_black mb-2"><b>₹1,500/-</b></div>
-                      <div className="col-lg-12" style={{fontSize:"12px"}}>
-                        Payment will be completed through the authorised payment gateway. (QR Code)
-                      </div>
-                    </div>
-                  </div>
+                <div className="row justify-content-center align-items-center">
+                  <div className="col-lg-9">
+                    <div className="row">
+                      <div className="col-lg-12 heading19_black mb-2"><b>Conference Registration Fee</b></div>
+                      <div className="col-lg-12 heading19_black mb-2"><b>₹1,500/-</b></div>
+                      <div className="col-lg-12" style={{fontSize:"12px"}}>
+                      Payment will be completed through the authorised payment gateway. (QR Code)
+                      </div>
+                    </div>
+                  </div>
 
-                  <div className="col-lg-3 text-center qr_img">
-                    <Image src="/images/qr-code.png" className="img-fluid" alt="" width={540} height={95} priority />
-                  </div>
-                </div>
-              </div>
+                  <div className="col-lg-3 text-center qr_img">
+                    <Image src="/images/qr-code.png" className="img-fluid" alt="" width={540} height={95} priority />
+                  </div>
+                </div>
+              </div>
               <div className="row">
                 <div className="col-lg-12 heading35_black mb-2">Declarations & Consent<RequiredMark /></div>
               </div>
