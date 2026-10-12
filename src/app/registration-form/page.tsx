@@ -390,7 +390,7 @@ const ContactPage = () => {
                               </label>
                             </div>
                           </div>
-                          <div className="col-lg-6 mb-4">
+                          <div className="col-lg-6 mb-2">
                             <div className="cat_list">
                               <label htmlFor="Accommodation2">
                                 <input type="radio" name="Accommodation" id="Accommodation2" value="no" checked={onCampusAccommodation === "no"} onChange={() => setOnCampusAccommodation("no")} /> &nbsp;&nbsp;
@@ -398,9 +398,9 @@ const ContactPage = () => {
                               </label>
                             </div>
                           </div>
-                          <div className="col-lg-12" style={{fontSize:"12px"}}>
+                          {/* <div className="col-lg-12" style={{fontSize:"12px"}}>
                             Link to <Link href="https://www.sandipanihometel.com/" target="_blank">https://www.sandipanihometel.com/</Link> Sandipani Hometel accommodation will be provided to registered Conference participants for 10-11-12 December 2026 with a separate accommodation charge.
-                          </div>
+                          </div> */}
 
                         </div>
                       </div>
