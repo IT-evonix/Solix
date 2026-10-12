@@ -515,11 +515,11 @@ const ContactPage = () => {
                               </div>
                           </div>
                       </div>
-                      <div className="row">
+                      {/* <div className="row">
                           <div className="col-lg-12 text-center mt-3">
                               <span  style={{backgroundColor:"#ffffff2b", borderRadius:"100px", padding:"10px 30px"}}>This narrative should be used consistently across the website as a visual and editorial device, rather than as a decorative tagline alone.</span>
                           </div>
-                      </div>
+                      </div> */}
                       <div className="row">
                           <div className="col-lg-12"></div>
                       </div>
