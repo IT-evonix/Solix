@@ -13,49 +13,107 @@ interface Testimonial {
   name: string;
   image: string;
   content: string;
-  designation: string;
+  // designation: string;
 }
 
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Ramon Gibson",
-    designation: "Assistant Teacher",
-    image: "/images/speakers1.png",
+    name: "Dr. Shiv Kumar Sarin",
+    image: "/images/speakers/ShivKumarSarin3.png",
     content:
-      "Lorem Ipsum has been the standard dummy",
+      "Keynote Speaker",
   },
   {
-    id: 2,
-    name: "Stella Robinson",
-    designation: "Assistant Teacher",
-    image: "/images/speakers2.png",
+    id: 1,
+    name: "Assoc Prof Liu Nan",
+    image: "/images/speakers/LiuNan3.png",
     content:
-      "Lorem Ipsum has been the standard dummy",
+      "Keynote Speaker",
   },
   {
-    id: 3,
-    name: "Megan Cade",
-    designation: "Assistant Teacher",
-    image: "/images/speakers3.png",
+    id: 1,
+    name: "Dr. Yilin Ning",
+    image: "/images/speakers/YilinNing3.png",
     content:
-      "Lorem Ipsum has been the standard dummy",
+      "Keynote Speaker",
   },
   {
-    id: 4,
-    name: "Paul Phelan",
-    designation: "Assistant Teacher",
-    image: "/images/speakers4.png",
+    id: 1,
+    name: "Mr. Mark Lewis",
+    image: "/images/speakers/MarkLewis3.png",
     content:
-      "Lorem Ipsum has been the standard dummy",
+      "Solix Technologies",
   },
   {
-    id: 5,
-    name: "Wendy Buckley",
-    designation: "Assistant Teacher",
-    image: "/images/speakers5.png",
+    id: 1,
+    name: "Dr. Dasmit Singh",
+    image: "/images/speakers/DasmitSingh3.png",
     content:
-      "Lorem Ipsum has been the standard dummy",
+      "Keynote & Hackathon Briefing",
+  },
+  {
+    id: 1,
+    name: "Shri Sunil Kumar Barnwal",
+    image: "/images/speakers/SunilKumarBarnwal3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Kavitha Rajshekhar",
+    image: "/images/speakers/KavithaRajshekhar3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Rahul Gupta",
+    image: "/images/speakers/RahulGupta3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Donald E. Ingber",
+    image: "/images/speakers/DonaldIngber3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Rakesh Kalapala",
+    image: "/images/speakers/RakeshKalapala3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Mohit Bhandari",
+    image: "/images/speakers/MohitBhandari3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Prof. Alejandro Sosnik",
+    image: "/images/speakers/AlejandroSosnik3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. Jana M. Kainerstorfer",
+    image: "/images/speakers/JanaKainerstorfer3.png",
+    content:
+      "Keynote Speaker",
+  },
+  {
+    id: 1,
+    name: "Dr. M. Srinivas",
+    image: "/images/speakers/srinivas3.png",
+    content:
+      "Keynote Speaker",
   },
 ];
 
@@ -71,7 +129,7 @@ export default function OurTestimonials() {
 
   return (
     <section className="speakers_section">
-      <div className="container" style={{position:"relative", zIndex:"5"}}>
+      <div className="container-fluid" style={{position:"relative", zIndex:"5"}}>
         <div className="row">
             <div className="col-lg-12 heading35_black mb-5 text-center" style={{color:"#fff"}}>Our Speakers</div>
         </div>
@@ -112,7 +170,7 @@ export default function OurTestimonials() {
                     slidesPerView: 3,
                   },
                   1200: {
-                    slidesPerView: 5,
+                    slidesPerView: 6,
                   },
                 }}
                 className="testimonials_slider"
@@ -122,18 +180,20 @@ export default function OurTestimonials() {
                     <div className="testimonials_box">
                       <div className="testimonials_innerbox">
                         <div className="row">
-                          <div className="col-lg-12 mb-3 testi_img">
-                            <Image src={testimonial.image} alt={testimonial.name} width={180} height={160} />
+                          <div className="col-lg-12 mb-3">
+                            <div className="testi_img">
+                              <Image src={testimonial.image} alt={testimonial.name} width={180} height={160} />
+                            </div>
                           </div>
                           <div className="col-lg-12 testi_head mb-1">
                             {testimonial.name}
                           </div>
-                          <div className="col-lg-12 mb-3">
-                            {testimonial.designation}
-                          </div>
                           {/* <div className="col-lg-12 mb-3">
-                            {testimonial.content}
+                            {testimonial.designation}
                           </div> */}
+                          <div className="col-lg-12 mb-3">
+                            {testimonial.content}
+                          </div>
                         </div>
                       </div>
                     </div>

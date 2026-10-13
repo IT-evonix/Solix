@@ -229,7 +229,7 @@ const ContactPage = () => {
   return (
     <section className="register_page_mainbox mb-0">
       <InnerpageBanner title="Conference Registration" />
-      <section className="mb-5">
+      <section className="mb-5 pt-5">
         <div className="container">
           <div className="row">
             <div className="col-lg-8">

@@ -5,7 +5,7 @@ const ContactPage = () => {
   return (
     <section className="aboutus_page_mainbox mb-0">
       <InnerpageBanner title="About Us" />
-      <section className="mb-5">
+      <section className="mb-5 pt-5">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-8">
@@ -66,7 +66,7 @@ const ContactPage = () => {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -91,7 +91,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -114,7 +114,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -139,7 +139,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -164,7 +164,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -189,7 +189,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -212,7 +212,7 @@ const ContactPage = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 mb-3">
+                  <div className="col-lg-6 mb-4">
                     <div className="about_white_list">
                       <div className="row">
                         <div className="col-lg-12 mb-4">
@@ -274,7 +274,7 @@ const ContactPage = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-12 mb-4">
-              <div className="about_white_list p-5" style={{backgroundColor:"#ecf5ff"}}>
+              <div className="about_white_list p-5" style={{backgroundColor:"#ecf5ff", boxShadow:"none"}}>
                 <div className="row justify-content-center align-items-center">
                   <div className="col-lg-2 text-center">
                     <svg width="100" height="100" viewBox="0 0 43 43" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -300,7 +300,7 @@ const ContactPage = () => {
               </div>
             </div>
             <div className="col-lg-12">
-              <div className="about_white_list p-5" style={{backgroundColor:"#fbf4f2"}}>
+              <div className="about_white_list p-5" style={{backgroundColor:"#fbf4f2", boxShadow:"none"}}>
                 <div className="row justify-content-center align-items-center">
                   <div className="col-lg-2 text-center">
                     <svg width="100" height="100" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -335,8 +335,8 @@ const ContactPage = () => {
           <div className="row">
               <div className="col-lg-12 heading21_black mb-5 text-center">A THREE-DAY JOURNEY</div>
           </div>
-          <div className="row mb-5">
-              <div className="col-lg-4">
+          <div className="row">
+              <div className="col-lg-4 mb-5">
                   <div className="signature_list">
                       <div className="row align-items-center">
                           <div className="col-lg-12">
@@ -357,7 +357,7 @@ const ContactPage = () => {
                       </div>
                   </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 mb-5">
                   <div className="signature_list" style={{backgroundColor:"#E7F9EF"}}>
                       <div className="row align-items-center">
                           <div className="col-lg-12">
@@ -378,7 +378,7 @@ const ContactPage = () => {
                       </div>
                   </div>
               </div>
-              <div className="col-lg-4">
+              <div className="col-lg-4 mb-5">
                   <div className="signature_list" style={{backgroundColor:"#ECF7FD"}}>
                       <div className="row align-items-center">
                           <div className="col-lg-12">
@@ -411,10 +411,10 @@ const ContactPage = () => {
           </div>
         </div>
       </section>
-      <section className="">
+      <section className="core_section text-center mb-0">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12 core_section text-center mb-0 pt-5 pb-5" style={{borderRadius:"50px"}}>
+            <div className="col-lg-12">
               <div className="row">
                   <div className="col-lg-12">
                       <div className="row">

@@ -14,19 +14,19 @@ const Footer = () => {
               <div className="footer_list1 footer_list">
                 <div className="row">
                   <div className="col-lg-12 mb-4">
-                    <div className="footer_logo"><Image src="/images/Symbiosis-logo.png" className="img-fluid" alt="Logo" width={300} height={300} /></div>
+                    <div className="footer_logo"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></div>
                   </div>
-                  <div className="col-lg-12 mb-3 heading21_black" style={{fontFamily:"Poppins-SemiBold", color:"#fff"}}>
+                  <div className="col-lg-12 mb-3 heading21_black" style={{fontFamily:"Poppins-SemiBold"}}>
                     SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026
                   </div>
                   <div className="col-lg-12 mb-2">
                     <div className="row">
-                      <div className="col-lg-12"><Image src="/images/footer_date.png" className="img-fluid" alt="Logo" width={15} height={15} />&nbsp;&nbsp;&nbsp; 10–12 December 2026</div>
+                      <div className="col-lg-12"><Image src="/images/footer_date_black.png" className="img-fluid" alt="Logo" width={15} height={15} />&nbsp;&nbsp;&nbsp; 10–12 December 2026</div>
                     </div>
                   </div>
                   <div className="col-lg-12">
                     <div className="row">
-                      <div className="col-lg-12"><Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SMCW & SUHRC, SIU CAMPUS, Pune</div>
+                      <div className="col-lg-12"><Image src="/images/footer_location_black.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SMCW & SUHRC, SIU CAMPUS, Pune</div>
                     </div>
                   </div>
                   <div className="col-lg-12"></div>
@@ -61,7 +61,7 @@ const Footer = () => {
                   <div className="col-lg-12 footer_heading pb-2">Follow Us</div>
                 </div>
                 <div className="row">
-                  <div className="col-lg-12 follow_btnbox mb-4">
+                  <div className="col-lg-12 follow_btnbox mb-3">
                     <Link href="/conference">
                       <div className="row align-items-center">
                         <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register for Conference</div>
@@ -76,10 +76,10 @@ const Footer = () => {
                 </div>
                 <div className="row">
                   <div className="col-lg-12 footer_social_iconbox">
-                    <Link href="#"><Image src="/images/footer_facebook2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
-                    <Link href="#"><Image src="/images/footer_linkedin2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
-                    <Link href="#"><Image src="/images/footer_instagram2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
-                    <Link href="#"><Image src="/images/footer_youtube2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_facebook.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_linkedin.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_instagram.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    <Link href="#"><Image src="/images/footer_youtube.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
                   </div>
                 </div>
                 <div className="row">
