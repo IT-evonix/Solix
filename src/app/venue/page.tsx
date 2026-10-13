@@ -7,7 +7,7 @@ import { Faq_Venue } from "@/data/faqData";
 const ContactPage = () => {
   return (
     <section className="venues_page_mainbox mb-0">
-      <InnerpageBanner title="Venue" />
+      <InnerpageBanner title="Venue & Campus" />
       <section className="pt-5 pb-5" style={{backgroundColor:"#fbf4f2"}}>
         <div className="container">
           <div className="row align-items-center">

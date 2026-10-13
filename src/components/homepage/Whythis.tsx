@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Whythis = () => {
   return (
-    <section className="">
+    <section className="whythis_section mb-0">
         <div className="container">
             <div className="row align-items-center">
                 <div className="col-lg-7">
@@ -18,7 +18,7 @@ const Whythis = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-11 mb-5">
-                            <div style={{backgroundColor: "#F2F8FB", padding: "20px", borderRadius: "10px"}}>
+                            <div style={{backgroundColor: "#f1f1f1", padding: "20px", borderRadius: "20px"}}>
                                 It should make the proposition immediately clear, build credibility, encourage participation and bring the Conference and MedTech Innovation Hackathon together within one coherent digital experience.
                             </div>
                         </div>

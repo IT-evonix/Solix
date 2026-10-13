@@ -45,63 +45,63 @@ const ContactPage = () => {
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">AI & Emerging Technologies in Healthcare</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>AI & Emerging Technologies in Healthcare</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Digital Health & Healthcare Data</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Digital Health & Healthcare Data</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">AI Ethics, Governance & Cybersecurity</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>AI Ethics, Governance & Cybersecurity</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Healthcare Informatics & ABDM</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Healthcare Informatics & ABDM</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Medical Education & Technology</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Medical Education & Technology</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Clinical AI & Outcomes</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Clinical AI & Outcomes</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Medical Devices & MedTech</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Medical Devices & MedTech</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Research & Drug Discovery</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Research & Drug Discovery</div>
                           </div>
                       </div>
                   </div>
                   <div className="col-lg-4 col-md-6 mb-3">
                       <div className="attend_list">
                           <div className="row">
-                              <div className="col-lg-12 text16_black mb-1">Healthcare Innovation & Entrepreneurship</div>
+                              <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Healthcare Innovation & Entrepreneurship</div>
                           </div>
                       </div>
                   </div>
