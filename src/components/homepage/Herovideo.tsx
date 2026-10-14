@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const Herovideo = () => {
   return (
-    <section className="banner_section">
+    <section className="banner_section mb-0">
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12 p-0 video_box">
-            <video className="w-100" autoPlay muted loop playsInline>
-              <source src="/images/banner-video.mp4" type="video/mp4" />
+            <video className="w-100" autoPlay loop playsInline>
+              <source src="/images/banner-video2.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="col-lg-12">

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import Image from "next/image";
 
 
@@ -25,7 +26,7 @@ const Whythis = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-12 mb-5">
-                            <a href="{{ url('/') }}" className="button_box">Explore More</a>
+                            <Link href="/aboutus" className="button_box">Explore More</Link>
                         </div>
                     </div>
                 </div>

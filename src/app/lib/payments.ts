@@ -1,4 +1,4 @@
-export type PaymentStatus = "Draft" | "Pending" | "Approved" | "Rejected";
+export type PaymentStatus = "Pending" | "Approved" | "Rejected";
 export type PaymentTab = "All" | "Pending" | "Approved" | "Rejected";
 
 export function formatRegistrationId(code: string) {
@@ -10,10 +10,14 @@ export type Payment = {
   registrationId: string;
   registrationCode: string;
   fullName: string;
+  email: string;
+  mobile: string;
   detail: string;
   transactionId: string;
   amount: string;
+  amountValue: number;
   date: string;
+  submittedAt: string;
   status: PaymentStatus;
   statusCode: number;
   uploadPath: string;

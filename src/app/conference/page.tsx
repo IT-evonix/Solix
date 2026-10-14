@@ -1,6 +1,7 @@
 import InnerpageBanner from "@/components/InnerpageBanner";
 import Image from "next/image";
 import Link from "next/link";
+import OurTestimonials from "@/components/homepage/OurTestimonials";
 import Faq from "@/components/Faq";
 import { Faq_Registration } from "@/data/faqData";
 
@@ -124,7 +125,7 @@ const ContactPage = () => {
                               <div className="col-lg-8">
                                   <div className="row">
                                       <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#E7470B", borderBottom:"1px solid #ccc"}}>CONNECT</div>
-                                      <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                      <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                           AI • Data • Governance • MedTech • Enterprise Technology
                                       </div>
                                       {/* <div className="col-lg-12">Experts • Knowledge • Industry</div> */}
@@ -143,7 +144,7 @@ const ContactPage = () => {
                               <div className="col-lg-8">
                                   <div className="row">
                                       <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#107F44", borderBottom:"1px solid #ccc"}}>CREATE</div>
-                                      <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                      <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                           Digital Health • Healthcare Data • Clinical AI • Research • Medical Education
                                       </div>
                                       {/* <div className="col-lg-12">Mentoring • Collaboration • Problem-solving</div> */}
@@ -162,7 +163,7 @@ const ContactPage = () => {
                               <div className="col-lg-8">
                                   <div className="row">
                                       <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#007BB7", borderBottom:"1px solid #ccc"}}>TRANSFORM</div>
-                                      <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                      <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                           Emerging Research • Innovation • Hackathon Finale • Future Possibilities
                                       </div>
                                       {/* <div className="col-lg-12">Presentations • Recognition • Possibilities</div> */}
@@ -179,7 +180,7 @@ const ContactPage = () => {
               </div>
           </div>
       </section>
-      <section className="pt-5 pb-5" style={{backgroundColor:"#fbf4f2"}}>
+      {/* <section className="pt-5 pb-5" style={{backgroundColor:"#fbf4f2"}}>
         <div className="container">
           <div className="row">
             <div className="col-lg-12 heading35_black mb-2 text-center">FEATURED SPEAKERS</div>
@@ -198,7 +199,10 @@ const ContactPage = () => {
             <div className="col-lg-12"></div>
           </div>
         </div>
-      </section>
+      </section> */}
+
+      <OurTestimonials />
+      
       <section className="text-center">
           <div className="container">
               <div className="row">

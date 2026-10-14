@@ -4,7 +4,7 @@ import { requireAdmin } from "@/app/lib/admin-auth";
 
 const statusLabel: Record<number, string> = {
   0: "Rejected",
-  1: "Draft",
+  1: "Pending",
   2: "Pending",
   3: "Approved",
 };
@@ -115,7 +115,7 @@ export async function GET(
       declarations: row.declarations,
       preferredCommunicationChannel: row.preferred_communication_channel,
       hearAbout: row.hear_about,
-      status: statusLabel[row.status] ?? "Draft",
+      status: statusLabel[row.status] ?? "Pending",
       createdAt: row.created_at,
       uploadPath: row.upload_path,
       transactionId: row.transaction_id,

@@ -12,6 +12,54 @@ import { RegistrationDetail } from "./registration-detail";
 
 const tabs: PaymentTab[] = ["All", "Pending", "Approved", "Rejected"];
 
+type SortKey =
+  | "screenshot"
+  | "participant"
+  | "mobile"
+  | "email"
+  | "registration"
+  | "transaction"
+  | "amount"
+  | "submitted"
+  | "status"
+  | "action";
+
+type SortState = { key: SortKey; direction: "asc" | "desc" };
+
+const sortColumns: { key: SortKey; label: string; lines?: [string, string]; className?: string }[] = [
+  { key: "screenshot", label: "Screenshot", lines: ["Screen", "Shot"], className: "pay-th-shot" },
+  { key: "participant", label: "Participant" },
+  { key: "mobile", label: "Mobile" },
+  { key: "email", label: "Email" },
+  { key: "registration", label: "Registration ID" },
+  { key: "transaction", label: "Transaction ID" },
+  { key: "amount", label: "Amount" },
+  { key: "submitted", label: "Submitted date" },
+  { key: "status", label: "Status" },
+  { key: "action", label: "Action" },
+];
+
+function sortValue(row: Payment, key: SortKey) {
+  if (key === "screenshot" || key === "participant") return row.fullName;
+  if (key === "mobile") return row.mobile;
+  if (key === "email") return row.email;
+  if (key === "registration") return row.registrationCode;
+  if (key === "transaction") return row.transactionId;
+  if (key === "amount") return row.amountValue;
+  if (key === "submitted") return row.submittedAt;
+  return row.status;
+}
+
+function comparePayments(left: Payment, right: Payment, sort: SortState) {
+  const a = sortValue(left, sort.key);
+  const b = sortValue(right, sort.key);
+  const order =
+    typeof a === "number" && typeof b === "number"
+      ? a - b
+      : String(a).localeCompare(String(b), undefined, { numeric: true, sensitivity: "base" });
+  return sort.direction === "asc" ? order : -order;
+}
+
 export function PaymentScreen() {
   const router = useRouter();
   const [admin, setAdmin] = useState<AdminSession | null>(null);
@@ -77,6 +125,8 @@ export function PaymentScreen() {
       const matchesQuery =
         term.length === 0 ||
         row.fullName.toLowerCase().includes(term) ||
+        row.email.toLowerCase().includes(term) ||
+        row.mobile.toLowerCase().includes(term) ||
         row.transactionId.toLowerCase().includes(term) ||
         row.registrationCode.toLowerCase().includes(term);
       return matchesTab && matchesQuery;
@@ -102,7 +152,7 @@ export function PaymentScreen() {
   if (!admin) return null;
 
   return (
-    <div className="min-h-screen bg-[#f3f6f7] text-[#12263a] lg:flex">
+    <div className="pay-screen min-h-screen bg-[#f3f6f7] text-[#12263a] lg:flex">
       {menuOpen ? (
         <button
           type="button"
@@ -117,7 +167,7 @@ export function PaymentScreen() {
         onClose={() => setMenuOpen(false)}
         onLogout={logout}
       />
-      <main className="min-w-0 flex-1 px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
+      <main className="pay-main min-w-0 max-w-full flex-1 px-4 py-4 sm:px-6 lg:px-8 lg:py-6">
         <div className="mb-4 flex items-center justify-between gap-3 lg:hidden">
           <button
             type="button"
@@ -237,7 +287,7 @@ function Header({
       <input
         value={query}
         onChange={(event) => onQuery(event.target.value)}
-        placeholder="Search transaction ID or participant"
+        placeholder="Search name, email, mobile, or transaction ID"
         className="w-full rounded-xl border border-[#d7e2e8] bg-white px-4 py-2.5 text-sm outline-none focus:border-[#1eb6c9] sm:max-w-xs"
       />
     </div>
@@ -268,6 +318,74 @@ function Stats({ rows }: { rows: Payment[] }) {
   );
 }
 
+function exportFileName(extension: "pdf" | "xlsx") {
+  const now = new Date();
+  const pad = (value: number) => String(value).padStart(2, "0");
+  const stamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;
+  return `uploaded-payments-${stamp}.${extension}`;
+}
+
+function exportCells(rows: Payment[]) {
+  return rows.map((row) => [
+    row.fullName,
+    row.mobile,
+    row.email,
+    row.detail,
+    row.registrationCode,
+    row.transactionId,
+    row.amount,
+    row.date,
+    row.status,
+  ]);
+}
+
+const exportHeadings = [
+  "Participant",
+  "Mobile number",
+  "Email",
+  "Detail",
+  "Registration ID",
+  "Transaction ID",
+  "Payment amount",
+  "Submitted date",
+  "Status",
+];
+
+async function exportPdf(rows: Payment[]) {
+  const { jsPDF } = await import("jspdf");
+  const autoTable = (await import("jspdf-autotable")).default;
+  const doc = new jsPDF({ orientation: "landscape", unit: "pt", format: "a4" });
+  doc.setFontSize(14);
+  doc.text("Uploaded Payment Screenshots", 40, 36);
+  autoTable(doc, {
+    startY: 52,
+    head: [exportHeadings],
+    body: exportCells(rows),
+    styles: { fontSize: 9, cellPadding: 6 },
+    headStyles: { fillColor: [18, 38, 58] },
+  });
+  doc.save(exportFileName("pdf"));
+}
+
+async function exportExcel(rows: Payment[]) {
+  const XLSX = await import("xlsx");
+  const sheet = XLSX.utils.aoa_to_sheet([exportHeadings, ...exportCells(rows)]);
+  sheet["!cols"] = [
+    { wch: 28 },
+    { wch: 16 },
+    { wch: 32 },
+    { wch: 32 },
+    { wch: 18 },
+    { wch: 22 },
+    { wch: 16 },
+    { wch: 16 },
+    { wch: 12 },
+  ];
+  const book = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(book, sheet, "Payments");
+  XLSX.writeFile(book, exportFileName("xlsx"));
+}
+
 function PaymentList({
   rows,
   tab,
@@ -283,10 +401,42 @@ function PaymentList({
   onOpen: (registrationId: string) => void;
   onPreview: (preview: { src: string; name: string }) => void;
 }) {
+  const [sort, setSort] = useState<SortState>({ key: "submitted", direction: "desc" });
+  const sorted = useMemo(
+    () => [...rows].sort((left, right) => comparePayments(left, right, sort)),
+    [rows, sort],
+  );
+
+  function onSort(key: SortKey) {
+    setSort((current) =>
+      current.key === key
+        ? { key, direction: current.direction === "asc" ? "desc" : "asc" }
+        : { key, direction: "asc" },
+    );
+  }
+
   return (
     <section className="pay-list rounded-2xl bg-white p-4 shadow-sm sm:p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-lg font-semibold">Payment list</h2>
+        <div className="flex flex-wrap items-center gap-2">
+          <h2 className="text-lg font-semibold">Payment list</h2>
+          <button
+            type="button"
+            className="pay-export"
+            disabled={rows.length === 0}
+            onClick={() => void exportPdf(sorted)}
+          >
+            Export PDF
+          </button>
+          <button
+            type="button"
+            className="pay-export"
+            disabled={rows.length === 0}
+            onClick={() => void exportExcel(sorted)}
+          >
+            Export Excel
+          </button>
+        </div>
         <div className="flex flex-wrap gap-2">
           {tabs.map((item) => (
             <button
@@ -301,33 +451,47 @@ function PaymentList({
         </div>
       </div>
       <div className="mt-4 space-y-3 lg:hidden">
-        {rows.map((row) => (
+        {sorted.map((row) => (
           <PaymentCard key={row.id} row={row} onStatus={onStatus} onOpen={onOpen} onPreview={onPreview} />
         ))}
-        {rows.length === 0 ? (
+        {sorted.length === 0 ? (
           <p className="py-8 text-center text-sm text-[#7b8d99]">No payments match this search.</p>
         ) : null}
       </div>
-      <div className="mt-4 hidden overflow-x-auto lg:block">
-        <table className="pay-table w-full min-w-[860px] text-left text-sm">
-          <thead className="text-xs tracking-wide text-[#8b9aa6]">
+      <div className="pay-table-wrap mt-4 hidden lg:block">
+        <table className="pay-table text-left text-sm">
+          <thead className="text-xs text-[#8b9aa6]">
             <tr>
-              {["Screenshot", "Participant", "Registration ID", "Transaction ID", "Payment amount", "Date", "Status", "Action"].map(
-                (heading) => (
-                  <th key={heading} className="px-3 py-3 font-medium">
-                    {heading.toUpperCase()}
-                  </th>
-                ),
-              )}
+              {sortColumns.map((column) => (
+                <th
+                  key={column.key}
+                  className={`px-3 py-3 font-medium ${column.className ?? ""}`}
+                  aria-sort={
+                    sort.key === column.key
+                      ? sort.direction === "asc"
+                        ? "ascending"
+                        : "descending"
+                      : "none"
+                  }
+                >
+                  <SortButton
+                    label={column.label}
+                    lines={column.lines}
+                    active={sort.key === column.key}
+                    direction={sort.direction}
+                    onClick={() => onSort(column.key)}
+                  />
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            {rows.map((row) => (
+            {sorted.map((row) => (
               <PaymentRow key={row.id} row={row} onStatus={onStatus} onOpen={onOpen} onPreview={onPreview} />
             ))}
-            {rows.length === 0 ? (
+            {sorted.length === 0 ? (
               <tr>
-                <td colSpan={8} className="px-3 py-8 text-center text-[#7b8d99]">
+                <td colSpan={10} className="px-3 py-8 text-center text-[#7b8d99]">
                   No payments match this search.
                 </td>
               </tr>
@@ -359,10 +523,12 @@ function PaymentCard({
             {row.fullName}
           </button>
           <p className="text-xs text-[#7b8d99]">{row.detail}</p>
+          <p className="mt-1 text-xs text-[#12263a]">{row.mobile}</p>
+          <p className="text-xs text-[#5f7380]">{row.email}</p>
           <p className="mt-1 text-xs font-medium text-[#12263a]">Registration ID {row.registrationCode}</p>
           <p className="mt-1 text-sm font-medium">{row.transactionId}</p>
           <p className="text-sm font-semibold">{row.amount}</p>
-          <p className="text-xs text-[#5f7380]">{row.date}</p>
+          <p className="text-xs text-[#5f7380]">Submitted {row.date}</p>
         </div>
         <StatusPill status={row.status} />
       </div>
@@ -376,12 +542,14 @@ function PaymentCard({
 function PaymentActions({
   row,
   onStatus,
+  stacked = false,
 }: {
   row: Payment;
   onStatus: (id: string, status: PaymentStatus) => void;
+  stacked?: boolean;
 }) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className={stacked ? "pay-actions" : "flex flex-wrap gap-2"}>
       <ActionButton label="Approve" active={row.status === "Pending" || row.status === "Approved"} tone="teal" onClick={() => onStatus(row.id, "Approved")} />
       <ActionButton label="Reject" active={row.status === "Pending" || row.status === "Rejected"} tone="red" onClick={() => onStatus(row.id, "Rejected")} />
       <ActionButton label="Pending" active={row.status === "Pending"} tone="amber" onClick={() => onStatus(row.id, "Pending")} />
@@ -402,26 +570,60 @@ function PaymentRow({
 }) {
   return (
     <tr>
-      <td className="px-3 py-4">
+      <td className="pay-td-shot px-3 py-3">
         <ScreenshotButton row={row} onPreview={onPreview} />
       </td>
-      <td className="px-3 py-4">
+      <td className="pay-wrap px-3 py-3">
         <button type="button" onClick={() => onOpen(row.registrationId)} className="pay-name">
           {row.fullName}
         </button>
         <p className="text-xs text-[#7b8d99]">{row.detail}</p>
       </td>
-      <td className="px-3 py-4 font-medium">{row.registrationCode}</td>
-      <td className="px-3 py-4 font-medium">{row.transactionId}</td>
-      <td className="px-3 py-4 font-semibold">{row.amount}</td>
-      <td className="px-3 py-4 text-[#5f7380]">{row.date}</td>
-      <td className="px-3 py-4">
+      <td className="px-3 py-3">{row.mobile}</td>
+      <td className="pay-wrap px-3 py-3">{row.email}</td>
+      <td className="px-3 py-3 font-medium">{row.registrationCode}</td>
+      <td className="px-3 py-3 font-medium">{row.transactionId}</td>
+      <td className="px-3 py-3 font-semibold">{row.amount}</td>
+      <td className="px-3 py-3 text-[#5f7380]">{row.date}</td>
+      <td className="pay-pin px-3 py-3">
         <StatusPill status={row.status} />
       </td>
-      <td className="px-3 py-4">
-        <PaymentActions row={row} onStatus={onStatus} />
+      <td className="pay-pin px-3 py-3">
+        <PaymentActions row={row} onStatus={onStatus} stacked />
       </td>
     </tr>
+  );
+}
+
+function SortButton({
+  label,
+  lines,
+  active,
+  direction,
+  onClick,
+}: {
+  label: string;
+  lines?: [string, string];
+  active: boolean;
+  direction: "asc" | "desc";
+  onClick: () => void;
+}) {
+  const name = lines ? lines.join(" ") : label;
+  return (
+    <button type="button" className={`pay-sort ${active ? "is-on" : ""}`} onClick={onClick}>
+      {lines ? (
+        <span className="pay-sort-lines">
+          <span>{lines[0]}</span>
+          <span>{lines[1]}</span>
+        </span>
+      ) : (
+        <span>{label}</span>
+      )}
+      <span className="pay-sort-mark" aria-hidden="true">
+        {active ? (direction === "asc" ? "↑" : "↓") : "↕"}
+      </span>
+      <span className="sr-only">{active ? `Sorted ${direction === "asc" ? "ascending" : "descending"}` : `Sort by ${name}`}</span>
+    </button>
   );
 }
 
@@ -480,14 +682,7 @@ function ScreenshotPreview({
 }
 
 function StatusPill({ status }: { status: PaymentStatus }) {
-  const tone =
-    status === "Approved"
-      ? "approved"
-      : status === "Rejected"
-        ? "rejected"
-        : status === "Draft"
-          ? "draft"
-          : "pending";
+  const tone = status === "Approved" ? "approved" : status === "Rejected" ? "rejected" : "pending";
   return <span className={`pay-status ${tone}`}>{status}</span>;
 }
 
