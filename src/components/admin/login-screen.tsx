@@ -15,7 +15,6 @@ export function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [remember, setRemember] = useState(true);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,7 +30,7 @@ export function LoginScreen() {
       const response = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password, remember }),
+        body: JSON.stringify({ email, password }),
       });
       const data = (await response.json()) as AdminSession & { message?: string };
       if (!response.ok) {
@@ -102,15 +101,6 @@ export function LoginScreen() {
               value={password}
               onChange={(event) => setPassword(event.target.value)}
             />
-          </label>
-
-          <label className="admin-login-remember">
-            <input
-              type="checkbox"
-              checked={remember}
-              onChange={(event) => setRemember(event.target.checked)}
-            />
-            Remember me
           </label>
 
           {error ? <p className="admin-login-error">{error}</p> : null}

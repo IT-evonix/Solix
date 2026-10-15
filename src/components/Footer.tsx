@@ -16,7 +16,7 @@ const Footer = () => {
                   <div className="col-lg-12 mb-4">
                     <div className="footer_logo"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></div>
                   </div>
-                  <div className="col-lg-12 mb-3 heading21_black" style={{fontFamily:"Poppins-SemiBold"}}>
+                  <div className="col-lg-12 mb-3 heading21_black">
                     SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026
                   </div>
                   <div className="col-lg-12 mb-2">

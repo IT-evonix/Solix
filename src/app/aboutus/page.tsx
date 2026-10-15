@@ -304,7 +304,7 @@ const ContactPage = () => {
                 <div className="row justify-content-center align-items-center">
                   <div className="col-lg-2 text-center">
                     <svg width="100" height="100" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M20.3 39.1H29.7M22.65 48.5H27.35M44.975 25H48.5M5.025 25H1.5M25 5.025V1.5M10.8756 10.8756L8.38291 8.38291M39.1244 10.8756L41.6171 8.38291M15.5269 29.7C14.8022 28.2392 14.425 26.6307 14.425 25C14.425 19.1595 19.1595 14.425 25 14.425C30.8405 14.425 35.575 19.1595 35.575 25C35.575 26.6307 35.1978 28.2392 34.4731 29.7" stroke="#107F44" stroke-width="3" stroke-linecap="round"/>
+                      <path d="M20.3 39.1H29.7M22.65 48.5H27.35M44.975 25H48.5M5.025 25H1.5M25 5.025V1.5M10.8756 10.8756L8.38291 8.38291M39.1244 10.8756L41.6171 8.38291M15.5269 29.7C14.8022 28.2392 14.425 26.6307 14.425 25C14.425 19.1595 19.1595 14.425 25 14.425C30.8405 14.425 35.575 19.1595 35.575 25C35.575 26.6307 35.1978 28.2392 34.4731 29.7" stroke="#107F44" strokeWidth={3} stroke-linecap="round"/>
                     </svg>
 
                   </div>
@@ -346,7 +346,7 @@ const ContactPage = () => {
                           <div className="col-lg-8">
                               <div className="row">
                                   <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#E7470B", borderBottom:"1px solid #ccc"}}>CONNECT</div>
-                                  <div className="col-lg-12 mb-2" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                  <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
                                       Conference • Knowledge • Experts • Healthcare • Technology • Industry
                                   </div>
                                   <div className="journey_text">
@@ -367,7 +367,7 @@ const ContactPage = () => {
                           <div className="col-lg-8">
                               <div className="row">
                                   <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#107F44", borderBottom:"1px solid #ccc"}}>CREATE</div>
-                                  <div className="col-lg-12 mb-2" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                  <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
                                       Hackathon • Mentoring • Collaboration • Problem Solving
                                   </div>
                                   <div className="journey_text">
@@ -388,7 +388,7 @@ const ContactPage = () => {
                           <div className="col-lg-8">
                               <div className="row">
                                   <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#007BB7", borderBottom:"1px solid #ccc"}}>TRANSFORM</div>
-                                  <div className="col-lg-12 mb-2" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                  <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
                                       Prototypes • Presentations • Recognition • Future Possibilities
                                   </div>
                                   <div className="journey_text">

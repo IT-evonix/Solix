@@ -308,9 +308,7 @@ function StatusPill({ status }: { status: PaymentStatus }) {
       ? "bg-[#e5f7f4] text-[#128fa0]"
       : status === "Rejected"
         ? "bg-[#fdecec] text-[#d64545]"
-        : status === "Draft"
-          ? "bg-[#eef3f5] text-[#5f7380]"
-          : "bg-[#fff4e2] text-[#d0891c]";
+        : "bg-[#fff4e2] text-[#d0891c]";
   return <span className={`rounded-full px-3 py-1 text-xs font-medium ${tone}`}>{status}</span>;
 }
 

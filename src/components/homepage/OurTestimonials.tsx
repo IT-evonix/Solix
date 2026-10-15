@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef } from "react";
+import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import type { Swiper as SwiperType } from "swiper";
@@ -24,20 +25,20 @@ const testimonials: Testimonial[] = [
     content:
       "Keynote Speaker",
   },
-  {
-    id: 1,
-    name: "Assoc Prof Liu Nan",
-    image: "/images/speakers/LiuNan3.png",
-    content:
-      "Keynote Speaker",
-  },
-  {
-    id: 1,
-    name: "Dr. Yilin Ning",
-    image: "/images/speakers/YilinNing3.png",
-    content:
-      "Keynote Speaker",
-  },
+  // {
+  //   id: 1,
+  //   name: "Assoc Prof Liu Nan",
+  //   image: "/images/speakers/LiuNan3.png",
+  //   content:
+  //     "Keynote Speaker",
+  // },
+  // {
+  //   id: 1,
+  //   name: "Dr. Yilin Ning",
+  //   image: "/images/speakers/YilinNing3.png",
+  //   content:
+  //     "Keynote Speaker",
+  // },
   {
     id: 1,
     name: "Mr. Mark Lewis",
@@ -108,13 +109,13 @@ const testimonials: Testimonial[] = [
     content:
       "Keynote Speaker",
   },
-  {
-    id: 1,
-    name: "Dr. M. Srinivas",
-    image: "/images/speakers/srinivas3.png",
-    content:
-      "Keynote Speaker",
-  },
+  // {
+  //   id: 1,
+  //   name: "Dr. M. Srinivas",
+  //   image: "/images/speakers/srinivas3.png",
+  //   content:
+  //     "Keynote Speaker",
+  // },
 ];
 
 // Duplicate data for smoother infinite loop
@@ -219,6 +220,9 @@ export default function OurTestimonials() {
                 </button>
               </div>
             </div>
+          </div>
+          <div className="col-lg-12 mt-5 mb-5 text-center">
+              <Link href="/speakers" className="button_box">View More Speakers</Link>
           </div>
         </div>
       </div>

@@ -23,7 +23,7 @@ const Signature = () => {
                             <div className="col-lg-8">
                                 <div className="row">
                                     <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#E7470B", borderBottom:"1px solid #ccc"}}>CONNECT</div>
-                                    <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                    <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                         Conference • Knowledge • Experts • Healthcare • Technology • Industry
                                     </div>
                                     {/* <div className="col-lg-12">Experts • Knowledge • Industry</div> */}
@@ -36,13 +36,13 @@ const Signature = () => {
                     <div className="signature_list" style={{backgroundColor:"#E7F9EF"}}>
                         <div className="row align-items-center">
                             <div className="col-lg-12">
-                                <div className="signature_date" style={{backgroundColor:"#107F44"}}>11 DECEMBER</div>
+                                <div className="signature_date" style={{backgroundColor:"#00602d"}}>11 DECEMBER</div>
                             </div>
                             <div className="col-lg-4 text-center"><Image src="/images/signature_create.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
                             <div className="col-lg-8">
                                 <div className="row">
-                                    <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#107F44", borderBottom:"1px solid #ccc"}}>CREATE</div>
-                                    <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                    <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#00602d", borderBottom:"1px solid #ccc"}}>CREATE</div>
+                                    <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                         Hackathon • Mentoring • Collaboration • Problem Solving
                                     </div>
                                     {/* <div className="col-lg-12">Mentoring • Collaboration • Problem-solving</div> */}
@@ -61,7 +61,7 @@ const Signature = () => {
                             <div className="col-lg-8">
                                 <div className="row">
                                     <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#007BB7", borderBottom:"1px solid #ccc"}}>TRANSFORM</div>
-                                    <div className="col-lg-12 mb-1" style={{fontFamily:"Poppins-Bold", textTransform:"uppercase"}}>
+                                    <div className="col-lg-12 mb-1" style={{textTransform:"uppercase"}}>
                                         Prototypes • Presentations • Recognition • Future Possibilities
                                     </div>
                                     {/* <div className="col-lg-12">Presentations • Recognition • Possibilities</div> */}

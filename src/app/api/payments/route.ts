@@ -7,7 +7,7 @@ import { formatRegistrationId, type Payment, type PaymentStatus } from "@/app/li
 const statusByAction = { Pending: 2, Approved: 3, Rejected: 0 } as const;
 const labelByStatus: Record<number, PaymentStatus> = {
   0: "Rejected",
-  1: "Draft",
+  1: "Pending",
   2: "Pending",
   3: "Approved",
 };
@@ -17,12 +17,15 @@ type PaymentRow = {
   registration_id: string;
   registration_code: string;
   full_name: string;
+  email_address: string;
+  mobile_number: string;
   organisation_institution: string;
   designation: string;
   registration_fee: string;
   upload_path: string;
   transaction_id: string;
   registration_date: string;
+  submitted_at: string;
   status: number;
 };
 
@@ -31,12 +34,15 @@ const selectList = `
   r.id AS registration_id,
   r.registration_code,
   r.full_name,
+  r.email_address,
+  r.mobile_number,
   r.organisation_institution,
   r.designation,
   r.registration_fee,
   p.upload_path,
   p.transaction_id,
   to_char(p.registration_date, 'DD Mon YYYY') AS registration_date,
+  to_char(p.registration_date, 'YYYY-MM-DD HH24:MI:SS') AS submitted_at,
   r.status
 `;
 
@@ -47,11 +53,15 @@ function toPayment(row: PaymentRow): Payment {
     registrationId: row.registration_id,
     registrationCode: formatRegistrationId(row.registration_code),
     fullName: row.full_name,
+    email: row.email_address,
+    mobile: row.mobile_number,
     detail: `${row.organisation_institution} · ${row.designation}`,
     transactionId: row.transaction_id,
     amount: `₹ ${fee.toLocaleString("en-IN")}`,
+    amountValue: fee,
     date: row.registration_date,
-    status: labelByStatus[row.status] ?? "Draft",
+    submittedAt: row.submitted_at,
+    status: labelByStatus[row.status] ?? "Pending",
     statusCode: row.status,
     uploadPath: row.upload_path,
   };

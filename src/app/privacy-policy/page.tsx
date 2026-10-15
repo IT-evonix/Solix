@@ -5,7 +5,7 @@ const ContactPage = () => {
   return (
     <section className="aboutus_page_mainbox mb-0">
       <InnerpageBanner title="Privacy Policy" />
-      <section className="mb-5">
+      <section className="mb-5 pt-5">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-12 text-center">

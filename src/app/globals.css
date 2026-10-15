@@ -1,32 +1,25 @@
 @font-face {
-  font-family: "Poppins-Regular";
-  src: url("/fonts/Poppins-Regular.ttf") format("truetype");
+  font-family: "Roboto-Regular";
+  src: url("/fonts/Roboto-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
 } 
-
 @font-face {
-  font-family: "Poppins-SemiBold";
-  src: url("/fonts/Poppins-SemiBold.ttf") format("truetype");
+  font-family: "Roboto-SemiBold";
+  src: url("/fonts/Roboto-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-display: swap;
 }
 @font-face {
-  font-family: "Poppins-Medium";
-  src: url("/fonts/Poppins-Medium.ttf") format("truetype");
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Poppins-Bold";
-  src: url("/fonts/Poppins-Bold.ttf") format("truetype");
+  font-family: "Roboto-Black";
+  src: url("/fonts/Roboto-Black.ttf") format("truetype");
   font-weight: 600;
   font-display: swap;
 }
 body {
   width: 100%; 
   height: 100%;
-  font-family: 'Poppins-Regular';
+  font-family: 'Roboto-Regular';
   font-size: 14px;
 }
 
@@ -63,7 +56,7 @@ float: left;
 .menu_mainbox li a{
 float: left;
   border: 1px solid #fff;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   font-size: 16px;
   padding: 5px 12px;
   text-decoration: none;
@@ -87,22 +80,22 @@ float: left;
 /* -----------MAIN-MENU-END---------------- */
 
 .heading35_black{
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 35px;
   color: #007BB7;
 }
 .heading21_black{
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 21px;
   color: #000;
 }
 .heading19_black{
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 19px;
   color: #000;
 }
 .heading19_white{
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 19px;
   color: #fff;
 }
@@ -120,7 +113,7 @@ background-color: #e8480c;
   text-decoration: none;
   padding: 10px 50px 10px 30px;
   border-radius: 100px;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   font-size: 16px;
   line-height: normal;
   border: 0;
@@ -179,7 +172,7 @@ z-index: 5;
 }
 .banner_text1{
 font-size: 35px;
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   text-transform: uppercase;
 }
 .banner_date{
@@ -200,7 +193,7 @@ max-width: 14px;
 clear: both;
   text-transform: uppercase;
   padding: 40px 0;
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 25px;
 }
 .banner_text2 span{
@@ -229,7 +222,7 @@ color: #fff;
   margin: 0 20px 10px 0;
   border-radius: 100px;
   padding: 10px 40px;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   font-size: 16px;
   text-decoration: none;
   transition-duration: 0.3s;
@@ -261,7 +254,7 @@ color: #fff;
   background-size: cover;
   padding: 100px 0;
   color: #fff;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
 }
 .core_list{
 width: 25%;
@@ -304,7 +297,7 @@ background-color: #fbf4f2;
 .signature_date{
 background-color: #e8480c;
   color: #fff;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   padding: 5px 20px;
   line-height: normal;
   position: absolute;
@@ -378,7 +371,7 @@ width: auto;
   min-width: 100%;
 }
 .testi_head{
-  font-family:Poppins-Bold;
+  font-family:Roboto-Black;
   font-size: 18px;
 }
 
@@ -457,7 +450,7 @@ color: #fff;
   background-repeat: no-repeat;
   background-size: cover;
   padding: 100px 0;
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   position: relative;
 }
 .innerbannersection::after{
@@ -595,7 +588,7 @@ background-color: #fbf4f2;
   border: 0;
   border-radius: 100px;
   padding: 10px 30px 10px 50px;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   font-size: 16px;
   line-height: normal;
   text-decoration: none;
@@ -635,7 +628,7 @@ background-image: linear-gradient(to left, #C73131, #E14444);
   text-align: center;
   color: #fff;
   text-transform: uppercase;
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 19px;
   margin: -20px 0 0 0;
 }
@@ -773,7 +766,7 @@ background-color: #c00709;
 .footer_heading{
 /* color: #fff; */
   margin: 0 0 20px;
-  font-family: Poppins-Bold;
+  font-family: Roboto-Black;
   font-size: 28px;
   border-bottom: 1px dashed #000;
 }
@@ -807,7 +800,7 @@ color: #fff;
   margin: 0 0 10px 0;
   border-radius: 100px;
   padding: 10px 20px 10px 30px;
-  font-family: Poppins-Medium;
+  font-family: Roboto-SemiBold;
   text-decoration: none;
   transition-duration: 0.3s;
 }
