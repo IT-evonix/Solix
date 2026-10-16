@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "@/css/Header.module.css";
 import Image from "next/image";
 
 
@@ -13,7 +12,7 @@ const pathname = usePathname();
   // Sticky Header
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
+      // setIsSticky(window.scrollY > 100);
     };
 
     handleScroll();
@@ -49,7 +48,7 @@ const [menuOpen, setMenuOpen] = useState(false);
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="page-header">
+    <header className="header-top">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">

@@ -195,6 +195,24 @@ body:has(.admin-login) {
   border-color: #1eb6c9;
 }
 
+<<<<<<< HEAD
+#admin-root .admin-login-remember {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-weight: 400;
+}
+
+#admin-root .admin-login-remember input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: #1eb6c9;
+}
+
+=======
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 #admin-root .admin-login-error {
   margin: 0.75rem 0 0;
   color: #d64545;
@@ -247,6 +265,10 @@ body:has(.admin-login) {
   font-size: 16px;
   line-height: 1.5;
   color: #12263a;
+<<<<<<< HEAD
+  background: #f4f7f8;
+  min-height: 100vh;
+=======
   background: #f3f6f7;
   min-height: 100vh;
   max-width: 100%;
@@ -265,6 +287,7 @@ body:has(.admin-login) {
   max-width: 100%;
   overflow-x: hidden;
   background: #f3f6f7;
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 }
 
 #admin-root button,
@@ -312,6 +335,8 @@ body:has(.admin-login) {
 
 #admin-root section.pay-list {
   margin-top: 1.25rem;
+<<<<<<< HEAD
+=======
   min-width: 0;
   max-width: 100%;
   background: #fff;
@@ -340,10 +365,14 @@ body:has(.admin-login) {
 #admin-root .pay-table td {
   vertical-align: top;
   white-space: nowrap;
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 }
 
 #admin-root .pay-table td {
   border-top: 1px solid #eef3f5;
+<<<<<<< HEAD
+  vertical-align: top;
+=======
 }
 
 #admin-root .pay-th-shot,
@@ -434,6 +463,7 @@ body:has(.admin-login) {
 #admin-root .pay-actions .pay-action {
   width: 100%;
   padding: 0.3rem 0.25rem;
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 }
 
 #admin-root .pay-shot {
@@ -487,6 +517,8 @@ body:has(.admin-login) {
   color: #fff;
 }
 
+<<<<<<< HEAD
+=======
 #admin-root .pay-export {
   border: 1px solid #1eb6c9;
   border-radius: 0.75rem;
@@ -507,6 +539,7 @@ body:has(.admin-login) {
   cursor: default;
 }
 
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 #admin-root .pay-status {
   display: inline-block;
   border-radius: 999px;
@@ -518,6 +551,10 @@ body:has(.admin-login) {
 #admin-root .pay-status.approved { background: #e5f7f4; color: #128fa0; }
 #admin-root .pay-status.pending { background: #fff4e2; color: #d0891c; }
 #admin-root .pay-status.rejected { background: #fdecec; color: #d64545; }
+<<<<<<< HEAD
+#admin-root .pay-status.draft { background: #eef3f5; color: #5f7380; }
+=======
+>>>>>>> be12190f677be2790da45cc421fd6848b472928b
 
 #admin-root .pay-action {
   border-radius: 0.5rem;

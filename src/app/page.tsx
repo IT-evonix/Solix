@@ -19,7 +19,7 @@ export default function Home() {
       <WhyAttend />
 
       <section className="footer_faq_section mb-0 mt-5">
-        <div className="container">
+        <div className="container" style={{position:"relative"}}>
           <div className="row">
             <div className="col-lg-12 mb-2 heading35_black text-center mb-4" style={{color:"#fff"}}>Frequently Asked Questions</div>
           </div>

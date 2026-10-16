@@ -14,16 +14,18 @@ const Whythis = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-12 mb-5">
-                            This note sets out the conceptual direction for the website of the SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026. It is intended to help the website team understand the programme, its proposition, the intended audience and the experience the website should create before detailed technical requirements are finalised.
+                            The Symbiosis–SOLIXEMPOWER Tech Conclave 2026 brings together healthcare, technology, research, innovation and industry on one platform. Through the Conference, Hackathon and TALFest, participants can learn from experts, exchange ideas, build meaningful connections and collaborate on real-world healthcare challenges. 
+                            <br></br><br></br>
+                            It is an opportunity for students, professionals, researchers and innovators to learn beyond boundaries, showcase ideas and be part of shaping the future of healthcare and technology.
                         </div>
                     </div>
-                    <div className="row">
+                    {/* <div className="row">
                         <div className="col-lg-11 mb-5">
                             <div style={{backgroundColor: "#f1f1f1", padding: "20px", borderRadius: "20px"}}>
                                 It should make the proposition immediately clear, build credibility, encourage participation and bring the Conference and MedTech Innovation Hackathon together within one coherent digital experience.
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     <div className="row">
                         <div className="col-lg-12 mb-5">
                             <Link href="/aboutus" className="button_box">Explore More</Link>
@@ -31,14 +33,7 @@ const Whythis = () => {
                     </div>
                 </div>
                 <div className="col-lg-5 text-center">
-                    <Image
-                      src="/images/welcome_img.png"
-                      className="img-fluid"
-                      alt="Logo"
-                      width={540}
-                      height={95}
-                      priority
-                    />
+                    <Image src="/images/welcome_img2.png" className="img-fluid" alt="Logo" width={540} height={95} priority />
                 </div>
             </div>
         </div>
