@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, type ReactNode } from "react";
+import { isPdfPath } from "@/app/lib/payments";
 
 type RegistrationDetailData = {
   fullName: string;
@@ -19,11 +20,14 @@ type RegistrationDetailData = {
   registrationFee: string;
   declarations: string[];
   preferredCommunicationChannel: string;
+  dietaryPreference: string | null;
+  attendeePhotoPath: string | null;
   hearAbout: string[];
   status: string;
   createdAt: string;
   uploadPath: string | null;
   transactionId: string | null;
+  payerName: string | null;
   registrationDate: string | null;
 };
 
@@ -61,7 +65,16 @@ export function RegistrationDetail({
       <button type="button" className="absolute inset-0" aria-label="Close" onClick={onClose} />
       <section className="relative max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
         <header className="sticky top-0 flex items-start justify-between gap-4 border-b border-[#e6eef2] bg-white px-6 py-5">
-          <div>
+          {detail?.attendeePhotoPath ? (
+            <a href={detail.attendeePhotoPath} target="_blank" rel="noreferrer" className="shrink-0">
+              <img
+                src={detail.attendeePhotoPath}
+                alt={`Attendee photo of ${detail.fullName}`}
+                className="h-16 w-16 rounded-full border border-[#d7e2e8] object-cover"
+              />
+            </a>
+          ) : null}
+          <div className="mr-auto">
             <p className="text-xs font-medium tracking-wide text-[#128fa0]">REGISTRATION</p>
             <h2 className="mt-1 text-2xl font-semibold text-[#12263a]">
               {detail?.fullName ?? "Participant details"}
@@ -102,10 +115,25 @@ export function RegistrationDetail({
             </Section>
             <Section title="Accommodation and payment">
               <Field label="On-campus accommodation" value={detail.onCampusAccommodation} />
+              <Field label="Dietary preference" value={detail.dietaryPreference ?? "—"} />
               <Field label="Registration fee" value={detail.registrationFee} />
+              <Field label="Payer name" value={detail.payerName ?? "—"} />
               <Field label="Transaction ID" value={detail.transactionId ?? "—"} />
               <Field label="Registration date" value={detail.registrationDate ?? "—"} />
-              {detail.uploadPath ? (
+              {detail.uploadPath && isPdfPath(detail.uploadPath) ? (
+                <div className="sm:col-span-2">
+                  <p className="text-sm font-medium text-[#12263a]">Payment receipt (PDF)</p>
+                  <a
+                    href={detail.uploadPath}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="mt-2 inline-block rounded-xl border border-[#1eb6c9] px-3 py-2 text-sm font-medium text-[#128fa0]"
+                  >
+                    Open PDF receipt
+                  </a>
+                </div>
+              ) : null}
+              {detail.uploadPath && !isPdfPath(detail.uploadPath) ? (
                 <div className="sm:col-span-2">
                   <p className="text-sm font-medium text-[#12263a]">Payment screenshot</p>
                   <button
@@ -132,7 +160,7 @@ export function RegistrationDetail({
           </form>
         ) : null}
       </section>
-      {screenshotOpen && detail?.uploadPath ? (
+      {screenshotOpen && detail?.uploadPath && !isPdfPath(detail.uploadPath) ? (
         <div className="fixed inset-0 z-[70] flex items-center justify-center bg-[#071422]/70 p-4">
           <button type="button" className="absolute inset-0" aria-label="Close screenshot" onClick={() => setScreenshotOpen(false)} />
           <div className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-2xl bg-white p-4 shadow-2xl">

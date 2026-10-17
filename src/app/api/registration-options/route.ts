@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { pool } from "@/lib/db";
+import { lookupRows } from "@/app/lib/registration-input";
 
 const lists = {
   categories: "category",
@@ -12,12 +12,7 @@ const lists = {
 export async function GET() {
   try {
     const entries = await Promise.all(
-      Object.entries(lists).map(async ([key, table]) => {
-        const result = await pool.query<{ id: number; name: string }>(
-          `SELECT id, name FROM ${table} WHERE status = 1 ORDER BY id`,
-        );
-        return [key, result.rows] as const;
-      }),
+      Object.entries(lists).map(async ([key, table]) => [key, await lookupRows(table)] as const),
     );
     return NextResponse.json(Object.fromEntries(entries));
   } catch {

@@ -1,0 +1,1673 @@
+/* ==========================================================================
+   REGISTRATION FORMS — SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026
+   Conference (/registration) and Hackathon (/hackathon/register).
+   Layout follows the conference reference form; brand per client guidelines:
+     - Type:   Aptos / Aptos Display, fallback Arial
+     - Accent: Symbiosis red #C8102E, navy #1F3A5F
+     - Subtle: orange #e8480c, green #107f44, blue #007bb7
+   Every rule is scoped to .reg_scope so site-wide classes (.input_box,
+   .required_mark, .register_rightbox) keep their existing look elsewhere.
+   ========================================================================== */
+
+.reg_scope {
+    --reg-red: #c8102e;
+    --reg-red-dark: #a10d25;
+    --reg-red-light: #fdf3f4;
+    --reg-navy: #1f3a5f;
+    --reg-navy-deep: #12243d;
+    --reg-navy-light: #f2f5f9;
+    --reg-orange: #e8480c;
+    --reg-green: #107f44;
+    --reg-green-light: #eef8f2;
+    --reg-blue: #007bb7;
+    --reg-blue-light: #f0f7fc;
+    --reg-ink: #1b2533;
+    --reg-body: #3d4a5c;
+    --reg-muted: #7f7f7f;
+    --reg-subtle: #a3abb6;
+    --reg-border: #e4e8ee;
+    --reg-border-strong: #cfd6df;
+    --reg-surface: #f7f8fa;
+    --reg-surface-alt: #f2f2f2;
+    --reg-error: #b42318;
+    --reg-shadow: 0 10px 30px rgba(31, 58, 95, 0.06);
+    --reg-shadow-hover: 0 16px 40px rgba(31, 58, 95, 0.1);
+    --reg-focus: 0 0 0 3.5px rgba(31, 58, 95, 0.14);
+    --reg-font: Aptos, Arial, sans-serif;
+    --reg-font-display: "Aptos Display", Aptos, Arial, sans-serif;
+
+    background: var(--reg-surface);
+    color: var(--reg-body);
+    font-family: var(--reg-font);
+    font-size: 15px;
+    min-height: 100vh;
+    padding-bottom: 96px;
+    margin-bottom: 0;
+}
+
+.reg_scope *,
+.reg_scope input,
+.reg_scope select,
+.reg_scope textarea,
+.reg_scope button {
+    font-family: inherit;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.reg_scope .reg_hero_banner {
+    background: linear-gradient(135deg, var(--reg-navy-deep) 0%, var(--reg-navy) 55%, #24507f 100%);
+    position: relative;
+    padding: 150px 0 64px;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.reg_scope .reg_hero_banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 88% 18%, rgba(200, 16, 46, 0.22) 0%, transparent 46%),
+                radial-gradient(circle at 12% 85%, rgba(0, 123, 183, 0.22) 0%, transparent 50%),
+                radial-gradient(circle at 60% 110%, rgba(16, 127, 68, 0.12) 0%, transparent 45%);
+    pointer-events: none;
+}
+
+.reg_scope .reg_hero_banner::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--reg-red) 0%, var(--reg-orange) 35%, var(--reg-blue) 70%, var(--reg-green) 100%);
+}
+
+.reg_scope .reg_hero_inner {
+    position: relative;
+    z-index: 1;
+}
+
+.reg_scope .reg_hero_badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #f8e3e6;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+.reg_scope .reg_hero_badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--reg-red);
+    box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.3);
+}
+
+.reg_scope .reg_hero_eyebrow {
+    font-family: var(--reg-font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    margin: 0 0 10px;
+}
+
+.reg_scope .reg_hero_title {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 44px;
+    line-height: 1.12;
+    color: #ffffff;
+    margin: 0 0 14px;
+    letter-spacing: -0.6px;
+}
+
+.reg_scope .reg_hero_sub {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: 400;
+    color: rgba(226, 232, 240, 0.86);
+    max-width: 680px;
+    line-height: 1.65;
+    margin-bottom: 26px;
+}
+
+.reg_scope .reg_hero_pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.reg_scope .reg_hero_pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 7px 15px;
+    border-radius: 100px;
+}
+
+.reg_scope .reg_hero_pill svg {
+    color: #f3a6b2;
+    flex-shrink: 0;
+}
+
+/* ==========================================================================
+   STEPPER
+   ========================================================================== */
+.reg_scope .reg_body {
+    padding-top: 44px;
+}
+
+.reg_scope .stepper_outer {
+    margin-bottom: 28px;
+    scroll-margin-top: 110px;
+}
+
+.reg_scope .stepper_card {
+    background: #ffffff;
+    border: 1px solid var(--reg-border);
+    border-radius: 18px;
+    padding: 18px 22px;
+    box-shadow: var(--reg-shadow);
+}
+
+.reg_scope .stepper_track {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reg_scope .step_node {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: none;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 12px;
+    cursor: default;
+    text-align: left;
+    transition: background 0.2s ease;
+}
+
+.reg_scope .step_node:disabled {
+    color: inherit;
+    opacity: 1;
+}
+
+.reg_scope .step_node.completed:not(:disabled) {
+    cursor: pointer;
+}
+
+.reg_scope .step_node.completed:hover {
+    background: var(--reg-surface);
+}
+
+.reg_scope .step_badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 13px;
+    background: #ffffff;
+    color: var(--reg-muted);
+    border: 1.5px solid var(--reg-border-strong);
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+
+.reg_scope .step_node.active .step_badge {
+    background: var(--reg-navy);
+    color: #ffffff;
+    border-color: var(--reg-navy);
+    box-shadow: 0 0 0 4px rgba(200, 16, 46, 0.14);
+}
+
+.reg_scope .step_node.completed .step_badge {
+    background: var(--reg-green);
+    color: #ffffff;
+    border-color: var(--reg-green);
+}
+
+.reg_scope .step_text_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.reg_scope .step_num {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--reg-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.reg_scope .step_node.active .step_num {
+    color: var(--reg-red);
+    font-weight: 700;
+}
+
+.reg_scope .step_name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--reg-ink);
+    line-height: 1.2;
+}
+
+.reg_scope .step_node.active .step_name {
+    color: var(--reg-navy);
+}
+
+.reg_scope .step_line {
+    flex: 1;
+    height: 2px;
+    background: var(--reg-border);
+    margin: 0 10px;
+    border-radius: 2px;
+    transition: background 0.3s ease;
+}
+
+.reg_scope .step_line.completed {
+    background: var(--reg-green);
+}
+
+/* ==========================================================================
+   STEP PANES & FIELDS
+   ========================================================================== */
+.reg_scope .step_pane {
+    background: #ffffff;
+    border: 1px solid var(--reg-border);
+    border-radius: 20px;
+    padding: 40px 40px 32px;
+    box-shadow: var(--reg-shadow);
+    margin-bottom: 24px;
+}
+
+.reg_scope .step_pane_header {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--reg-border);
+}
+
+.reg_scope .step_pane_kicker {
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    color: var(--reg-red);
+    margin: 0 0 8px;
+}
+
+.reg_scope .step_pane_title {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--reg-navy);
+    margin: 0 0 6px;
+    letter-spacing: -0.3px;
+}
+
+.reg_scope .step_pane_sub {
+    font-size: 14px;
+    font-style: italic;
+    color: var(--reg-muted);
+    margin: 0;
+    line-height: 1.55;
+}
+
+.reg_scope .reg_section_title {
+    font-family: var(--reg-font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--reg-navy);
+    margin: 8px 0 16px;
+    padding-top: 22px;
+    border-top: 1px dashed var(--reg-border);
+}
+
+.reg_scope .reg_field {
+    margin-bottom: 24px;
+}
+
+.reg_scope .reg_label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--reg-ink);
+    margin-bottom: 4px;
+}
+
+.reg_scope .reg_optional {
+    font-weight: 400;
+    font-style: italic;
+    font-size: 12.5px;
+    color: var(--reg-subtle);
+    margin-left: 6px;
+}
+
+.reg_scope .reg_helper {
+    font-size: 12.5px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--reg-muted);
+    margin-bottom: 9px;
+    line-height: 1.45;
+}
+
+.reg_scope .required_mark {
+    color: var(--reg-red);
+    font-weight: 700;
+    margin-left: 3px;
+}
+
+.reg_scope .input_box {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid var(--reg-border-strong);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 14.5px;
+    color: var(--reg-ink);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reg_scope .input_box:hover {
+    border-color: #9aa5b4;
+}
+
+.reg_scope .input_box:focus {
+    border-color: var(--reg-navy);
+    box-shadow: var(--reg-focus);
+}
+
+.reg_scope .input_box::placeholder {
+    color: var(--reg-subtle);
+    font-style: italic;
+}
+
+.reg_scope select.input_box {
+    appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%231f3a5f' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    cursor: pointer;
+}
+
+.reg_scope select.input_box:invalid,
+.reg_scope select.input_box.is-empty {
+    color: var(--reg-subtle);
+    font-style: italic;
+}
+
+.reg_scope .field_error_msg {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--reg-error);
+    font-size: 12.5px;
+    font-weight: 500;
+    margin-top: 7px;
+}
+
+.reg_scope .input_box.is-invalid,
+.reg_scope .phone_group.is-invalid {
+    border-color: var(--reg-error) !important;
+    background-color: #fff7f6;
+}
+
+.reg_scope .phone_group {
+    display: flex;
+    align-items: stretch;
+    border: 1.5px solid var(--reg-border-strong);
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.reg_scope .phone_group:focus-within {
+    border-color: var(--reg-navy);
+    box-shadow: var(--reg-focus);
+}
+
+.reg_scope .phone_prefix {
+    background: var(--reg-surface);
+    color: var(--reg-navy);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 14px;
+    border-right: 1.5px solid var(--reg-border-strong);
+    display: flex;
+    align-items: center;
+    user-select: none;
+}
+
+.reg_scope .phone_group .input_box {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.reg_scope .phone_group .input_box:focus {
+    box-shadow: none;
+}
+
+/* Choice cards (single / multi select) */
+.reg_scope .card_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 12px;
+}
+
+.reg_scope .card_grid.cols_2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.reg_scope .choice_card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1.5px solid var(--reg-border);
+    border-radius: 12px;
+    padding: 13px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+    height: 100%;
+    margin: 0;
+}
+
+.reg_scope .choice_card:hover {
+    border-color: var(--reg-border-strong);
+    background: var(--reg-surface);
+}
+
+.reg_scope .choice_card.selected {
+    background: var(--reg-navy-light);
+    border-color: var(--reg-navy);
+    box-shadow: 0 4px 14px rgba(31, 58, 95, 0.08);
+}
+
+.reg_scope .choice_card input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reg_scope .choice_card:focus-within {
+    box-shadow: var(--reg-focus);
+}
+
+.reg_scope .choice_indicator {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--reg-border-strong);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+}
+
+.reg_scope .choice_card.is_checkbox .choice_indicator {
+    border-radius: 6px;
+}
+
+.reg_scope .choice_card.selected .choice_indicator {
+    border-color: var(--reg-navy);
+    background: var(--reg-navy);
+}
+
+.reg_scope .choice_card.selected .choice_indicator::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #ffffff;
+}
+
+.reg_scope .choice_card.is_checkbox.selected .choice_indicator::after {
+    width: 10px;
+    height: 6px;
+    border-radius: 0;
+    background: none;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    transform: rotate(-45deg) translate(1px, -1px);
+}
+
+.reg_scope .choice_body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.reg_scope .choice_text {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--reg-ink);
+    line-height: 1.35;
+}
+
+.reg_scope .choice_note {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--reg-muted);
+    line-height: 1.35;
+}
+
+.reg_scope .choice_card.selected .choice_text {
+    color: var(--reg-navy);
+    font-weight: 600;
+}
+
+.reg_scope .other_specify {
+    margin-top: 12px;
+}
+
+/* Chips (multi select) */
+.reg_scope .chip_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.reg_scope .chip_item {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid var(--reg-border);
+    border-radius: 100px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--reg-body);
+    transition: all 0.2s ease;
+    user-select: none;
+    position: relative;
+    margin: 0;
+}
+
+.reg_scope .chip_item:hover {
+    border-color: var(--reg-border-strong);
+    background: var(--reg-surface);
+}
+
+.reg_scope .chip_item:focus-within {
+    box-shadow: 0 0 0 3px rgba(0, 123, 183, 0.16);
+}
+
+.reg_scope .chip_item input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reg_scope .chip_item.active {
+    background: var(--reg-blue-light);
+    border-color: var(--reg-blue);
+    color: #01608f;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 123, 183, 0.1);
+}
+
+.reg_scope .chip_item.active::before {
+    content: "";
+    width: 8px;
+    height: 5px;
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg) translateY(-1px);
+}
+
+/* Info / conditional notices */
+.reg_scope .cond_box,
+.reg_scope .info_note {
+    margin-top: 14px;
+    background: var(--reg-blue-light);
+    border: 1px solid #cfe6f3;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    font-style: italic;
+    color: #3f5873;
+    line-height: 1.55;
+}
+
+.reg_scope .cond_box a,
+.reg_scope .info_note a {
+    color: var(--reg-blue);
+    font-weight: 600;
+    font-style: normal;
+}
+
+.reg_scope .info_note.is_green {
+    background: var(--reg-green-light);
+    border-color: #cbe9d7;
+    color: #2f5c43;
+}
+
+/* ==========================================================================
+   REVIEW, PAYMENT, UPLOADS, DECLARATIONS
+   ========================================================================== */
+.reg_scope .review_summary_box {
+    background: var(--reg-surface);
+    border: 1px solid var(--reg-border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    margin-bottom: 28px;
+}
+
+.reg_scope .review_summary_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--reg-border);
+}
+
+.reg_scope .review_summary_title {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--reg-navy);
+}
+
+.reg_scope .review_edit_btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--reg-blue);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reg_scope .review_edit_btn:hover {
+    text-decoration: underline;
+}
+
+.reg_scope .review_item_row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 7px 0;
+    font-size: 14px;
+}
+
+.reg_scope .review_label {
+    color: var(--reg-muted);
+    font-weight: 400;
+    flex-shrink: 0;
+}
+
+.reg_scope .review_val {
+    color: var(--reg-ink);
+    font-weight: 600;
+    text-align: right;
+    word-break: break-word;
+}
+
+.reg_scope .review_item_row.is_total {
+    border-top: 1px dashed var(--reg-border-strong);
+    margin-top: 8px;
+    padding-top: 12px;
+}
+
+.reg_scope .review_item_row.is_total .review_label {
+    color: var(--reg-ink);
+    font-weight: 700;
+}
+
+.reg_scope .review_item_row.is_total .review_val {
+    color: var(--reg-red);
+    font-size: 16px;
+}
+
+.reg_scope .payment_panel {
+    background: linear-gradient(135deg, var(--reg-green-light) 0%, #ffffff 100%);
+    border: 1px solid #cbe9d7;
+    border-radius: 18px;
+    padding: 28px;
+    margin-bottom: 28px;
+}
+
+.reg_scope .payment_badge_title {
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--reg-green);
+    margin-bottom: 4px;
+}
+
+.reg_scope .payment_amount_large {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 34px;
+    color: var(--reg-ink);
+    margin-bottom: 10px;
+}
+
+.reg_scope .payment_amount_sub {
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--reg-muted);
+}
+
+.reg_scope .payment_lines {
+    font-size: 13.5px;
+    line-height: 1.75;
+    color: var(--reg-ink);
+}
+
+.reg_scope .payment_lines b {
+    font-weight: 600;
+    color: var(--reg-navy);
+}
+
+.reg_scope .upi_box {
+    background: #ffffff;
+    border: 1px solid var(--reg-border);
+    border-radius: 10px;
+    padding: 6px 8px 6px 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.reg_scope .upi_id_text {
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--reg-navy);
+}
+
+.reg_scope .upi_copy_btn {
+    background: var(--reg-surface);
+    border: 1px solid var(--reg-border-strong);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--reg-body);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.reg_scope .upi_copy_btn:hover {
+    background: var(--reg-border);
+    color: var(--reg-ink);
+}
+
+.reg_scope .qr_code_card {
+    background: #ffffff;
+    border: 1px solid #cbe9d7;
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(16, 127, 68, 0.06);
+}
+
+.reg_scope .qr_code_card img {
+    border-radius: 8px;
+    max-width: 170px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.reg_scope .qr_code_note {
+    margin-top: 8px;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--reg-green);
+}
+
+/* Dropzone */
+.reg_scope .dropzone_box {
+    display: block;
+    border: 1.5px dashed var(--reg-border-strong);
+    border-radius: 14px;
+    padding: 26px 20px;
+    text-align: center;
+    background: var(--reg-surface);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin: 0;
+}
+
+.reg_scope .dropzone_box:hover,
+.reg_scope .dropzone_box.dragover {
+    border-color: var(--reg-navy);
+    background: var(--reg-navy-light);
+}
+
+.reg_scope .dropzone_box.is-invalid {
+    border-color: var(--reg-error);
+    background: #fff7f6;
+}
+
+.reg_scope .dropzone_box input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.reg_scope .dropzone_box:focus-within {
+    box-shadow: var(--reg-focus);
+}
+
+.reg_scope .dropzone_icon {
+    color: var(--reg-navy);
+    opacity: 0.7;
+    margin-bottom: 8px;
+}
+
+.reg_scope .dropzone_text {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--reg-ink);
+    margin-bottom: 3px;
+}
+
+.reg_scope .dropzone_text span {
+    color: var(--reg-red);
+}
+
+.reg_scope .dropzone_hint {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--reg-muted);
+    margin: 0;
+}
+
+.reg_scope .file_preview_card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--reg-green-light);
+    border: 1px solid #b7e2c8;
+    border-radius: 12px;
+    padding: 12px 14px;
+}
+
+.reg_scope .file_preview_main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.reg_scope .file_preview_thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #b7e2c8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--reg-green);
+}
+
+.reg_scope .file_preview_name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--reg-ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.reg_scope .file_preview_size {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--reg-muted);
+}
+
+.reg_scope .file_remove_btn {
+    background: #ffffff;
+    border: 1px solid var(--reg-border-strong);
+    border-radius: 100px;
+    padding: 5px 14px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--reg-body);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.reg_scope .file_remove_btn:hover {
+    border-color: var(--reg-error);
+    color: var(--reg-error);
+}
+
+/* Attendee photo */
+.reg_scope .photo_upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.reg_scope .photo_frame {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    border: 1.5px dashed var(--reg-border-strong);
+    background: var(--reg-surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--reg-subtle);
+}
+
+.reg_scope .photo_frame.has_photo {
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 0 1.5px var(--reg-navy), 0 8px 20px rgba(31, 58, 95, 0.15);
+}
+
+.reg_scope .photo_frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reg_scope .photo_actions {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Declarations */
+.reg_scope .declaration_list {
+    background: #ffffff;
+    border: 1px solid var(--reg-border);
+    border-radius: 14px;
+    padding: 4px 18px;
+}
+
+.reg_scope .declaration_list.is-invalid {
+    border-color: var(--reg-error);
+}
+
+.reg_scope .declaration_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--reg-border);
+    cursor: pointer;
+    user-select: none;
+    margin: 0;
+}
+
+.reg_scope .declaration_item:last-child {
+    border-bottom: none;
+}
+
+.reg_scope .declaration_item input[type="checkbox"] {
+    margin-top: 2px;
+    accent-color: var(--reg-navy);
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.reg_scope .declaration_text {
+    font-size: 14px;
+    color: var(--reg-body);
+    line-height: 1.55;
+}
+
+.reg_scope .declaration_select_all {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--reg-blue);
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Navigation */
+.reg_scope .form_nav_bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding-top: 26px;
+    margin-top: 18px;
+    border-top: 1px solid var(--reg-border);
+}
+
+.reg_scope .form_nav_bar.is_end {
+    justify-content: flex-end;
+}
+
+.reg_scope .btn_primary_action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--reg-red) 0%, var(--reg-red-dark) 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 100px;
+    padding: 14px 32px;
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: 0.2px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(200, 16, 46, 0.24);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    text-decoration: none;
+}
+
+.reg_scope .btn_primary_action:hover {
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(200, 16, 46, 0.32);
+}
+
+.reg_scope .btn_primary_action:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+.reg_scope .btn_primary_action.is_submit {
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 14px;
+}
+
+.reg_scope .btn_prev_step {
+    background: #ffffff;
+    border: 1.5px solid var(--reg-border-strong);
+    border-radius: 100px;
+    padding: 13px 24px;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--reg-body);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.reg_scope .btn_prev_step:hover {
+    background: var(--reg-surface);
+    border-color: #9aa5b4;
+    color: var(--reg-ink);
+}
+
+.reg_scope .form_status {
+    margin-top: 16px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 13.5px;
+    background: #fff7f6;
+    border: 1px solid #f4c7c3;
+    color: var(--reg-error);
+}
+
+.reg_scope .form_status.is_pending {
+    background: var(--reg-navy-light);
+    border-color: var(--reg-border);
+    color: var(--reg-navy);
+    font-style: italic;
+}
+
+/* Success state */
+.reg_scope .success_card {
+    text-align: center;
+    padding: 56px 40px;
+}
+
+.reg_scope .success_icon {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background: var(--reg-green-light);
+    border: 1px solid #b7e2c8;
+    color: var(--reg-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reg_scope .success_title {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--reg-navy);
+    margin: 0 0 10px;
+}
+
+.reg_scope .success_sub {
+    font-size: 14.5px;
+    font-style: italic;
+    color: var(--reg-muted);
+    max-width: 520px;
+    margin: 0 auto 26px;
+    line-height: 1.6;
+}
+
+.reg_scope .success_ref {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 4px;
+    background: var(--reg-surface);
+    border: 1px solid var(--reg-border);
+    border-radius: 14px;
+    padding: 14px 32px;
+    margin-bottom: 28px;
+}
+
+.reg_scope .success_ref_label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--reg-muted);
+}
+
+.reg_scope .success_ref_value {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: var(--reg-red);
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: PASS CARD
+   ========================================================================== */
+.reg_scope .register_rightbox {
+    position: relative;
+}
+
+.reg_scope .sticky_pass_wrapper {
+    position: sticky;
+    top: 110px;
+    z-index: 10;
+}
+
+.reg_scope .summit_pass_card {
+    background: #ffffff;
+    border: 1px solid var(--reg-border);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(31, 58, 95, 0.09);
+}
+
+.reg_scope .pass_card_hero {
+    background: linear-gradient(135deg, var(--reg-navy-deep) 0%, var(--reg-navy) 60%, #24507f 100%);
+    padding: 24px;
+    color: #ffffff;
+    position: relative;
+}
+
+.reg_scope .pass_card_hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--reg-red) 0%, var(--reg-orange) 45%, var(--reg-blue) 100%);
+}
+
+.reg_scope .pass_hero_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.reg_scope .pass_brand_tag {
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    color: #f3c4cc;
+    text-transform: uppercase;
+}
+
+.reg_scope .pass_verified_pill {
+    background: rgba(16, 127, 68, 0.28);
+    border: 1px solid rgba(110, 231, 160, 0.45);
+    color: #a7f3c4;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.reg_scope .pass_hero_title {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: 2px;
+    line-height: 1.25;
+    margin: 0 0 4px;
+    color: #ffffff;
+}
+
+.reg_scope .pass_hero_sub {
+    font-size: 12.5px;
+    font-style: italic;
+    color: rgba(226, 232, 240, 0.8);
+    margin: 0;
+}
+
+.reg_scope .pass_price_strip {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.reg_scope .pass_price_label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(226, 232, 240, 0.75);
+    margin-bottom: 4px;
+}
+
+.reg_scope .pass_price_fig {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 26px;
+    color: #ffffff;
+    line-height: 1;
+}
+
+.reg_scope .pass_price_fig span {
+    font-size: 13px;
+    font-weight: 400;
+    color: #f3c4cc;
+    margin-left: 2px;
+}
+
+.reg_scope .pass_price_badge {
+    background: var(--reg-red);
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 5px 11px;
+    border-radius: 100px;
+    white-space: nowrap;
+}
+
+.reg_scope .pass_card_body {
+    padding: 22px 24px 24px;
+}
+
+.reg_scope .pass_meta_list {
+    margin-bottom: 20px;
+}
+
+.reg_scope .pass_meta_item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.reg_scope .pass_meta_item:last-child {
+    margin-bottom: 0;
+}
+
+.reg_scope .pass_meta_icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+    background: var(--reg-navy-light);
+    color: var(--reg-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.reg_scope .pass_meta_label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    color: var(--reg-muted);
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.reg_scope .pass_meta_val {
+    font-weight: 600;
+    font-size: 13.5px;
+    color: var(--reg-ink);
+    line-height: 1.3;
+}
+
+.reg_scope .pass_meta_sub {
+    font-size: 12px;
+    font-style: italic;
+    color: var(--reg-muted);
+}
+
+.reg_scope .pass_inclusions_box {
+    background: var(--reg-surface);
+    border: 1px solid var(--reg-border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 20px;
+}
+
+.reg_scope .pass_inclusions_title {
+    font-weight: 700;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--reg-navy);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.reg_scope .pass_inclusions_title svg,
+.reg_scope .pass_inclusions_list li svg {
+    color: var(--reg-green);
+    flex-shrink: 0;
+}
+
+.reg_scope .pass_inclusions_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.reg_scope .pass_inclusions_list li {
+    font-size: 13px;
+    color: var(--reg-body);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.reg_scope .pass_inclusions_list li:last-child {
+    margin-bottom: 0;
+}
+
+.reg_scope .pass_inclusions_list li svg {
+    margin-top: 3px;
+}
+
+.reg_scope .live_badge_card {
+    background: linear-gradient(135deg, #ffffff 0%, var(--reg-surface) 100%);
+    border: 1px solid var(--reg-border-strong);
+    border-radius: 14px;
+    padding: 18px 16px 14px;
+    position: relative;
+    overflow: hidden;
+}
+
+.reg_scope .live_badge_card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--reg-red) 0%, var(--reg-navy) 100%);
+}
+
+.reg_scope .live_badge_top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.reg_scope .live_badge_label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--reg-muted);
+}
+
+.reg_scope .live_badge_role {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--reg-blue-light);
+    color: #01608f;
+    padding: 2px 8px;
+    border-radius: 6px;
+    max-width: 60%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.reg_scope .live_badge_person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.reg_scope .live_badge_avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--reg-navy-light);
+    color: var(--reg-navy);
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px var(--reg-border-strong);
+}
+
+.reg_scope .live_badge_avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reg_scope .live_badge_name {
+    font-family: var(--reg-font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--reg-navy);
+    line-height: 1.3;
+    word-break: break-word;
+}
+
+.reg_scope .live_badge_org {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--reg-muted);
+    line-height: 1.35;
+    word-break: break-word;
+}
+
+.reg_scope .live_badge_footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    border-top: 1px dashed var(--reg-border);
+    padding-top: 9px;
+    font-size: 11.5px;
+    color: var(--reg-muted);
+}
+
+.reg_scope .live_badge_footer b {
+    color: var(--reg-ink);
+    font-weight: 600;
+}
+
+.reg_scope .pass_help_box {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--reg-border);
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--reg-muted);
+    line-height: 1.6;
+}
+
+.reg_scope .pass_help_box a {
+    color: var(--reg-navy);
+    text-decoration: none;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.reg_scope .pass_help_box a:hover {
+    color: var(--reg-red);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 991px) {
+    .reg_scope .reg_hero_banner {
+        padding: 120px 0 44px;
+    }
+    .reg_scope .reg_hero_title {
+        font-size: 30px;
+    }
+    .reg_scope .reg_body {
+        padding-top: 28px;
+    }
+    .reg_scope .stepper_card {
+        padding: 14px 12px;
+    }
+    .reg_scope .step_node {
+        flex-direction: column;
+        gap: 6px;
+        text-align: center;
+        padding: 4px;
+    }
+    .reg_scope .step_num {
+        display: none;
+    }
+    .reg_scope .step_name {
+        font-size: 11.5px;
+        font-weight: 500;
+    }
+    .reg_scope .step_line {
+        margin: 0 4px 18px;
+    }
+    .reg_scope .step_pane {
+        padding: 26px 20px;
+        border-radius: 16px;
+    }
+    .reg_scope .step_pane_title {
+        font-size: 22px;
+    }
+    .reg_scope .card_grid,
+    .reg_scope .card_grid.cols_2 {
+        grid-template-columns: 1fr;
+    }
+    .reg_scope .register_rightbox {
+        margin-top: 8px;
+    }
+    .reg_scope .sticky_pass_wrapper {
+        position: static;
+    }
+    .reg_scope .form_nav_bar {
+        flex-direction: column-reverse;
+        gap: 12px;
+    }
+    .reg_scope .form_nav_bar .btn_primary_action,
+    .reg_scope .form_nav_bar .btn_prev_step {
+        width: 100%;
+    }
+    .reg_scope .payment_panel {
+        padding: 22px 18px;
+    }
+    .reg_scope .review_item_row {
+        font-size: 13.5px;
+    }
+    .reg_scope .success_card {
+        padding: 40px 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .reg_scope .reg_hero_title {
+        font-size: 26px;
+    }
+    .reg_scope .photo_upload {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .reg_scope .photo_frame {
+        margin: 0 auto;
+    }
+}
