@@ -275,6 +275,19 @@ body:has(.admin-login) {
   background: #f3f6f7;
 }
 
+#admin-root section {
+  margin: 0;
+}
+
+#admin-root main {
+  margin: 0;
+}
+
+#admin-root main::before {
+  content: none;
+  display: none;
+}
+
 #admin-root .pay-main {
   min-width: 0;
   max-width: 100%;

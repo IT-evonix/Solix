@@ -598,7 +598,7 @@ export default function ConferenceRegistration() {
                         }}
                       />
                       {onCampusAccommodation === "yes" ? (
-                        <div className="cond_box">
+                        <div className="cond_box" style={{ display: "none" }}>
                           Your accommodation preference will be forwarded to the{" "}
                           <a href="https://www.sandipanihometel.com/" target="_blank" rel="noreferrer">
                             Sandipani Hometel
