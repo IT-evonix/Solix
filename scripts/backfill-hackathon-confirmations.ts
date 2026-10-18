@@ -5,7 +5,7 @@
 //   node --env-file=.env.local scripts/backfill-hackathon-confirmations.ts --dry-run
 //   node --env-file=.env.local scripts/backfill-hackathon-confirmations.ts [--limit=400] [--retry-failed]
 //
-// Needs DATABASE_URL and the GMAIL_* variables. Gmail allows roughly 500 messages/day on a
+// Needs DATABASE_URL and the SMTP_* variables. Gmail SMTP allows roughly 500 messages/day on a
 // personal account (2,000 on Workspace), so use --limit to split a large backlog across days.
 
 import pg from "pg";
