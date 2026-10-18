@@ -1,17 +1,25 @@
-import { mkdir, unlink, writeFile } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 import { formatRegistrationId } from "@/app/lib/payments";
+import {
+  EMAIL_PATTERN,
+  badRequest,
+  collect,
+  fileExtension,
+  first,
+  lookupRows,
+  readInput,
+  removeUploads,
+  resolveIds,
+  storeUpload,
+  type Input,
+} from "@/app/lib/registration-input";
 
 const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
-
-const imageExtensions: Record<string, string> = {
-  "image/jpeg": "jpg",
-  "image/png": "png",
-  "image/webp": "webp",
-  "image/gif": "gif",
-};
+const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
+const SCREENSHOT_EXTENSIONS = ["jpg", "png", "webp", "pdf"];
+const PHOTO_EXTENSIONS = ["jpg", "png"];
+const DIETARY_PREFERENCES = ["Vegetarian", "Non-Vegetarian", "Jain"];
 
 const textLimits = {
   fullName: 200,
@@ -24,23 +32,11 @@ const textLimits = {
   professionSpecialisation: 255,
   departmentFunctionalArea: 255,
   transactionId: 100,
+  payerName: 200,
+  categoryOther: 150,
 } as const;
 
 type TextField = keyof typeof textLimits;
-type LookupTable =
-  | "category"
-  | "area_of_interest"
-  | "explore_option"
-  | "declaration"
-  | "hear_about";
-
-type LookupRow = { id: number; name: string };
-
-type Input = {
-  get(name: string): string;
-  getAll(name: string): string[];
-  file(): File | null;
-};
 
 const textAliases: Record<TextField, string[]> = {
   fullName: ["fullName", "full_name"],
@@ -53,78 +49,9 @@ const textAliases: Record<TextField, string[]> = {
   professionSpecialisation: ["professionSpecialisation", "profession_specialisation", "profession"],
   departmentFunctionalArea: ["departmentFunctionalArea", "department_functional_area", "department"],
   transactionId: ["transactionId", "transaction_id"],
+  payerName: ["payerName", "payer_name"],
+  categoryOther: ["categoryOther", "category_other"],
 };
-
-function fromForm(form: FormData): Input {
-  return {
-    get(name) {
-      const value = form.get(name);
-      return value instanceof File ? "" : String(value ?? "").trim();
-    },
-    getAll(name) {
-      return form
-        .getAll(name)
-        .flatMap((value) =>
-          value instanceof File ? [] : String(value).split(",").map((part) => part.trim()),
-        )
-        .filter(Boolean);
-    },
-    file() {
-      for (const name of ["screenshot", "upload", "file"]) {
-        const value = form.get(name);
-        if (value instanceof File && value.size > 0) return value;
-      }
-      return null;
-    },
-  };
-}
-
-function fromJson(body: Record<string, unknown>): Input {
-  return {
-    get(name) {
-      const value = body[name];
-      if (Array.isArray(value)) return value.map((item) => String(item).trim()).filter(Boolean).join(",");
-      return String(value ?? "").trim();
-    },
-    getAll(name) {
-      const value = body[name];
-      if (Array.isArray(value)) {
-        return value.map((item) => String(item).trim()).filter(Boolean);
-      }
-      return String(value ?? "")
-        .split(",")
-        .map((part) => part.trim())
-        .filter(Boolean);
-    },
-    file() {
-      return null;
-    },
-  };
-}
-
-async function readInput(request: Request) {
-  const contentType = request.headers.get("content-type") ?? "";
-  try {
-    if (contentType.includes("application/json")) {
-      return fromJson((await request.json()) as Record<string, unknown>);
-    }
-    return fromForm(await request.formData());
-  } catch {
-    return null;
-  }
-}
-
-function first(input: Input, names: string[]) {
-  for (const name of names) {
-    const value = input.get(name);
-    if (value) return value;
-  }
-  return "";
-}
-
-function collect(input: Input, names: string[]) {
-  return names.flatMap((name) => input.getAll(name));
-}
 
 function textValue(input: Input, field: TextField) {
   return first(input, textAliases[field]).slice(0, textLimits[field]);
@@ -144,42 +71,16 @@ function communicationChannel(value: string) {
   return "";
 }
 
-function imageExtension(file: File) {
-  const fromType = imageExtensions[file.type];
-  if (fromType) return fromType;
-  const match = file.name.toLowerCase().match(/\.([a-z0-9]+)$/);
-  const extension = match?.[1] === "jpeg" ? "jpg" : match?.[1];
-  if (extension && ["jpg", "png", "webp", "gif"].includes(extension)) return extension;
-  return "";
-}
-
-async function lookupRows(table: LookupTable) {
-  const result = await pool.query<LookupRow>(
-    `SELECT id, name FROM ${table} WHERE status = 1 ORDER BY id`,
-  );
-  return result.rows;
-}
-
-function resolveIds(rows: LookupRow[], tokens: string[]) {
-  const ids: number[] = [];
-  for (const token of tokens) {
-    const numeric = Number(token);
-    const match = Number.isInteger(numeric)
-      ? rows.find((row) => row.id === numeric)
-      : rows.find((row) => row.name.toLowerCase() === token.toLowerCase());
-    if (!match) return null;
-    if (!ids.includes(match.id)) ids.push(match.id);
-  }
-  return ids.length ? ids : null;
-}
-
-function badRequest(message: string) {
-  return NextResponse.json({ message }, { status: 400 });
+function dietaryPreference(value: string) {
+  return DIETARY_PREFERENCES.find((item) => item.toLowerCase() === value.trim().toLowerCase()) ?? "";
 }
 
 function textFields(input: Input) {
-  const screenshot = input.file();
-  const extension = screenshot ? imageExtension(screenshot) : "";
+  const screenshot = input.file(["screenshot", "upload", "file"]);
+  const extension = screenshot ? fileExtension(screenshot, SCREENSHOT_EXTENSIONS) : "";
+  const attendeePhoto = input.file(["attendeePhoto", "attendee_photo", "photo"]);
+  const photoExtension = attendeePhoto ? fileExtension(attendeePhoto, PHOTO_EXTENSIONS) : "";
+  const dietaryInput = first(input, ["dietaryPreference", "dietary_preference", "dietary"]);
   const fields = {
     fullName: textValue(input, "fullName"),
     emailAddress: textValue(input, "emailAddress"),
@@ -191,6 +92,9 @@ function textFields(input: Input) {
     professionSpecialisation: textValue(input, "professionSpecialisation"),
     departmentFunctionalArea: textValue(input, "departmentFunctionalArea"),
     transactionId: textValue(input, "transactionId"),
+    payerName: textValue(input, "payerName"),
+    categoryOther: textValue(input, "categoryOther"),
+    dietaryPreference: dietaryPreference(dietaryInput),
     onCampusAccommodation: accommodation(
       first(input, ["onCampusAccommodation", "on_campus_accommodation", "Accommodation"]),
     ),
@@ -199,12 +103,17 @@ function textFields(input: Input) {
     ),
     screenshot,
     extension,
+    attendeePhoto,
+    photoExtension,
   };
 
   if (!fields.fullName || !fields.emailAddress || !fields.mobileNumber || !fields.country || !fields.city) {
     return badRequest("Enter your name, email, mobile number, country, and city.");
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.emailAddress)) {
+  if (!attendeePhoto) return badRequest("Upload your attendee photo.");
+  if (attendeePhoto.size > MAX_PHOTO_BYTES) return badRequest("Attendee photo must be 2 MB or smaller.");
+  if (!fields.photoExtension) return badRequest("Upload a JPG or PNG attendee photo.");
+  if (!EMAIL_PATTERN.test(fields.emailAddress)) {
     return badRequest("Enter a valid email address.");
   }
   if (
@@ -222,16 +131,18 @@ function textFields(input: Input) {
   if (!fields.preferredCommunicationChannel) {
     return badRequest("Select Email or WhatsApp as your communication channel.");
   }
+  if (dietaryInput && !fields.dietaryPreference) return badRequest("Select a valid dietary preference.");
+  if (!fields.payerName) return badRequest("Enter the payer name as per the UPI / bank transaction.");
   if (!fields.transactionId) return badRequest("Enter the transaction ID.");
-  if (!screenshot) return badRequest("Upload the payment screenshot.");
+  if (!screenshot) return badRequest("Upload the payment receipt.");
   if (screenshot.size > MAX_UPLOAD_BYTES) {
-    return badRequest("Payment screenshot must be 5 MB or smaller.");
+    return badRequest("Payment receipt must be 5 MB or smaller.");
   }
-  if (!fields.extension) return badRequest("Upload a PNG, JPG, WEBP, or GIF screenshot.");
-  return { ...fields, onCampusAccommodation, screenshot };
+  if (!fields.extension) return badRequest("Upload a JPG, PNG, WEBP, or PDF payment receipt.");
+  return { ...fields, onCampusAccommodation, screenshot, attendeePhoto };
 }
 
-async function choiceFields(input: Input) {
+async function choiceFields(input: Input, categoryOther: string) {
   const [categories, interests, exploreOptions, declarations, hearAbout] = await Promise.all([
     lookupRows("category"),
     lookupRows("area_of_interest"),
@@ -263,6 +174,8 @@ async function choiceFields(input: Input) {
   if (!participantCategory || participantCategory.length !== 1) {
     return badRequest("Select a valid participant category.");
   }
+  const isOther = categories.find((row) => row.id === participantCategory[0])?.name === "Other";
+  if (isOther && !categoryOther) return badRequest("Specify your participant category.");
   if (!areaOfInterest) return badRequest("Select at least one valid area of interest.");
   if (!exploreConclave) return badRequest("Select at least one valid conclave option.");
   if (!declaration || declaration.length !== declarations.length) {
@@ -272,6 +185,7 @@ async function choiceFields(input: Input) {
 
   return {
     participantCategory: participantCategory[0],
+    categoryOther: isOther ? categoryOther : "",
     areaOfInterest: areaOfInterest.join(","),
     exploreConclave: exploreConclave.join(","),
     declaration: declaration.join(","),
@@ -287,7 +201,7 @@ export async function POST(request: Request) {
   if (texts instanceof NextResponse) return texts;
 
   try {
-    const choices = await choiceFields(input);
+    const choices = await choiceFields(input, texts.categoryOther);
     if (choices instanceof NextResponse) return choices;
     return await saveRegistration({ ...texts, ...choices });
   } catch {
@@ -302,6 +216,7 @@ type RegistrationInsert = {
   country: string;
   city: string;
   participantCategory: number;
+  categoryOther: string;
   organisationInstitution: string;
   designation: string;
   professionSpecialisation: string;
@@ -312,14 +227,18 @@ type RegistrationInsert = {
   declaration: string;
   preferredCommunicationChannel: string;
   hearAboutConclave: string;
+  dietaryPreference: string;
+  payerName: string;
   transactionId: string;
   screenshot: File;
   extension: string;
+  attendeePhoto: File;
+  photoExtension: string;
 };
 
 async function saveRegistration(data: RegistrationInsert) {
   const client = await pool.connect();
-  let storedFile = "";
+  const storedFiles: string[] = [];
 
   try {
     await client.query("BEGIN");
@@ -329,13 +248,13 @@ async function saveRegistration(data: RegistrationInsert) {
          organisation_institution, designation, profession_specialisation,
          department_functional_area, area_of_interest, explore_conclave,
          on_campus_accommodation, declaration, preferred_communication_channel,
-         hear_about_conclave, registration_fee, status
+         hear_about_conclave, category_other, dietary_preference, registration_fee, status
        ) VALUES (
          $1, $2, $3, $4, $5, $6,
          $7, $8, $9,
          $10, $11, $12,
          $13, $14, $15,
-         $16, 1500, 1
+         $16, $17, $18, 1500, 1
        )
        RETURNING id, registration_code`,
       [
@@ -355,30 +274,25 @@ async function saveRegistration(data: RegistrationInsert) {
         data.declaration,
         data.preferredCommunicationChannel,
         data.hearAboutConclave,
+        data.categoryOther || null,
+        data.dietaryPreference || null,
       ],
     );
 
     const row = inserted.rows[0];
     const filename = `${row.id}.${data.extension}`;
-<<<<<<< HEAD
-    const directory = path.join(process.cwd(), "public", "uploads");
-=======
-    const directory = process.env.UPLOAD_DIR
-      ? path.resolve(process.env.UPLOAD_DIR)
-      : path.join(process.cwd(), "uploads");
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-    storedFile = path.join(directory, filename);
-    await mkdir(directory, { recursive: true });
-    await writeFile(storedFile, Buffer.from(await data.screenshot.arrayBuffer()));
+    storedFiles.push(await storeUpload(data.screenshot, filename));
+    const photoFilename = `${row.id}-photo.${data.photoExtension}`;
+    storedFiles.push(await storeUpload(data.attendeePhoto, photoFilename));
 
     await client.query(
-      `INSERT INTO registration_payment (registration_id, upload_path, transaction_id)
-       VALUES ($1, $2, $3)`,
-<<<<<<< HEAD
-      [row.id, `/uploads/${filename}`, data.transactionId],
-=======
-      [row.id, `/api/uploads/${filename}`, data.transactionId],
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
+      `UPDATE registration SET attendee_photo_path = $2 WHERE id = $1`,
+      [row.id, `/api/uploads/${photoFilename}`],
+    );
+    await client.query(
+      `INSERT INTO registration_payment (registration_id, upload_path, transaction_id, payer_name)
+       VALUES ($1, $2, $3, $4)`,
+      [row.id, `/api/uploads/${filename}`, data.transactionId, data.payerName],
     );
     await client.query("COMMIT");
 
@@ -392,7 +306,7 @@ async function saveRegistration(data: RegistrationInsert) {
     );
   } catch (error) {
     await client.query("ROLLBACK").catch(() => undefined);
-    if (storedFile) await unlink(storedFile).catch(() => undefined);
+    await removeUploads(storedFiles);
     const code = typeof error === "object" && error && "code" in error ? String(error.code) : "";
     if (code === "23503" || code === "23514") {
       return badRequest("Registration details do not match the allowed options.");

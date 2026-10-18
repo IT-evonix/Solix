@@ -1,95 +1,15 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 import { requireAdmin } from "@/app/lib/admin-auth";
-import { formatRegistrationId, type Payment, type PaymentStatus } from "@/app/lib/payments";
-
-// registration.status: 1 draft (added by applicant), 2 pending, 3 approved, 0 rejected
-const statusByAction = { Pending: 2, Approved: 3, Rejected: 0 } as const;
-const labelByStatus: Record<number, PaymentStatus> = {
-  0: "Rejected",
-<<<<<<< HEAD
-  1: "Draft",
-=======
-  1: "Pending",
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-  2: "Pending",
-  3: "Approved",
-};
-
-type PaymentRow = {
-  id: string;
-  registration_id: string;
-  registration_code: string;
-  full_name: string;
-<<<<<<< HEAD
-=======
-  email_address: string;
-  mobile_number: string;
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-  organisation_institution: string;
-  designation: string;
-  registration_fee: string;
-  upload_path: string;
-  transaction_id: string;
-  registration_date: string;
-<<<<<<< HEAD
-=======
-  submitted_at: string;
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-  status: number;
-};
-
-const selectList = `
-  p.id,
-  r.id AS registration_id,
-  r.registration_code,
-  r.full_name,
-<<<<<<< HEAD
-=======
-  r.email_address,
-  r.mobile_number,
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-  r.organisation_institution,
-  r.designation,
-  r.registration_fee,
-  p.upload_path,
-  p.transaction_id,
-  to_char(p.registration_date, 'DD Mon YYYY') AS registration_date,
-<<<<<<< HEAD
-=======
-  to_char(p.registration_date, 'YYYY-MM-DD HH24:MI:SS') AS submitted_at,
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-  r.status
-`;
-
-function toPayment(row: PaymentRow): Payment {
-  const fee = Number(row.registration_fee);
-  return {
-    id: row.id,
-    registrationId: row.registration_id,
-    registrationCode: formatRegistrationId(row.registration_code),
-    fullName: row.full_name,
-<<<<<<< HEAD
-    detail: `${row.organisation_institution} · ${row.designation}`,
-    transactionId: row.transaction_id,
-    amount: `₹ ${fee.toLocaleString("en-IN")}`,
-    date: row.registration_date,
-    status: labelByStatus[row.status] ?? "Draft",
-=======
-    email: row.email_address,
-    mobile: row.mobile_number,
-    detail: `${row.organisation_institution} · ${row.designation}`,
-    transactionId: row.transaction_id,
-    amount: `₹ ${fee.toLocaleString("en-IN")}`,
-    amountValue: fee,
-    date: row.registration_date,
-    submittedAt: row.submitted_at,
-    status: labelByStatus[row.status] ?? "Pending",
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
-    statusCode: row.status,
-    uploadPath: row.upload_path,
-  };
-}
+import {
+  UUID_PATTERN,
+  selectList,
+  selectPayment,
+  statusByAction,
+  toPayment,
+  type PaymentRow,
+} from "@/app/lib/payment-records";
+import { sendDelegatePass } from "@/app/lib/send-delegate-pass";
 
 export async function GET(request: Request) {
   const auth = await requireAdmin(request);
@@ -116,12 +36,12 @@ export async function PATCH(request: Request) {
   const auth = await requireAdmin(request);
   if ("response" in auth) return auth.response;
 
-  const body = await request.json();
+  const body = (await request.json().catch(() => ({}))) as { id?: unknown; status?: unknown };
   const id = String(body.id ?? "");
   const action = String(body.status ?? "") as keyof typeof statusByAction;
   const statusCode = statusByAction[action];
 
-  if (!id || statusCode === undefined) {
+  if (!UUID_PATTERN.test(id) || statusCode === undefined) {
     return NextResponse.json({ message: "Invalid payment update." }, { status: 400 });
   }
 
@@ -134,10 +54,18 @@ export async function PATCH(request: Request) {
        RETURNING ${selectList}`,
       [statusCode, id],
     );
-    if (!result.rows[0]) {
+    const row = result.rows[0];
+    if (!row) {
       return NextResponse.json({ message: "Payment not found." }, { status: 404 });
     }
-    return NextResponse.json(toPayment(result.rows[0]));
+    if (action !== "Approved") return NextResponse.json(toPayment(row));
+
+    // The approval is already saved; an email problem is shown on the row, never returned as an error.
+    await sendDelegatePass(row.registration_id).catch((error) =>
+      console.error(`Delegate pass email could not start for ${row.registration_id}:`, error),
+    );
+    const latest = await selectPayment(id).catch(() => null);
+    return NextResponse.json(toPayment(latest ?? row));
   } catch {
     return NextResponse.json(
       { message: "Unable to update payment." },

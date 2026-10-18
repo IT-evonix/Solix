@@ -1,16 +1,25 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
+  isPdfPath,
   type Payment,
   type PaymentStatus,
   type PaymentTab,
 } from "@/app/lib/payments";
 import { clearAdmin, saveAdmin, type AdminSession } from "@/app/lib/session";
 import { RegistrationDetail } from "./registration-detail";
+import { HackathonPanel } from "./hackathon-panel";
 
 const tabs: PaymentTab[] = ["All", "Pending", "Approved", "Rejected"];
+
+type AdminView = "conference" | "hackathon";
+
+const adminViews: { key: AdminView; label: string }[] = [
+  { key: "conference", label: "Conference Payments" },
+  { key: "hackathon", label: "Hackathon Registrations" },
+];
 
 type SortKey =
   | "screenshot"
@@ -64,11 +73,18 @@ export function PaymentScreen() {
   const router = useRouter();
   const [admin, setAdmin] = useState<AdminSession | null>(null);
   const [rows, setRows] = useState<Payment[]>([]);
+  const [busy, setBusy] = useState<Set<string>>(() => new Set());
   const [query, setQuery] = useState("");
   const [tab, setTab] = useState<PaymentTab>("All");
   const [openRegistrationId, setOpenRegistrationId] = useState<string | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [preview, setPreview] = useState<{ src: string; name: string } | null>(null);
+  const [view, setView] = useState<AdminView>("conference");
+
+  const signOutExpired = useCallback(() => {
+    clearAdmin();
+    router.replace("/admin");
+  }, [router]);
 
   useEffect(() => {
     if (!preview) return;
@@ -128,25 +144,69 @@ export function PaymentScreen() {
         row.email.toLowerCase().includes(term) ||
         row.mobile.toLowerCase().includes(term) ||
         row.transactionId.toLowerCase().includes(term) ||
+        row.payerName.toLowerCase().includes(term) ||
         row.registrationCode.toLowerCase().includes(term);
       return matchesTab && matchesQuery;
     });
   }, [query, rows, tab]);
 
-  async function setStatus(id: string, status: PaymentStatus) {
-    const response = await fetch("/api/payments", {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ id, status }),
+  function markBusy(id: string, on: boolean) {
+    setBusy((current) => {
+      const next = new Set(current);
+      if (on) next.add(id);
+      else next.delete(id);
+      return next;
     });
-    if (response.status === 401 || response.status === 403) {
-      clearAdmin();
-      router.replace("/admin");
-      return;
+  }
+
+  async function setStatus(id: string, status: PaymentStatus) {
+    if (busy.has(id)) return;
+    markBusy(id, true);
+    try {
+      const response = await fetch("/api/payments", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, status }),
+      });
+      if (response.status === 401 || response.status === 403) {
+        clearAdmin();
+        router.replace("/admin");
+        return;
+      }
+      if (!response.ok) return;
+      const updated = (await response.json()) as Payment;
+      setRows((current) => current.map((row) => (row.id === id ? updated : row)));
+    } finally {
+      markBusy(id, false);
     }
-    if (!response.ok) return;
-    const updated = (await response.json()) as Payment;
-    setRows((current) => current.map((row) => (row.id === id ? updated : row)));
+  }
+
+  async function resendPass(row: Payment) {
+    if (busy.has(row.id)) return;
+    if (row.emailStatus === "sent" && !window.confirm(`Resend the Delegate Pass to ${row.email}?`)) return;
+    markBusy(row.id, true);
+    try {
+      const response = await fetch(`/api/payments/${row.id}/email`, { method: "POST" });
+      if (response.status === 401 || response.status === 403) {
+        clearAdmin();
+        router.replace("/admin");
+        return;
+      }
+      const data = (await response.json().catch(() => ({}))) as {
+        payment?: Payment;
+        message?: string;
+        result?: string;
+        reason?: string;
+      };
+      if (data.payment) {
+        const updated = data.payment;
+        setRows((current) => current.map((item) => (item.id === row.id ? updated : item)));
+      }
+      if (!response.ok) window.alert(data.message ?? "Unable to send the Delegate Pass.");
+      else if (data.result === "skipped") window.alert(data.reason ?? "The Delegate Pass was not sent.");
+    } finally {
+      markBusy(row.id, false);
+    }
   }
 
   if (!admin) return null;
@@ -164,6 +224,11 @@ export function PaymentScreen() {
       <Sidebar
         admin={admin}
         open={menuOpen}
+        view={view}
+        onView={(next) => {
+          setView(next);
+          setMenuOpen(false);
+        }}
         onClose={() => setMenuOpen(false)}
         onLogout={logout}
       />
@@ -184,16 +249,24 @@ export function PaymentScreen() {
             Log out
           </button>
         </div>
-        <Header query={query} onQuery={setQuery} />
-        <Stats rows={rows} />
-        <PaymentList
-          rows={visible}
-          tab={tab}
-          onTab={setTab}
-          onStatus={setStatus}
-          onOpen={setOpenRegistrationId}
-          onPreview={setPreview}
-        />
+        {view === "hackathon" ? (
+          <HackathonPanel onUnauthorized={signOutExpired} />
+        ) : (
+          <>
+            <Header query={query} onQuery={setQuery} />
+            <Stats rows={rows} />
+            <PaymentList
+              rows={visible}
+              tab={tab}
+              onTab={setTab}
+              onStatus={setStatus}
+              onResend={resendPass}
+              busy={busy}
+              onOpen={setOpenRegistrationId}
+              onPreview={setPreview}
+            />
+          </>
+        )}
       </main>
       {preview ? <ScreenshotPreview preview={preview} onClose={() => setPreview(null)} /> : null}
       {openRegistrationId ? (
@@ -209,11 +282,15 @@ export function PaymentScreen() {
 function Sidebar({
   admin,
   open,
+  view,
+  onView,
   onClose,
   onLogout,
 }: {
   admin: AdminSession;
   open: boolean;
+  view: AdminView;
+  onView: (view: AdminView) => void;
   onClose: () => void;
   onLogout: () => void;
 }) {
@@ -235,10 +312,20 @@ function Sidebar({
           className="h-auto w-full"
         />
       </div>
-      <nav className="mt-10">
-        <div className="rounded-xl bg-[#1eb6c9] px-3 py-2.5 text-sm font-medium">
-          Uploaded Payment
-        </div>
+      <nav className="mt-10 space-y-2">
+        {adminViews.map((item) => (
+          <button
+            key={item.key}
+            type="button"
+            onClick={() => onView(item.key)}
+            aria-current={view === item.key ? "page" : undefined}
+            className={`block w-full rounded-xl border-0 px-3 py-2.5 text-left text-sm font-medium ${
+              view === item.key ? "bg-[#1eb6c9] text-white" : "bg-transparent text-[#b7d4de] hover:bg-[#10283c]"
+            }`}
+          >
+            {item.label}
+          </button>
+        ))}
       </nav>
       <div className="mt-auto">
         <div className="flex items-center gap-3 rounded-2xl bg-[#10283c] px-3 py-3">
@@ -287,7 +374,7 @@ function Header({
       <input
         value={query}
         onChange={(event) => onQuery(event.target.value)}
-        placeholder="Search name, email, mobile, or transaction ID"
+        placeholder="Search name, email, mobile, payer, or transaction ID"
         className="w-full rounded-xl border border-[#d7e2e8] bg-white px-4 py-2.5 text-sm outline-none focus:border-[#1eb6c9] sm:max-w-xs"
       />
     </div>
@@ -333,6 +420,7 @@ function exportCells(rows: Payment[]) {
     row.detail,
     row.registrationCode,
     row.transactionId,
+    row.payerName,
     row.amount,
     row.date,
     row.status,
@@ -346,6 +434,7 @@ const exportHeadings = [
   "Detail",
   "Registration ID",
   "Transaction ID",
+  "Payer name",
   "Payment amount",
   "Submitted date",
   "Status",
@@ -377,6 +466,7 @@ async function exportExcel(rows: Payment[]) {
     { wch: 32 },
     { wch: 18 },
     { wch: 22 },
+    { wch: 28 },
     { wch: 16 },
     { wch: 16 },
     { wch: 12 },
@@ -391,6 +481,8 @@ function PaymentList({
   tab,
   onTab,
   onStatus,
+  onResend,
+  busy,
   onOpen,
   onPreview,
 }: {
@@ -398,6 +490,8 @@ function PaymentList({
   tab: PaymentTab;
   onTab: (tab: PaymentTab) => void;
   onStatus: (id: string, status: PaymentStatus) => void;
+  onResend: (row: Payment) => void;
+  busy: Set<string>;
   onOpen: (registrationId: string) => void;
   onPreview: (preview: { src: string; name: string }) => void;
 }) {
@@ -452,7 +546,7 @@ function PaymentList({
       </div>
       <div className="mt-4 space-y-3 lg:hidden">
         {sorted.map((row) => (
-          <PaymentCard key={row.id} row={row} onStatus={onStatus} onOpen={onOpen} onPreview={onPreview} />
+          <PaymentCard key={row.id} row={row} onStatus={onStatus} onResend={onResend} busy={busy.has(row.id)} onOpen={onOpen} onPreview={onPreview} />
         ))}
         {sorted.length === 0 ? (
           <p className="py-8 text-center text-sm text-[#7b8d99]">No payments match this search.</p>
@@ -487,7 +581,7 @@ function PaymentList({
           </thead>
           <tbody>
             {sorted.map((row) => (
-              <PaymentRow key={row.id} row={row} onStatus={onStatus} onOpen={onOpen} onPreview={onPreview} />
+              <PaymentRow key={row.id} row={row} onStatus={onStatus} onResend={onResend} busy={busy.has(row.id)} onOpen={onOpen} onPreview={onPreview} />
             ))}
             {sorted.length === 0 ? (
               <tr>
@@ -506,11 +600,15 @@ function PaymentList({
 function PaymentCard({
   row,
   onStatus,
+  onResend,
+  busy,
   onOpen,
   onPreview,
 }: {
   row: Payment;
   onStatus: (id: string, status: PaymentStatus) => void;
+  onResend: (row: Payment) => void;
+  busy: boolean;
   onOpen: (registrationId: string) => void;
   onPreview: (preview: { src: string; name: string }) => void;
 }) {
@@ -527,13 +625,14 @@ function PaymentCard({
           <p className="text-xs text-[#5f7380]">{row.email}</p>
           <p className="mt-1 text-xs font-medium text-[#12263a]">Registration ID {row.registrationCode}</p>
           <p className="mt-1 text-sm font-medium">{row.transactionId}</p>
+          {row.payerName ? <p className="text-xs text-[#5f7380]">Payer: {row.payerName}</p> : null}
           <p className="text-sm font-semibold">{row.amount}</p>
           <p className="text-xs text-[#5f7380]">Submitted {row.date}</p>
         </div>
         <StatusPill status={row.status} />
       </div>
       <div className="mt-3">
-        <PaymentActions row={row} onStatus={onStatus} />
+        <PaymentActions row={row} onStatus={onStatus} onResend={onResend} busy={busy} />
       </div>
     </article>
   );
@@ -542,17 +641,62 @@ function PaymentCard({
 function PaymentActions({
   row,
   onStatus,
+  onResend,
+  busy,
   stacked = false,
 }: {
   row: Payment;
   onStatus: (id: string, status: PaymentStatus) => void;
+  onResend: (row: Payment) => void;
+  busy: boolean;
   stacked?: boolean;
 }) {
   return (
-    <div className={stacked ? "pay-actions" : "flex flex-wrap gap-2"}>
-      <ActionButton label="Approve" active={row.status === "Pending" || row.status === "Approved"} tone="teal" onClick={() => onStatus(row.id, "Approved")} />
-      <ActionButton label="Reject" active={row.status === "Pending" || row.status === "Rejected"} tone="red" onClick={() => onStatus(row.id, "Rejected")} />
-      <ActionButton label="Pending" active={row.status === "Pending"} tone="amber" onClick={() => onStatus(row.id, "Pending")} />
+    <>
+      <div className={stacked ? "pay-actions" : "flex flex-wrap gap-2"}>
+        <ActionButton label="Approve" active={row.status === "Pending" || row.status === "Approved"} tone="teal" disabled={busy} onClick={() => onStatus(row.id, "Approved")} />
+        <ActionButton label="Reject" active={row.status === "Pending" || row.status === "Rejected"} tone="red" disabled={busy} onClick={() => onStatus(row.id, "Rejected")} />
+        <ActionButton label="Pending" active={row.status === "Pending"} tone="amber" disabled={busy} onClick={() => onStatus(row.id, "Pending")} />
+      </div>
+      {row.status === "Approved" ? <PassEmailState row={row} busy={busy} onResend={onResend} /> : null}
+    </>
+  );
+}
+
+function PassEmailState({
+  row,
+  busy,
+  onResend,
+}: {
+  row: Payment;
+  busy: boolean;
+  onResend: (row: Payment) => void;
+}) {
+  const sending = busy || row.emailStatus === "sending";
+  let note = "Pass not emailed";
+  let tone = "text-[#7b8d99]";
+  if (sending) note = "Sending pass…";
+  else if (row.emailStatus === "sent") {
+    note = `Pass emailed${row.emailSentAt ? ` · ${row.emailSentAt}` : ""}`;
+    tone = "text-[#128fa0]";
+  } else if (row.emailStatus === "failed") {
+    note = "Pass email failed";
+    tone = "text-[#e15b64]";
+  }
+  return (
+    <div className="mt-2 text-xs" style={{ maxWidth: 220 }}>
+      <p className={`font-medium ${tone}`}>{note}</p>
+      {!sending && row.emailStatus === "failed" && row.emailError ? (
+        <p className="break-words text-[#7b8d99]">{row.emailError}</p>
+      ) : null}
+      <button
+        type="button"
+        disabled={sending}
+        onClick={() => onResend(row)}
+        className="mt-1 font-medium text-[#128fa0] underline disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {row.emailStatus === "sent" ? "Resend pass" : "Send pass"}
+      </button>
     </div>
   );
 }
@@ -560,11 +704,15 @@ function PaymentActions({
 function PaymentRow({
   row,
   onStatus,
+  onResend,
+  busy,
   onOpen,
   onPreview,
 }: {
   row: Payment;
   onStatus: (id: string, status: PaymentStatus) => void;
+  onResend: (row: Payment) => void;
+  busy: boolean;
   onOpen: (registrationId: string) => void;
   onPreview: (preview: { src: string; name: string }) => void;
 }) {
@@ -582,14 +730,17 @@ function PaymentRow({
       <td className="px-3 py-3">{row.mobile}</td>
       <td className="pay-wrap px-3 py-3">{row.email}</td>
       <td className="px-3 py-3 font-medium">{row.registrationCode}</td>
-      <td className="px-3 py-3 font-medium">{row.transactionId}</td>
+      <td className="pay-wrap px-3 py-3">
+        <span className="font-medium">{row.transactionId}</span>
+        {row.payerName ? <p className="text-xs text-[#7b8d99]">Payer: {row.payerName}</p> : null}
+      </td>
       <td className="px-3 py-3 font-semibold">{row.amount}</td>
       <td className="px-3 py-3 text-[#5f7380]">{row.date}</td>
       <td className="pay-pin px-3 py-3">
         <StatusPill status={row.status} />
       </td>
       <td className="pay-pin px-3 py-3">
-        <PaymentActions row={row} onStatus={onStatus} stacked />
+        <PaymentActions row={row} onStatus={onStatus} onResend={onResend} busy={busy} stacked />
       </td>
     </tr>
   );
@@ -641,11 +792,15 @@ function ScreenshotButton({
       aria-label={`Open payment screenshot for ${row.fullName}`}
       onClick={() => onPreview({ src: row.uploadPath, name: row.fullName })}
     >
-      <img
-        src={row.uploadPath}
-        alt={`Payment screenshot for ${row.fullName}`}
-        className="pay-thumb"
-      />
+      {isPdfPath(row.uploadPath) ? (
+        <span className="pay-thumb grid place-items-center bg-[#fdf2f2] text-xs font-semibold text-[#c8102e]">PDF</span>
+      ) : (
+        <img
+          src={row.uploadPath}
+          alt={`Payment screenshot for ${row.fullName}`}
+          className="pay-thumb"
+        />
+      )}
     </button>
   );
 }
@@ -662,7 +817,9 @@ function ScreenshotPreview({
       <button type="button" className="absolute inset-0" aria-label="Close screenshot" onClick={onClose} />
       <div className="relative max-h-[90vh] w-full max-w-4xl overflow-auto rounded-2xl bg-white p-4 shadow-2xl">
         <div className="mb-3 flex items-center justify-between gap-3">
-          <p className="text-sm font-semibold text-[#12263a]">Payment screenshot — {preview.name}</p>
+          <p className="text-sm font-semibold text-[#12263a]">
+            Payment {isPdfPath(preview.src) ? "receipt" : "screenshot"} — {preview.name}
+          </p>
           <button
             type="button"
             onClick={onClose}
@@ -671,11 +828,19 @@ function ScreenshotPreview({
             Close
           </button>
         </div>
-        <img
-          src={preview.src}
-          alt={`Payment screenshot for ${preview.name}`}
-          className="mx-auto max-h-[75vh] w-auto max-w-full rounded-xl border border-[#d7e2e8] bg-white object-contain"
-        />
+        {isPdfPath(preview.src) ? (
+          <iframe
+            src={preview.src}
+            title={`Payment receipt for ${preview.name}`}
+            className="h-[75vh] w-full rounded-xl border border-[#d7e2e8]"
+          />
+        ) : (
+          <img
+            src={preview.src}
+            alt={`Payment screenshot for ${preview.name}`}
+            className="mx-auto max-h-[75vh] w-auto max-w-full rounded-xl border border-[#d7e2e8] bg-white object-contain"
+          />
+        )}
       </div>
     </div>
   );
@@ -690,16 +855,19 @@ function ActionButton({
   label,
   active,
   tone,
+  disabled = false,
   onClick,
 }: {
   label: string;
   active: boolean;
   tone: "teal" | "red" | "amber";
+  disabled?: boolean;
   onClick: () => void;
 }) {
   return (
     <button
       type="button"
+      disabled={disabled}
       onClick={onClick}
       className={`pay-action ${tone} ${active ? "is-on" : "is-off"}`}
     >

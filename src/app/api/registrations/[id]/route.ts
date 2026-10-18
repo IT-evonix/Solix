@@ -4,11 +4,7 @@ import { requireAdmin } from "@/app/lib/admin-auth";
 
 const statusLabel: Record<number, string> = {
   0: "Rejected",
-<<<<<<< HEAD
-  1: "Draft",
-=======
   1: "Pending",
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
   2: "Pending",
   3: "Approved",
 };
@@ -31,10 +27,14 @@ type RegistrationRow = {
   declarations: string[];
   preferred_communication_channel: string;
   hear_about: string[];
+  category_other: string | null;
+  dietary_preference: string | null;
+  attendee_photo_path: string | null;
   status: number;
   created_at: string;
   upload_path: string | null;
   transaction_id: string | null;
+  payer_name: string | null;
   registration_date: string | null;
 };
 
@@ -83,10 +83,14 @@ export async function GET(
            FROM hear_about h
            WHERE h.id = ANY (string_to_array(r.hear_about_conclave, ',')::int[])
          ), '[]'::json) AS hear_about,
+         r.category_other,
+         r.dietary_preference,
+         r.attendee_photo_path,
          r.status,
          to_char(r.created_at, 'DD Mon YYYY HH24:MI:SS') AS created_at,
          p.upload_path,
          p.transaction_id,
+         p.payer_name,
          to_char(p.registration_date, 'DD Mon YYYY HH24:MI:SS') AS registration_date
        FROM registration r
        JOIN category c ON c.id = r.participant_category
@@ -107,7 +111,9 @@ export async function GET(
       mobileNumber: row.mobile_number,
       country: row.country,
       city: row.city,
-      participantCategory: row.participant_category,
+      participantCategory: row.category_other
+        ? `${row.participant_category} — ${row.category_other}`
+        : row.participant_category,
       organisationInstitution: row.organisation_institution,
       designation: row.designation,
       professionSpecialisation: row.profession_specialisation,
@@ -118,15 +124,14 @@ export async function GET(
       registrationFee: `₹ ${fee.toLocaleString("en-IN")}`,
       declarations: row.declarations,
       preferredCommunicationChannel: row.preferred_communication_channel,
+      dietaryPreference: row.dietary_preference,
+      attendeePhotoPath: row.attendee_photo_path,
       hearAbout: row.hear_about,
-<<<<<<< HEAD
-      status: statusLabel[row.status] ?? "Draft",
-=======
       status: statusLabel[row.status] ?? "Pending",
->>>>>>> be12190f677be2790da45cc421fd6848b472928b
       createdAt: row.created_at,
       uploadPath: row.upload_path,
       transactionId: row.transaction_id,
+      payerName: row.payer_name,
       registrationDate: row.registration_date,
     });
   } catch {
