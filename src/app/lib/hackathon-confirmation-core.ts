@@ -1,5 +1,5 @@
 // Sends the Hackathon Round 1 confirmation email at most once per registration.
-// The database and Gmail are injected so every path can be unit-tested with `node --test`;
+// The database and SMTP sender are injected so every path can be unit-tested with `node --test`;
 // send-hackathon-confirmation.ts wires in the real pool.
 
 import { emailDisabled, gmailConfig, sendRawMail, type GmailConfig } from "./gmail.ts";
