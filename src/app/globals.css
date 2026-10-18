@@ -415,7 +415,7 @@ background-color: #F1F1F1;
 }
 
 .testimonials_box{
-padding: 0 12px;
+padding: 30px 12px;
 }
 .testimonials_innerbox{
 text-align: center;
@@ -424,6 +424,10 @@ text-align: center;
   padding: 8px;
   box-shadow: 0 0px 20px #0000001f;
   margin: 0 0 30px 0;
+  transition-duration: 0.2s;
+}
+.testimonials_innerbox:hover{
+  margin: -10px 0 0 0;
 }
 .testi_img{
   background-color: #fff;
