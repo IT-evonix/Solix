@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
-import { SiteChrome } from "@/components/site-chrome";
+import Header from "@/components/header";
+import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
@@ -18,7 +19,9 @@ export default function RootLayout({
     <html
       lang="en">
       <body className="">
-        <SiteChrome>{children}</SiteChrome>    
+        <Header />
+        {children}
+        <Footer/>    
       </body>
     </html>
   );
