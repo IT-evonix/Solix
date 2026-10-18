@@ -2,17 +2,17 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import styles from "@/css/Header.module.css";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 
 
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
-
+const pathname = usePathname();
   // Sticky Header
   useEffect(() => {
     const handleScroll = () => {
-      setIsSticky(window.scrollY > 100);
+      // setIsSticky(window.scrollY > 100);
     };
 
     handleScroll();
@@ -44,8 +44,11 @@ const [menuOpen, setMenuOpen] = useState(false);
   };
   // --------ONCLICK-MENU-OPEN-END
 
+  // Check active menu
+  const isActive = (path: string) => pathname === path;
+
   return (
-    <header className="page-header">
+    <header className="header-top">
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
@@ -65,14 +68,14 @@ const [menuOpen, setMenuOpen] = useState(false);
               <div className="menu_box">
                 <span className="toggle_menu toggle_menu_close" onClick={menu} >x</span>
                 <ul>
-                  <li onClick={menu}><Link href="/">Home</Link></li>
-                  <li onClick={menu}><Link href="/aboutus">About Us</Link></li>
-                  <li onClick={menu}><Link href="/programme">Programme</Link></li>
-                  <li onClick={menu}><Link href="/speakers">Speakers</Link></li>
-                  {/* <li onClick={menu}><Link href="/hackathon">Hackathon</Link></li> */}
-                  <li onClick={menu}><Link href="/partners">Partners</Link></li>
-                  <li onClick={menu}><Link href="/sponsors">Sponsors</Link></li>
-                  <li onClick={menu}><Link href="/venue">Venue</Link></li>
+                  <li className={isActive("/") ? "active" : ""} onClick={menu}><Link href="/">Home</Link></li>
+                  <li className={isActive("/aboutus") ? "active" : ""} onClick={menu}><Link href="/aboutus">About Us</Link></li>
+                  <li className={isActive("/programme") ? "active" : ""} onClick={menu}><Link href="/programme">Programme</Link></li>
+                  <li className={isActive("/speakers") ? "active" : ""} onClick={menu}><Link href="/speakers">Speakers</Link></li>
+                  <li className={isActive("/hackathon") ? "active" : ""} onClick={menu}><Link href="/hackathon">Hackathon</Link></li>
+                  <li className={isActive("/partners") ? "active" : ""} onClick={menu}><Link href="/partners">Partners</Link></li>
+                  <li className={isActive("/sponsors") ? "active" : ""} onClick={menu}><Link href="/sponsors">Sponsors</Link></li>
+                  <li className={isActive("/venue") ? "active" : ""} onClick={menu}><Link href="/venue">Venue</Link></li>
                 </ul>
               </div>
             </div>

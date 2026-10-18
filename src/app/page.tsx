@@ -5,7 +5,6 @@ import Signature from "@/components/homepage/Signature";
 import OurTestimonials from "@/components/homepage/OurTestimonials";
 import WhyAttend from "@/components/homepage/WhyAttend";
 
-
 export default function Home() {
   return (
     <main>

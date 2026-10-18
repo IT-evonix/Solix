@@ -5,22 +5,18 @@ import Image from "next/image";
 const CoreProposition = () => {
   return (
     <section className="core_section text-center" id="top">
-        <div className="container">
+        <div className="container" style={{position:"relative", zIndex:"5"}}>
             <div className="row">
                 <div className="col-lg-12">
                     <div className="row">
-                        <div className="col-lg-12 heading35_black mb-3" style={{color:"#fff"}}>Why This Conclave?</div>
+                        <div className="col-lg-12 heading35_black mb-2" style={{color:"#fff"}}>The Core Proposition</div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-12 mb-3">
+                        <div className="col-lg-12 mb-4">
                             The Conclave brings together healthcare problems and technological capabilities across clinical, technology, engineering, data, research, design and management perspectives. Its purpose is to create meaningful exchange between disciplines and encourage movement from discussion towards practical innovation.
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-lg-12 mb-3">
-                            The website should therefore communicate a simple idea
-                        </div>
-                    </div>
+                    
                     <div className="row">
                         <div className="col-lg-12" style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
                             <div className="core_list">
@@ -118,6 +114,7 @@ const CoreProposition = () => {
                 </div>
             </div>
         </div>
+        <div className="line_bg"></div>
     </section>
   );
 };

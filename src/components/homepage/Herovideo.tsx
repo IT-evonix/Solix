@@ -5,12 +5,12 @@ import Link from "next/link";
 
 const Herovideo = () => {
   return (
-    <section className="banner_section">
+    <section className="banner_section mb-0">
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-12 p-0 video_box">
-            <video className="w-100" autoPlay muted loop playsInline>
-              <source src="/images/banner-video.mp4" type="video/mp4" />
+            <video className="w-100" autoPlay loop playsInline>
+              <source src="/images/banner-video2.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="col-lg-12">
@@ -27,7 +27,7 @@ const Herovideo = () => {
                   </div>
                   <div className="banner_date">
                     <Image src="/images/footer_location.png" className="img-fluid" alt="Logo" width={80} height={10} />
-                    SIU Lavale Campus, Pune
+                    SMCW & SUHRC, SIU Campus, Pune
                   </div>
                 </div>
                 <div className="col-lg-12 banner_text2">
@@ -35,16 +35,16 @@ const Herovideo = () => {
                 </div>
                 
                 <div className="col-lg-12 banner_buttonbox">
-                  <Link href="/registration">
+                  <Link href="/conference">
                     <div className="row align-items-center">
-                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register Now</div>
+                      <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Conference</div>
                     </div>
                   </Link>
-                  <a href="#">
+                  <Link href="/hackathon/register">
                     <div className="row align-items-center">
-                      <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} /> Explore the Conclave</div>
+                      <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Hackathon</div>
                     </div>
-                  </a>
+                  </Link>
                 </div>
                 <div className="col-lg-12"></div>
               </div>
