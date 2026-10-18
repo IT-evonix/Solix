@@ -42,6 +42,8 @@ export const Faq_Home: FAQItem[] = [
     answer: "The official website will carry the latest information on the programme, speakers, registration, Hackathon, accommodation, venue, partners and announcements.",
   },
 ];
+
+export const footerFaq = Faq_Home;
 export const Faq_Registration: FAQItem[] = [
   {
     question: "Registration",

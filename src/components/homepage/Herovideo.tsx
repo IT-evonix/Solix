@@ -33,6 +33,7 @@ const Herovideo = () => {
                 <div className="col-lg-12 banner_text2">
                   <span>CONNECT</span> <span>CREATE</span> <span>TRANSFORM</span>
                 </div>
+                
                 <div className="col-lg-12 banner_buttonbox">
                   <Link href="/conference">
                     <div className="row align-items-center">
