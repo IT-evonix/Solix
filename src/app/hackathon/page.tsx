@@ -40,7 +40,7 @@ export default function HackathonPage() {
             </div>
           </section>
       
-          <section className={cx("content-section", "challenge-section")} id="challenge">
+          <section className={cx("content-section p-0", "challenge-section")} id="challenge">
             <div className={cx("container")}>
               <div className={cx("challenge-intro")}>
                 <div className={cx("section-head")}>
@@ -109,11 +109,11 @@ export default function HackathonPage() {
                   </ul>
                 </article>
               </div>
-              <div className={cx("round-note")}><strong>Important:</strong> Round 1 registration is free. The ₹1,500 fee applies only to each student shortlisted for the paid Grand Finale. It is not charged at the initial registration stage.</div>
+              {/* <div className={cx("round-note")}><strong>Important:</strong> Round 1 registration is free. The ₹1,500 fee applies only to each student shortlisted for the paid Grand Finale. It is not charged at the initial registration stage.</div> */}
             </div>
           </section>
       
-          <section className={cx("content-section", "audience-section")} id="who">
+          <section className={cx("content-section p-0", "audience-section p-0")} id="who">
             <div className={cx("container", "audience-grid")}>
               <div className={cx("audience-copy")}>
                 <div className={cx("eyebrow")}>Who should participate?</div>
@@ -122,16 +122,13 @@ export default function HackathonPage() {
               </div>
               <div className={cx("discipline-grid")} aria-label="Relevant areas of study">
                 <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">✚</span><strong>Healthcare &amp; Medicine</strong></div>
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌘</span><strong>Engineering</strong></div>
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">◈</span><strong>AI &amp; Data Science</strong></div>
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">✳</span><strong>Design</strong></div>
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌬</span><strong>Life Sciences</strong></div>
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">▤</span><strong>Management</strong></div>
+                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌘</span><strong>Technology</strong></div>
+                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌬</span><strong>Medicine</strong></div>
               </div>
             </div>
           </section>
       
-          <section className={cx("content-section", "benefits-section")} id="benefits">
+          {/* <section className={cx("content-section", "benefits-section")} id="benefits">
             <div className={cx("container")}>
               <div className={cx("section-head", "center")}>
                 <div className={cx("eyebrow")}>What will you gain?</div>
@@ -145,7 +142,7 @@ export default function HackathonPage() {
                 <article className={cx("benefit")}><div className={cx("icon-box", "orange")} aria-hidden="true"><svg width="21" height="21" viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H8l-4 4z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round"/><path d="M8 8h8M8 12h5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg></div><h3>Showcase your thinking</h3><p>Bring your approach before experts and evaluators and explain the thinking behind your proposal.</p></article>
               </div>
             </div>
-          </section>
+          </section> */}
       
           <section className={cx("final-cta")} id="registration-info">
             <div className={cx("container")}>
