@@ -235,34 +235,6 @@ const ContactPage = () => {
                       </div>
                     </div>
                     
-                    {/* <div className="col-lg-6 mb-3">
-                      <div className="about_white_list">
-                        <div className="row">
-                          <div className="col-lg-12">
-                            <div className="row justify-content-center align-items-center">
-                              <div className="col-lg-2 heading35_black" style={{color:"#c4161c"}}>
-                                i4C
-                              </div>
-                              <div className="col-lg-10 heading21_black">
-                                INDIA INNOVATION & TECHNOLOGY PARTNER
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-12 mb-3 text19_black mt-4"><i>Enabling the MedTech Innovation Hackathon</i></div>
-                          <div className="col-lg-12 mb-4 about_text">
-                            i4C is associated with the MedTech Innovation Hackathon as the Challenge Partner, supporting the Hackathon ecosystem and its participant-facing execution. The Hackathon forms the CREATE component of the SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026, bringing together multidisciplinary participants around healthcare challenges, technology, innovation and problem-solving. 
-                            <br></br><br></br>
-                            The collaboration supports the Conclave's objective of connecting healthcare needs with technology, engineering, data, design and innovation, enabling participants to move from understanding a problem towards developing and presenting a prototype or workable concept. 
-                          </div>
-                          <div className="col-lg-12">
-                            <div className="box_list">
-                              <b>At the Conclave:</b><br></br>
-                              i4C brings the strength of Hackathon execution, challenge participation, digital engagement and innovation-led problem-solving.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
                   </div>
                   <div className="row">
                     <div className="col-lg-12"></div>
@@ -324,7 +296,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
-        <section className="">
+        <section className="signature_section">
           <div className="container">
             <div className="row">
                 <div className="col-lg-12 heading35_black mb-2 text-center">CONNECT. CREATE. TRANSFORM.</div>
