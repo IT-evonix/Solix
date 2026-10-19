@@ -1,8 +1,9 @@
-// Gmail API sender using an OAuth refresh token (scope: gmail.send).
-// Kept free of imports so it can be unit-tested with `node --test`.
+// SMTP sender (Gmail STARTTLS on port 587). Conference Delegate Pass and
+// Hackathon confirmation emails both go through this module.
 
-const TOKEN_URL = "https://oauth2.googleapis.com/token";
-const SEND_URL = "https://gmail.googleapis.com/gmail/v1/users/me/messages/send";
+import nodemailer from "nodemailer";
+import type { Transporter } from "nodemailer";
+
 const TIMEOUT_MS = 15_000;
 
 export class GmailError extends Error {
@@ -16,28 +17,42 @@ export class GmailError extends Error {
 }
 
 export type GmailConfig = {
-  clientId: string;
-  clientSecret: string;
-  refreshToken: string;
+  host: string;
+  port: number;
+  user: string;
+  pass: string;
   sender: string;
   senderName: string;
   replyTo: string;
 };
 
+function envValue(env: Record<string, string | undefined>, ...keys: string[]) {
+  for (const key of keys) {
+    const value = env[key]?.trim();
+    if (value) return value;
+  }
+  return "";
+}
+
 export function gmailConfig(env: Record<string, string | undefined> = process.env): GmailConfig {
-  const missing = ["GMAIL_CLIENT_ID", "GMAIL_CLIENT_SECRET", "GMAIL_REFRESH_TOKEN", "GMAIL_SENDER"].filter(
-    (key) => !env[key]?.trim(),
-  );
+  const user = envValue(env, "SMTP_USER", "SMTP_EMAIL");
+  const pass = envValue(env, "SMTP_PASS", "SMTP_PASSWORD", "SMTP_APP_PASSWORD").replace(/\s+/g, "");
+  const sender = envValue(env, "SMTP_FROM", "GMAIL_SENDER") || user;
+  const missing: string[] = [];
+  if (!user) missing.push("SMTP_USER");
+  if (!pass) missing.push("SMTP_PASS");
+  if (!sender) missing.push("SMTP_FROM");
   if (missing.length) {
     throw new GmailError(`Email is not configured: missing ${missing.join(", ")}.`);
   }
   return {
-    clientId: env.GMAIL_CLIENT_ID!.trim(),
-    clientSecret: env.GMAIL_CLIENT_SECRET!.trim(),
-    refreshToken: env.GMAIL_REFRESH_TOKEN!.trim(),
-    sender: env.GMAIL_SENDER!.trim(),
-    senderName: env.GMAIL_SENDER_NAME?.trim() ?? "",
-    replyTo: env.GMAIL_REPLY_TO?.trim() ?? "",
+    host: envValue(env, "SMTP_HOST") || "smtp.gmail.com",
+    port: Number(envValue(env, "SMTP_PORT") || "587"),
+    user,
+    pass,
+    sender,
+    senderName: envValue(env, "SMTP_SENDER_NAME", "GMAIL_SENDER_NAME"),
+    replyTo: envValue(env, "SMTP_REPLY_TO", "GMAIL_REPLY_TO"),
   };
 }
 
@@ -45,120 +60,94 @@ export function emailDisabled(env: Record<string, string | undefined> = process.
   return ["1", "true", "yes"].includes((env.EMAIL_DISABLED ?? "").trim().toLowerCase());
 }
 
-let cached: { token: string; expiresAt: number } | null = null;
-let pending: Promise<string> | null = null;
+let cached: { key: string; transporter: Transporter } | null = null;
+
+function transporter(config: GmailConfig) {
+  const key = `${config.host}:${config.port}:${config.user}`;
+  if (cached?.key === key) return cached.transporter;
+  const smtp: Transporter = nodemailer.createTransport({
+    host: config.host,
+    port: config.port,
+    secure: config.port === 465,
+    requireTLS: config.port === 587,
+    auth: { user: config.user, pass: config.pass },
+    connectionTimeout: TIMEOUT_MS,
+    greetingTimeout: TIMEOUT_MS,
+    socketTimeout: TIMEOUT_MS,
+  });
+  cached = { key, transporter: smtp };
+  return smtp;
+}
 
 export function resetGmailTokenCache() {
   cached = null;
-  pending = null;
 }
 
-async function readJson(response: Response) {
-  return (await response.json().catch(() => ({}))) as Record<string, unknown>;
+function decodeRaw(raw: string) {
+  const padded = raw.replace(/-/g, "+").replace(/_/g, "/");
+  const pad = padded.length % 4 === 0 ? "" : "=".repeat(4 - (padded.length % 4));
+  return Buffer.from(`${padded}${pad}`, "base64").toString("utf8");
 }
 
-function googleMessage(body: Record<string, unknown>, fallback: string) {
-  const error = body.error;
-  if (error && typeof error === "object" && "message" in error) return String(error.message);
-  if (typeof body.error_description === "string") return body.error_description;
-  if (typeof error === "string") return error;
-  return fallback;
+function headerBlock(mime: string) {
+  return mime.split(/\r?\n\r?\n/, 1)[0] ?? "";
 }
 
-async function refreshAccessToken(config: GmailConfig) {
-  let response: Response;
-  try {
-    response = await fetch(TOKEN_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({
-        client_id: config.clientId,
-        client_secret: config.clientSecret,
-        refresh_token: config.refreshToken,
-        grant_type: "refresh_token",
-      }),
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-    });
-  } catch {
-    throw new GmailError("Could not reach Google to authorize the sender (network error or timeout).", true);
-  }
-
-  const body = await readJson(response);
-  if (!response.ok || typeof body.access_token !== "string") {
-    if (body.error === "invalid_grant") {
-      throw new GmailError("Gmail authorization was revoked or has expired. A new GMAIL_REFRESH_TOKEN is needed.");
-    }
-    if (body.error === "invalid_client" || body.error === "unauthorized_client") {
-      throw new GmailError("Gmail OAuth client ID/secret is invalid.");
-    }
-    throw new GmailError(
-      `Google token request failed: ${googleMessage(body, `HTTP ${response.status}`)}`,
-      response.status >= 500,
-    );
-  }
-
-  const lifetime = Number(body.expires_in ?? 3600);
-  cached = { token: body.access_token, expiresAt: Date.now() + Math.max(lifetime - 60, 30) * 1000 };
-  return body.access_token;
+function mimeHeader(mime: string, name: string) {
+  const match = headerBlock(mime).match(new RegExp(`^${name}:\\s*([\\s\\S]*?)(?=\\r?\\n[\\w-]+:|$)`, "im"));
+  return (match?.[1] ?? "").replace(/\s+/g, " ").trim();
 }
 
-export async function getAccessToken(config: GmailConfig) {
-  if (cached && cached.expiresAt > Date.now()) return cached.token;
-  // Concurrent sends share a single refresh.
-  pending ??= refreshAccessToken(config).finally(() => {
-    pending = null;
-  });
-  return pending;
+function envelopeAddress(value: string) {
+  const angle = value.match(/<([^>]+)>/);
+  return (angle?.[1] ?? value).trim();
 }
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-async function postMessage(raw: string, token: string) {
-  try {
-    return await fetch(SEND_URL, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ raw }),
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-    });
-  } catch {
-    return null;
+function smtpMessage(error: unknown, fallback: string) {
+  if (error && typeof error === "object" && "response" in error && typeof error.response === "string") {
+    return error.response;
   }
+  if (error instanceof Error && error.message) return error.message;
+  return fallback;
 }
 
-// Sends a base64url-encoded MIME message. Returns the Gmail message id.
+function isTransient(error: unknown) {
+  const code = error && typeof error === "object" && "code" in error ? String(error.code) : "";
+  const responseCode =
+    error && typeof error === "object" && "responseCode" in error ? Number(error.responseCode) : 0;
+  return (
+    ["ETIMEDOUT", "ECONNRESET", "ECONNREFUSED", "ESOCKET", "ECONNECTION"].includes(code) ||
+    responseCode === 421 ||
+    responseCode === 451 ||
+    responseCode >= 500
+  );
+}
+
+// Sends a base64url-encoded MIME message over SMTP. Returns the transport message id.
 export async function sendRawMail(raw: string, config = gmailConfig(), retryDelayMs = 1500) {
-  let refreshed = false;
+  const mime = decodeRaw(raw);
+  const to = envelopeAddress(mimeHeader(mime, "To"));
+  if (!to) throw new GmailError("SMTP send failed: the message has no To address.");
+
   let retried = false;
-
   for (;;) {
-    const token = await getAccessToken(config);
-    const response = await postMessage(raw, token);
-
-    if (response?.ok) {
-      const body = await readJson(response);
-      return String(body.id ?? "");
+    try {
+      const info = await transporter(config).sendMail({
+        envelope: { from: config.sender, to },
+        raw: mime,
+      });
+      return String(info.messageId ?? "");
+    } catch (error) {
+      const transient = isTransient(error);
+      if (transient && !retried) {
+        retried = true;
+        resetGmailTokenCache();
+        await delay(retryDelayMs);
+        continue;
+      }
+      throw new GmailError(`SMTP send failed: ${smtpMessage(error, "unknown error")}`, transient);
     }
-
-    if (response?.status === 401 && !refreshed) {
-      refreshed = true;
-      cached = null;
-      continue;
-    }
-
-    const transient = !response || response.status === 429 || response.status >= 500;
-    if (transient && !retried) {
-      retried = true;
-      await delay(retryDelayMs);
-      continue;
-    }
-
-    if (!response) throw new GmailError("Gmail did not respond (network error or timeout).", true);
-    const body = await readJson(response);
-    const message = googleMessage(body, `HTTP ${response.status}`);
-    if (response.status === 403) {
-      throw new GmailError(`Gmail refused to send: ${message}. Check the gmail.send scope and that the Gmail API is enabled.`);
-    }
-    throw new GmailError(`Gmail send failed: ${message}`, transient);
   }
 }
