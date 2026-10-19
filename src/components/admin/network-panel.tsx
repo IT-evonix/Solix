@@ -14,7 +14,10 @@ const nodes = [
 export function NetworkPanel({ children }: { children: ReactNode }) {
   return (
     <section className="admin-login-panel">
-      <svg
+      <div className="login_bg">
+        
+      </div>
+      {/* <svg
         className="admin-login-lines"
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
@@ -36,7 +39,7 @@ export function NetworkPanel({ children }: { children: ReactNode }) {
         ))}
       </svg>
       <div className="admin-login-glow admin-login-glow-lg" />
-      <div className="admin-login-glow admin-login-glow-sm" />
+      <div className="admin-login-glow admin-login-glow-sm" /> */}
       <div className="admin-login-panel-body">{children}</div>
     </section>
   );
