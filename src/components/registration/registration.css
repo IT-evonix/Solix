@@ -59,7 +59,7 @@
 .reg_scope .reg_hero_banner {
     background: linear-gradient(135deg, var(--reg-navy-deep) 0%, var(--reg-navy) 55%, #24507f 100%);
     position: relative;
-    padding: 150px 0 64px;
+    padding: 50px 0;
     color: #ffffff;
     overflow: hidden;
 }
@@ -1245,7 +1245,7 @@
 }
 
 .reg_scope .pass_card_hero {
-    background: linear-gradient(135deg, var(--reg-navy-deep) 0%, var(--reg-navy) 60%, #24507f 100%);
+    background: linear-gradient(0deg,#e8480c,#d63d04);
     padding: 24px;
     color: #ffffff;
     position: relative;

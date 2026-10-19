@@ -29,7 +29,9 @@ const Footer = () => {
               <div className="footer_list1 footer_list">
                 <div className="row">
                   <div className="col-lg-12 mb-4">
-                    <div className="footer_logo"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></div>
+                    <div className="footer_logo">
+                      <Link href="/"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    </div>
                   </div>
                   <div className="col-lg-12 mb-3 heading21_black">
                     SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026

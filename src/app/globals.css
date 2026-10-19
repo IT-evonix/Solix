@@ -29,9 +29,14 @@ z-index: 50;
   background-color: #fff;
   width: 100%;
   padding: 10px 0;
-  position: fixed;
   top: 0;
+  animation: .7s forwards Header-module__TNhBFa__slideDown;
+  position: relative;
+  transition-duration: 0.3s;
   box-shadow: 0px 0px 20px #0000000f;
+}
+.sticky-header{
+  position: fixed;
 }
 .logo{
   float: left;
@@ -39,9 +44,7 @@ z-index: 50;
 }
 /* ------------HEADER-END---------- */
 
-main{
-  margin: 80px 0 0 0;
-}
+
 main::before{
   content: "";
   background-image: linear-gradient(0deg,#fff,#f4eee1);
@@ -622,10 +625,22 @@ opacity: 1;
 
 /* ------------VENUES-PAGE-START---------- */
 .venue_whitebox{
-  background-color: #fff;
+background-color: #fff;
   border-radius: 20px;
-  padding: 20px;
-  min-height: 440px;
+  min-height: 400px;
+  padding: 10px;
+  border: 6px solid #fbf4f2;
+}
+.venue_banner .venue_banner_img{
+  position: relative;
+}
+.venue_banner .venue_banner_img::after{
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(to left, #FBF4F2, #E1444400);
+  width: 50%;
+  height: 100%;
+  right: 0;
 }
 .campus_img{
   background-color: #00602d;

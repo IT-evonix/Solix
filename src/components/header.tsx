@@ -9,10 +9,12 @@ import Image from "next/image";
 export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
 const pathname = usePathname();
-  // Sticky Header
+
+
+ // Sticky Header on Scroll
   useEffect(() => {
     const handleScroll = () => {
-      // setIsSticky(window.scrollY > 100);
+      setIsSticky(window.scrollY > 100);
     };
 
     handleScroll();
@@ -23,6 +25,8 @@ const pathname = usePathname();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+
 
   // Always start from top after refresh
   useEffect(() => {
@@ -48,7 +52,7 @@ const [menuOpen, setMenuOpen] = useState(false);
   const isActive = (path: string) => pathname === path;
 
   return (
-    <header className="header-top">
+    <header className={`header-top ${isSticky ? "sticky-header" : ""}`}>
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
