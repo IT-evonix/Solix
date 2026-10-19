@@ -40,7 +40,7 @@ const Herovideo = () => {
                       <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Conference</div>
                     </div>
                   </Link>
-                  <Link href="/hackathon/register">
+                  <Link href="/hackathon">
                     <div className="row align-items-center">
                       <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />Register for Hackathon</div>
                     </div>
