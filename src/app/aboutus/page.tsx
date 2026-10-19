@@ -117,9 +117,9 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/suhrc.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
+                            <Image src="/images/aboutus/suhrc2.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
                           </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Education • Healthcare • Clinical Research</i></div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Educ  arch</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
                           <div className="col-lg-7 mb-3">
                             Symbiosis Medical College for Women (SMCW) is the first medical college in Maharashtra exclusively meant for girl students, created with a vision of empowering women through medical education. 
@@ -215,7 +215,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/scie.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={300} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Global Education • International Engagement • Cross-Cultural Exchange</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>

@@ -56,7 +56,7 @@ export function LoginScreen() {
   return (
     <main className="admin-login">
       <NetworkPanel>
-        <div className="admin-login-logo">
+        <div className="admin-login-logo" style={{maxWidth:"350px"}}>
           <img
             src="/symbiosis-logo.png"
             alt="Symbiosis in collaboration with Solix"

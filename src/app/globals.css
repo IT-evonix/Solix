@@ -587,7 +587,7 @@ width: auto;
   border-radius: 10px;
 }
 .about_white_list img{
-max-height: 50px;
+max-height: 60px;
   width: auto;
 }
 .box_list{
@@ -796,7 +796,7 @@ background-color: #c00709;
   margin: 0 auto;
 }
 .speaker_card_img{
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 3 / 3;
   border-radius: 18px;
   overflow: hidden;
   background-color: #fbf4f2;
