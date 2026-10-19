@@ -327,7 +327,7 @@ function Sidebar({
           </button>
         ))}
       </nav>
-      <div className="mt-auto">
+      <div className="mt-3 mb-3">
         <div className="flex items-center gap-3 rounded-2xl bg-[#10283c] px-3 py-3">
           <span className="grid h-10 w-10 place-items-center rounded-full bg-[#1eb6c9] text-xs font-semibold">
             {initials(admin.name)}

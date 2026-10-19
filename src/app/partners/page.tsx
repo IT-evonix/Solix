@@ -25,6 +25,27 @@ const ContactPage = () => {
                     </div>
                   </div>
                   <div className="row">
+                    <div className="col-lg-12 mb-4">
+                      <div className="about_white_list">
+                        <div className="row">
+                          <div className="col-lg-12 mb-4">
+                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
+                          </div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
+                          <div className="col-lg-12 mb-4 about_text">
+                            Solix Technologies, Inc., headquartered in Santa Clara, California, is a global Data + AI company helping enterprises transform data into trusted, AI-powered business outcomes. Founded in 2002, Solix has built its expertise around enterprise data management, data governance, information lifecycle management and AI-ready enterprise data. 
+                            <br></br><br></br>
+                            Its technology ecosystem includes the Solix Common Data Platform, Enterprise Data Governance and Solix Enterprise AI, along with capabilities such as Data Sense and Data Ask that enable organisations to work with enterprise data through AI and natural-language interaction.
+                          </div>
+                          <div className="col-lg-12">
+                            <div className="box_list">
+                              <b>At the Conclave:</b><br></br>
+                              Solix brings the technology, data and enterprise AI perspective, connecting emerging technology capabilities with real-world organisational and healthcare challenges.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div className="col-lg-6 mb-4">
                       <div className="about_white_list">
                         <div className="row">
@@ -54,9 +75,9 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/suhrc.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
+                            <Image src="/images/aboutus/suhrc2.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
                           </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Education • Healthcare • Clinical Research</i></div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Educ  arch</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
                           <div className="col-lg-7 mb-3">
                             Symbiosis Medical College for Women (SMCW) is the first medical college in Maharashtra exclusively meant for girl students, created with a vision of empowering women through medical education. 
@@ -152,7 +173,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/scie.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={300} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Global Education • International Engagement • Cross-Cultural Exchange</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -171,55 +192,7 @@ const ContactPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-6 mb-4">
-                      <div className="about_white_list">
-                        <div className="row">
-                          <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
-                          </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
-                          <div className="col-lg-12 mb-4 about_text">
-                            Solix Technologies, Inc., headquartered in Santa Clara, California, is a global Data + AI company helping enterprises transform data into trusted, AI-powered business outcomes. Founded in 2002, Solix has built its expertise around enterprise data management, data governance, information lifecycle management and AI-ready enterprise data. 
-                            <br></br><br></br>
-                            Its technology ecosystem includes the Solix Common Data Platform, Enterprise Data Governance and Solix Enterprise AI, along with capabilities such as Data Sense and Data Ask that enable organisations to work with enterprise data through AI and natural-language interaction.
-                          </div>
-                          <div className="col-lg-12">
-                            <div className="box_list">
-                              <b>At the Conclave:</b><br></br>
-                              Solix brings the technology, data and enterprise AI perspective, connecting emerging technology capabilities with real-world organisational and healthcare challenges.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {/* <div className="col-lg-6 mb-3">
-                      <div className="about_white_list">
-                        <div className="row">
-                          <div className="col-lg-12">
-                            <div className="row justify-content-center align-items-center">
-                              <div className="col-lg-2 heading35_black" style={{color:"#c4161c"}}>
-                                i4C
-                              </div>
-                              <div className="col-lg-10 heading21_black">
-                                INDIA INNOVATION & TECHNOLOGY PARTNER
-                              </div>
-                            </div>
-                          </div>
-                          <div className="col-lg-12 mb-3 text19_black mt-4"><i>Enabling the MedTech Innovation Hackathon</i></div>
-                          <div className="col-lg-12 mb-4 about_text">
-                            i4C is associated with the MedTech Innovation Hackathon as the Challenge Partner, supporting the Hackathon ecosystem and its participant-facing execution. The Hackathon forms the CREATE component of the SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026, bringing together multidisciplinary participants around healthcare challenges, technology, innovation and problem-solving. 
-                            <br></br><br></br>
-                            The collaboration supports the Conclave's objective of connecting healthcare needs with technology, engineering, data, design and innovation, enabling participants to move from understanding a problem towards developing and presenting a prototype or workable concept. 
-                          </div>
-                          <div className="col-lg-12">
-                            <div className="box_list">
-                              <b>At the Conclave:</b><br></br>
-                              i4C brings the strength of Hackathon execution, challenge participation, digital engagement and innovation-led problem-solving.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */}
+                    
                   </div>
                   <div className="row">
                     <div className="col-lg-12"></div>
