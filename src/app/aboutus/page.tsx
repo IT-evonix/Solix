@@ -12,7 +12,7 @@ const ContactPage = () => {
               <div className="col-lg-8">
                 <div className="row">
                   <div className="col-lg-12 text19_black mb-3">
-                    <b>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> is a multidisciplinary event at the intersection of <b>Healthcare, Technology, Data, AI and Innovation.</b>
+                    <b style={{color:"#e8480c"}}>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> is a multidisciplinary event at the intersection of <b style={{color:"#e8480c"}}>Healthcare, Technology, Data, AI and Innovation.</b>
                   </div>
                 </div>
                 <div className="row">
@@ -67,6 +67,27 @@ const ContactPage = () => {
                     </div>
                   </div>
                   <div className="row">
+                    <div className="col-lg-12 mb-4">
+                      <div className="about_white_list">
+                        <div className="row">
+                          <div className="col-lg-12 mb-4">
+                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
+                          </div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
+                          <div className="col-lg-12 mb-4 about_text">
+                            Solix Technologies, Inc., headquartered in Santa Clara, California, is a global Data + AI company helping enterprises transform data into trusted, AI-powered business outcomes. Founded in 2002, Solix has built its expertise around enterprise data management, data governance, information lifecycle management and AI-ready enterprise data. 
+                            <br></br><br></br>
+                            Its technology ecosystem includes the Solix Common Data Platform, Enterprise Data Governance and Solix Enterprise AI, along with capabilities such as Data Sense and Data Ask that enable organisations to work with enterprise data through AI and natural-language interaction.
+                          </div>
+                          <div className="col-lg-12">
+                            <div className="box_list">
+                              <b>At the Conclave:</b><br></br>
+                              Solix brings the technology, data and enterprise AI perspective, connecting emerging technology capabilities with real-world organisational and healthcare challenges.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div className="col-lg-6 mb-4">
                       <div className="about_white_list">
                         <div className="row">
@@ -213,27 +234,7 @@ const ContactPage = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-6 mb-4">
-                      <div className="about_white_list">
-                        <div className="row">
-                          <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
-                          </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
-                          <div className="col-lg-12 mb-4 about_text">
-                            Solix Technologies, Inc., headquartered in Santa Clara, California, is a global Data + AI company helping enterprises transform data into trusted, AI-powered business outcomes. Founded in 2002, Solix has built its expertise around enterprise data management, data governance, information lifecycle management and AI-ready enterprise data. 
-                            <br></br><br></br>
-                            Its technology ecosystem includes the Solix Common Data Platform, Enterprise Data Governance and Solix Enterprise AI, along with capabilities such as Data Sense and Data Ask that enable organisations to work with enterprise data through AI and natural-language interaction.
-                          </div>
-                          <div className="col-lg-12">
-                            <div className="box_list">
-                              <b>At the Conclave:</b><br></br>
-                              Solix brings the technology, data and enterprise AI perspective, connecting emerging technology capabilities with real-world organisational and healthcare challenges.
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    
                     {/* <div className="col-lg-6 mb-3">
                       <div className="about_white_list">
                         <div className="row">

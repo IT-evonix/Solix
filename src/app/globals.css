@@ -29,9 +29,14 @@ z-index: 50;
   background-color: #fff;
   width: 100%;
   padding: 10px 0;
-  position: fixed;
   top: 0;
+  animation: .7s forwards Header-module__TNhBFa__slideDown;
+  position: relative;
+  transition-duration: 0.3s;
   box-shadow: 0px 0px 20px #0000000f;
+}
+.sticky-header{
+  position: fixed;
 }
 .logo{
   float: left;
@@ -39,9 +44,7 @@ z-index: 50;
 }
 /* ------------HEADER-END---------- */
 
-main{
-  margin: 80px 0 0 0;
-}
+
 main::before{
   content: "";
   background-image: linear-gradient(0deg,#fff,#f4eee1);
@@ -353,7 +356,7 @@ width: auto;
 .signature_list{
 background-color: #fbf4f2;
   border-radius: 20px;
-  padding: 30px;
+  padding: 20px;
   position: relative;
   min-height: 180px;
 }
@@ -415,7 +418,7 @@ background-color: #F1F1F1;
 }
 
 .testimonials_box{
-padding: 0 12px;
+padding: 30px 12px;
 }
 .testimonials_innerbox{
 text-align: center;
@@ -424,6 +427,10 @@ text-align: center;
   padding: 8px;
   box-shadow: 0 0px 20px #0000001f;
   margin: 0 0 30px 0;
+  transition-duration: 0.2s;
+}
+.testimonials_innerbox:hover{
+  margin: -10px 0 0 0;
 }
 .testi_img{
   background-color: #fff;
@@ -495,16 +502,16 @@ max-height: 60px;
 background-color: #dff6ea;
   border: 1px solid #b9e5ce;
   border-radius: 30px;
-  min-height: 170px;
+  min-height: 130px;
   padding: 15px 40px 10px;
   position: relative;
   overflow: hidden;
   background-image: linear-gradient(to top, #fff, #dff6ea);
 }
 .attend_list img{
-  width: 40px;
+  width: 30px;
 }
-.attend_list::after{
+/* .attend_list::after{
   content: "";
   color: #fff;
   background-image: linear-gradient(to left, #00602d, #08a04f);
@@ -522,7 +529,7 @@ width: 100%;
 }
 .attend_list:hover .heading21_black{
 color: #fff;
-}
+} 
 .attend_list:hover .heading19_black{
 color: #fff;
 }
@@ -530,7 +537,7 @@ color: #fff;
   position: relative;
   z-index: 5;
   color: #fff;
-}
+}*/
 /* ------------HOME-WHY-ATTEND-SECTION-END---------- */
 
 
@@ -618,10 +625,22 @@ opacity: 1;
 
 /* ------------VENUES-PAGE-START---------- */
 .venue_whitebox{
-  background-color: #fff;
+background-color: #fff;
   border-radius: 20px;
-  padding: 20px;
-  min-height: 440px;
+  min-height: 400px;
+  padding: 10px;
+  border: 6px solid #fbf4f2;
+}
+.venue_banner .venue_banner_img{
+  position: relative;
+}
+.venue_banner .venue_banner_img::after{
+  content: "";
+  position: absolute;
+  background-image: linear-gradient(to left, #FBF4F2, #E1444400);
+  width: 50%;
+  height: 100%;
+  right: 0;
 }
 .campus_img{
   background-color: #00602d;

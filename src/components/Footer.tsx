@@ -10,7 +10,7 @@ const Footer = () => {
     <>
     <footer>
       <section className="footer_faq_section mb-0 mt-5">
-        <div className="container">
+        <div className="container" style={{position:"relative", zIndex:"5"}}>
           <div className="row">
             <div className="col-lg-12 mb-2 heading35_black text-center mb-4" style={{color:"#fff"}}>Frequently Asked Questions</div>
           </div>
@@ -29,7 +29,9 @@ const Footer = () => {
               <div className="footer_list1 footer_list">
                 <div className="row">
                   <div className="col-lg-12 mb-4">
-                    <div className="footer_logo"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></div>
+                    <div className="footer_logo">
+                      <Link href="/"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
+                    </div>
                   </div>
                   <div className="col-lg-12 mb-3 heading21_black">
                     SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026
@@ -82,7 +84,7 @@ const Footer = () => {
                         <div className="col-lg-12 p-0"><Image src="/images/footer_register_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register for Conference</div>
                       </div>
                     </Link>
-                    <Link href="/">
+                    <Link href="/hackathon">
                       <div className="row align-items-center">
                         <div className="col-lg-12 p-0"><Image src="/images/footer_explore_icon.png" className="img-fluid" alt="Logo" width={20} height={20} />&nbsp;&nbsp;&nbsp; Register for Hackathon</div>
                       </div>

@@ -9,16 +9,19 @@ const ContactPage = () => {
     <main>
       <div className="venues_page_mainbox mb-0 position_box">
         {/* <InnerpageBanner title="Venue & Campus" /> */}
-        <section className="pt-5 pb-5" style={{backgroundColor:"#fbf4f2"}}>
-          <div className="container">
+        <section className="venue_banner" style={{backgroundColor:"#fbf4f2"}}>
+          <div className="container-fluid">
             <div className="row align-items-center">
-              <div className="col-lg-6 text-center">
-                <Image src="/images/venues/campus.png" className="img-fluid" alt="Logo" width={600} height={500} style={{borderRadius:"30px"}}  />
+              <div className="col-lg-7 text-center venue_banner_img p-0">
+                <Image src="/images/venues/venue_banner2.png" className="img-fluid" alt="Logo" width={1000} height={1000}  />
               </div>
-              <div className="col-lg-6 mt-4 mb-4">
+              <div className="col-lg-4 mt-4 mb-4">
                 <div className="row">
+                  <div className="col-lg-12 heading35_black mb-1">
+                    The Lavale campus
+                  </div>
                   <div className="col-lg-12 heading19_black mb-3">
-                    The Lavale campus offers an unusual setting for a technology and healthcare Conclave:
+                    Offers an unusual setting for a technology and healthcare Conclave:
                   </div>
                   <div className="col-lg-12">
                     The academic ecosystem, medical education environment and tertiary-care teaching hospital are part of the same wider campus story. Participants encounter not only a conference venue, but a living environment where healthcare is taught, delivered, researched and continuously reimagined.
@@ -28,7 +31,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
-        <section>
+        {/* <section>
           <div className="container">
             <div className="row">
               <div className="col-lg-12 heading35_black text-center mb-5">EXPERIENCE THE CONCLAVE AT LAVALE</div>
@@ -64,18 +67,18 @@ const ContactPage = () => {
               <div className="col-lg-12"></div>
             </div>
           </div>
-        </section>
-        <section className="pt-5 pb-5" style={{backgroundColor:"#ecf7fd"}}>
+        </section> */}
+        <section className="pt-5">
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 heading35_black text-center mb-4">THE CONCLAVE CAMPUS</div>
+              <div className="col-lg-12 heading35_black text-center mb-2">THE CONCLAVE CAMPUS</div>
             </div>
             <div className="row">
               <div className="col-lg-4 mb-4 col-md-4">
                 <div className="venue_whitebox">
                   <div className="row">
                     <div className="col-lg-12 mb-5">
-                      <Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
+                      <Image src="/images/venues/smcw_img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"10px"}}  />
                     </div>
                     <div className="col-lg-12">
                       <div className="campus_img">
@@ -92,11 +95,11 @@ const ContactPage = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-4">
+              <div className="col-lg-4 mb-4 col-md-4">
                 <div className="venue_whitebox">
                   <div className="row">
                     <div className="col-lg-12 mb-5">
-                      <Image src="/images/aboutus/SIU-img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
+                      <Image src="/images/venues/siu_img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"10px"}}  />
                     </div>
                     <div className="col-lg-12">
                       <div className="campus_img">
@@ -117,7 +120,7 @@ const ContactPage = () => {
                 <div className="venue_whitebox">
                   <div className="row">
                     <div className="col-lg-12 mb-5">
-                      <Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"30px"}}  />
+                      <Image src="/images/venues/suhrc_img.png" className="img-fluid" alt="Logo" width={500} height={500} style={{borderRadius:"10px"}}  />
                     </div>
                     <div className="col-lg-12">
                       <div className="campus_img">
