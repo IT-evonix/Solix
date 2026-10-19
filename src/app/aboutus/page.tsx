@@ -12,7 +12,7 @@ const ContactPage = () => {
               <div className="col-lg-8">
                 <div className="row">
                   <div className="col-lg-12 text19_black mb-3">
-                    <b>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> is a multidisciplinary event at the intersection of <b>Healthcare, Technology, Data, AI and Innovation.</b>
+                    <b style={{color:"#e8480c"}}>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> is a multidisciplinary event at the intersection of <b style={{color:"#e8480c"}}>Healthcare, Technology, Data, AI and Innovation.</b>
                   </div>
                 </div>
                 <div className="row">
