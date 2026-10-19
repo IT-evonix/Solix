@@ -850,6 +850,17 @@ background-color: #c00709;
 
 /* ------------SPEAKERS-PAGE-END---------- */
 
+/* ------------PARTNERS-PAGE-START---------- */
+.partner_page_mainbox .about_white_list a{
+background-color: #ea5e2a;
+  color: #fff;
+  padding: 6px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  line-height: normal;
+}
+/* ------------PARTNERS-PAGE-END---------- */
+
 
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
