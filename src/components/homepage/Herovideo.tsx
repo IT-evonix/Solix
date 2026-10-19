@@ -10,7 +10,7 @@ const Herovideo = () => {
         <div className="row">
           <div className="col-lg-12 p-0 video_box">
             <video className="w-100" autoPlay >
-              <source src="/images/banner-video2.mp4" type="video/mp4" />
+              <source src="/images/banner-video.mp4" type="video/mp4" />
             </video>
           </div>
           <div className="col-lg-12">

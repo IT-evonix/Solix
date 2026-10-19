@@ -1036,7 +1036,7 @@ color: #fff;
 
 
 
-@media screen and (min-width: 1000px) and (max-width: 1100px) {
+@media screen and (min-width: 1000px) and (max-width: 1300px) {
 
 /* ------------HOME-SIGNATURE-SECTION-START---------- */
 .signature_list{
@@ -1049,6 +1049,17 @@ color: #fff;
   min-height: 210px;
 }
 /* ------------HOME-SIGNATURE-SECTION-END---------- */
+
+/* ------------FOOTER-SECTION-START---------- */
+.footer_list2{
+width: 40%;
+  padding: 0 40px 0 0;
+}
+.footer_list3 {
+  width: 25%;
+}
+/* ------------FOOTER-SECTION-END---------- */
+
 
 }
 
