@@ -334,7 +334,7 @@ export default function HackathonRegistration() {
                           label="Email Address"
                           htmlFor="emailAddress"
                           required
-                          helper="All Hackathon communication will be sent here."
+                          helper="All Hackathon communication sent here."
                           error={errors.emailAddress}
                         >
                           <input

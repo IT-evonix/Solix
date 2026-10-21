@@ -714,11 +714,11 @@ export function PassCard({
             <div className="pass_help_box">
               <div>Need assistance with your registration?</div>
               <div>
-                Email: <a href="mailto:conclave@siu.edu.in">conclave@siu.edu.in</a>
+                Email: <a href="mailto:s_semtechconclave@smcw.edu.in">s_semtechconclave@smcw.edu.in</a>
               </div>
-              <div>
+              {/* <div>
                 Helpline: <a href="tel:+912066936500">+91 (020) 6693 6500</a>
-              </div>
+              </div> */}
             </div>
           </div>
         </aside>

@@ -217,18 +217,20 @@ const ContactPage = () => {
                           <div className="col-lg-12 mb-4">
                             <Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={300} priority />
                           </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Global Education • International Engagement • Cross-Cultural Exchange</i></div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Fostering Entrepreneurship & Innovation</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
                           <div className="col-lg-7 mb-3">
-                            The Symbiosis Centre for International Education (SCIE) is a nodal department of Symbiosis International (Deemed University) created to support and engage with the University’s international student community. 
+                            Symbiosis Centre for Entrepreneurship & Innovation (SCEI) is a Technology Business Incubator established by Symbiosis International (Deemed University). As a not-for-profit Section 8 company promoted by SIU and supported by the Department of Science and Technology, Government of India, SCEI works towards socio-economic development by promoting and nurturing entrepreneurship.
                           </div>
                           <div className="col-lg-12 mb-4 about_text">
-                            Its mandate extends from supporting international students throughout their journey at Symbiosis to creating opportunities for international exposure, academic engagement and cross-cultural learning. SCIE works as a common platform for international students across Symbiosis and supports initiatives including international student orientation, academic exchanges, international collaborations, student and faculty mobility, and global engagement. The centre also contributes to creating an inclusive environment that enables students from diverse countries and cultures to learn and engage within the Symbiosis ecosystem. 
+                            SCEI leverages Symbiosis's research capabilities in areas such as healthcare technology, medical imaging, waste management, artificial intelligence, machine learning and nanotechnology to support technology-driven start-ups. Its initiatives include incubation, pre-incubation, mentoring, prototyping and access to innovation facilities.
+                            <br></br><br></br>
+                            With a focus on design thinking and sustainable development, SCEI encourages an entrepreneurial mindset among students, researchers and industry professionals, helping transform innovative ideas into practical solutions. 
                           </div>
                           <div className="col-lg-12">
                             <div className="box_list">
                               <b>At the Conclave:</b><br></br>
-                              SCIE brings the strength of international engagement, global academic perspectives, cross-cultural exchange and international student participation.
+                              SCEI brings together entrepreneurship, research and technological innovation, fostering collaboration between academia, industry and emerging innovators to turn ideas into impactful solutions.
                             </div>
                           </div>
                         </div>
@@ -310,18 +312,25 @@ const ContactPage = () => {
                 <div className="col-lg-12 heading21_black mb-5 text-center">A THREE-DAY JOURNEY</div>
             </div>
             <div className="row">
-                <div className="col-lg-4 mb-5">
+                <div className="col-lg-4 mb-3">
                     <div className="signature_list">
                         <div className="row align-items-center">
                             <div className="col-lg-12">
                                 <div className="signature_date">10 DECEMBER</div>
                             </div>
-                            <div className="col-lg-4 text-center"><Image src="/images/signature_connect.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
-                            <div className="col-lg-8">
+                            <div className="col-lg-3 text-center"><Image src="/images/signature_connect.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
+                            <div className="col-lg-9">
                                 <div className="row">
                                     <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#E7470B", borderBottom:"1px solid #ccc"}}>CONNECT</div>
-                                    <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
-                                        Conference • Knowledge • Experts • Healthcare • Technology • Industry
+                                    <div className="col-6 mb-1">
+                                        • Conference <br></br>
+                                        • Knowledge <br></br>
+                                        • Experts
+                                    </div>
+                                    <div className="col-6 mb-1">
+                                        • Healthcare <br></br>
+                                        • Technology <br></br>
+                                        • Industry
                                     </div>
                                     <div className="journey_text">
                                       Bring together diverse perspectives from healthcare, academia, technology, research and industry. Explore emerging ideas, exchange knowledge and connect with experts shaping the future.
@@ -331,18 +340,23 @@ const ContactPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 mb-5">
+                <div className="col-lg-4 mb-3">
                     <div className="signature_list" style={{backgroundColor:"#E7F9EF"}}>
                         <div className="row align-items-center">
                             <div className="col-lg-12">
                                 <div className="signature_date" style={{backgroundColor:"#107F44"}}>11 DECEMBER</div>
                             </div>
-                            <div className="col-lg-4 text-center"><Image src="/images/signature_create.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
-                            <div className="col-lg-8">
+                            <div className="col-lg-3 text-center"><Image src="/images/signature_create.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
+                            <div className="col-lg-9">
                                 <div className="row">
-                                    <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#107F44", borderBottom:"1px solid #ccc"}}>CREATE</div>
-                                    <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
-                                        Hackathon • Mentoring • Collaboration • Problem Solving
+                                    <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#00602d", borderBottom:"1px solid #ccc"}}>CREATE</div>
+                                    <div className="col-5 mb-1">
+                                        • Hackathon <br></br>
+                                        • Mentoring 
+                                    </div>
+                                    <div className="col-7 mb-1">
+                                        • Collaboration <br></br>
+                                        • Problem Solving
                                     </div>
                                     <div className="journey_text">
                                       Move from ideas to action through the MedTech Innovation Hackathon, bringing together multidisciplinary talent, mentors and experts to work on healthcare challenges and develop innovative solutions. An impressive line up of technology + healthcare experts will share their wisdom on the transformation power of technology.
@@ -352,18 +366,23 @@ const ContactPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="col-lg-4 mb-5">
+                <div className="col-lg-4 mb-3">
                     <div className="signature_list" style={{backgroundColor:"#ECF7FD"}}>
                         <div className="row align-items-center">
                             <div className="col-lg-12">
                                 <div className="signature_date" style={{backgroundColor:"#007AB7"}}>12 DECEMBER</div>
                             </div>
-                            <div className="col-lg-4 text-center"><Image src="/images/signature_transform.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
-                            <div className="col-lg-8">
+                            <div className="col-lg-3 text-center"><Image src="/images/signature_transform.png" className="img-fluid" alt="Logo" width={100} height={100} /></div>
+                            <div className="col-lg-9">
                                 <div className="row">
                                     <div className="col-lg-12 heading21_black mb-2 pb-1" style={{color:"#007BB7", borderBottom:"1px solid #ccc"}}>TRANSFORM</div>
-                                    <div className="col-lg-12 mb-2" style={{textTransform:"uppercase"}}>
-                                        Prototypes • Presentations • Recognition • Future Possibilities
+                                    <div className="col-5 mb-1">
+                                        • Prototypes <br></br>
+                                        • Presentations <br></br>
+                                    </div>
+                                    <div className="col-7 mb-1">
+                                        • Recognition <br></br>
+                                        • Future Possibilities
                                     </div>
                                     <div className="journey_text">
                                       Two talks on cutting edge technology in medical kicks of an exciting day when innovation ideas will be rewarded.

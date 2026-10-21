@@ -358,7 +358,7 @@ background-color: #fbf4f2;
   border-radius: 20px;
   padding: 20px;
   position: relative;
-  min-height: 180px;
+  min-height: 160px;
 }
 .signature_date{
 background-color: #e8480c;
@@ -445,8 +445,12 @@ width: auto;
   min-width: 100%;
 }
 .testi_head{
-  font-family:Roboto-Black;
+font-family: Roboto-Black;
   font-size: 16px;
+  min-height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .testi_title{
 display: flex;
@@ -468,8 +472,9 @@ color: #fff;
   position: absolute;
 }
 .testi_content{
-max-height: 60px;
+max-height: 40px;
   overflow: hidden;
+  min-height: 40px;
 }
 .testi_title span:nth-child(even){
   background-color: #e9f2ed;
@@ -843,9 +848,97 @@ background-color: #c00709;
   margin: 10px auto 0;
 }
 .speaker_card_title{
+color: #007bb7;
+  min-height: 70px;
   font-size: 14px;
   line-height: 1.5;
-  color: #007bb7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.speaker_card_btn{
+color: #c00709;
+  cursor: pointer;
+  border: 0;
+  border-radius: 100px;
+  margin-top: 16px;
+  font-family: Roboto-SemiBold;
+  font-size: 15px;
+  line-height: normal;
+  transition: background-color .3s;
+  display: inline-block;
+  padding: 6px 20px;
+}
+.speaker_card_btn:hover{
+  background-color: #ececec;
+  color: #000;
+}
+.speaker_popup_overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #00000080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.speaker_popup{
+  position: relative;
+  width: min(900px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  background-color: #fff;
+  border-radius: 24px;
+  padding: 18px 18px 28px;
+  box-shadow: 0 18px 48px #00000033;
+}
+.speaker_popup #speaker-popup-name span{
+position: relative;
+  float: left;
+  width: 100%;
+  padding: 0 0 0 10px;
+}
+.speaker_popup #speaker-popup-name span::before{
+  content: "";
+  background-color: #000;
+  border-radius: 100px;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  left: 0;
+  margin: 8px 0 0 0px;
+}
+.speaker_popup_close{
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background-color: #c00709;
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 1;
+}
+.speaker_popup_close:hover{
+  background-color: #007bb7;
+}
+.speaker_popup_img{
+  aspect-ratio: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  background-color: #fbf4f2;
+}
+.speaker_popup_img img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
 }
 
 /* ------------SPEAKERS-PAGE-END---------- */
@@ -1049,17 +1142,31 @@ color: #fff;
 
 @media screen and (min-width: 1000px) and (max-width: 1300px) {
 
+/* ------------HOME-BANNER-SECTION-START---------- */
+.banner_text2{
+  padding: 10px 0 20px 0;
+}
+/* ------------HOME-BANNER-SECTION-END---------- */
+
 /* ------------HOME-SIGNATURE-SECTION-START---------- */
 .signature_list{
   min-height: 280px;
 }
-/* ------------HOME-SIGNATURE-SECTION-END---------- */
-
-/* ------------HOME-SIGNATURE-SECTION-START---------- */
 .signature_section .signature_list{
   min-height: 210px;
 }
 /* ------------HOME-SIGNATURE-SECTION-END---------- */
+
+
+/* ------------HOME-SPEAKERS-SECTION-START---------- */
+.testi_head{
+  min-height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* ------------HOME-SPEAKERS-SECTION-END---------- */
+
 
 /* ------------FOOTER-SECTION-START---------- */
 .footer_list2{

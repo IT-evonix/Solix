@@ -21,113 +21,92 @@ interface Testimonial {
 const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: "Dr. Shiv Kumar Sarin",
-    image: "/images/speakers/ShivKumarSarin3.png",
+    name: "Dr Dasmit Singh Khokar",
+    image: "/images/speakers/DasmitSingh.png",
     title: "Keynote Speaker",
     content:
-      "Dr. Shiv Kumar Sarin is a globally renowned gastroenterologist, hepatologist, and the Founding Director and Chancellor of the Institute of Liver and Biliary Sciences (ILBS), New Delhi.",
-  },
-  // {
-  //   id: 1,
-  //   name: "Assoc Prof Liu Nan",
-  //   image: "/images/speakers/LiuNan3.png",
-  //   content:
-  //     "Keynote Speaker",
-  // },
-  // {
-  //   id: 1,
-  //   name: "Dr. Yilin Ning",
-  //   image: "/images/speakers/YilinNing3.png",
-  //   content:
-  //     "Keynote Speaker",
-  // },
-  {
-    id: 1,
-    name: "Mr. Mark Lewis",
-    image: "/images/speakers/MarkLewis3.png",
-    title: "Solix Technologies",
-    content:
-      "Mr. Mark Lewis is a senior enterprise data strategist and domain expert representing Solix Technologies. His core expertise lies in AI-ready data governance, quality assurance",
+      "Paediatric Surgeon & Surgical Innovator, Pune, India",
   },
   {
     id: 1,
-    name: "Dr. Dasmit Singh",
-    image: "/images/speakers/DasmitSingh3.png",
-    title: "Keynote & Hackathon Briefing",
-    content:
-      "Dr. Dasmit Singh is a senior pediatric surgeon, medical educator, and Secretary of CURIE at Symbiosis Medical College for Women (SMCW). With over three decades of clinical",
-  },
-  {
-    id: 1,
-    name: "Shri Sunil Kumar Barnwal",
-    image: "/images/speakers/SunilKumarBarnwal3.png",
+    name: "Prof. (Dr) Ramakrishnan Raman",
+    image: "/images/speakers/RamakrishnanRaman.png",
     title: "Keynote Speaker",
     content:
-      "Shri Sunil Kumar Barnwal, IAS, serves as the Chief Executive Officer of the National Health Authority (NHA), leading India’s flagship digital health ecosystem initiatives. His leadership",
+      "Vice Chancellor, SIU",
   },
   {
     id: 1,
-    name: "Dr. Kavitha Rajshekhar",
-    image: "/images/speakers/KavithaRajshekhar3.png",
+    name: "Dr Rakesh Kalapala",
+    image: "/images/speakers/RakeshKalapala.png",
     title: "Keynote Speaker",
     content:
-      "Dr. Kavitha Rajshekhar is a scientist and policymaker at the Department of Health Research (DHR), Ministry of Health and Family Welfare, Government of India. She plays a pivotal",
+      "Gastroenterologist & Director of Endoscopy, AIG Hospitals, Hyderabad, India",
   },
   {
     id: 1,
-    name: "Dr. Rahul Gupta",
-    image: "/images/speakers/RahulGupta3.png",
-    title: "Keynote Speaker",
+    name: "Dr Sumer Sethi",
+    image: "/images/speakers/SumerSethi.png",
+    title: "Panelist",
     content:
-      "Dr. Rahul Gupta is a physician executive, public health leader, and President of GATC Health. His work focuses on integrating artificial intelligence, advanced multiomics, and",
+      "Radiologist, Founder – DAMS",
   },
   {
     id: 1,
-    name: "Dr. Donald E. Ingber",
-    image: "/images/speakers/DonaldIngber3.png",
-    title: "Keynote Speaker",
+    name: "Dr (Brig.) Suman Pramanik",
+    image: "/images/speakers/noimg.png",
+    title: "Debate",
     content:
-      "Dr. Donald E. Ingber, M.D., Ph.D., is a pioneer in the fields of bioinspired engineering, mechanobiology, and microfluidic tissue engineering. As the Founding Director of Harvard’s",
+      "Professor & Head, Department of Medicine, AFMC, Pune",
   },
   {
     id: 1,
-    name: "Dr. Rakesh Kalapala",
-    image: "/images/speakers/RakeshKalapala3.png",
-    title: "Keynote Speaker",
+    name: "Dr Ashish Rawandale-Patil",
+    image: "/images/speakers/AshishRawandalePatil.png",
+    title: "Panelist",
     content:
-      "Dr. Rakesh Kalapala is a senior clinician and Vice President & Director at the Centre for AI and Innovation, AIG Hospitals. His expertise centers on integrating artificial intelligence,",
+      "Urologist, Dhule, Maharashtra, India",
   },
   {
     id: 1,
-    name: "Dr. Mohit Bhandari",
-    image: "/images/speakers/MohitBhandari3.png",
-    title: "Keynote Speaker",
+    name: "Dr. Sridhar Bodapati",
+    image: "/images/speakers/SridharBodapati.png",
+    title: "Panelist",
     content:
-      "Dr. Mohit Bhandari is a world-renowned bariatric, metabolic, and robotic surgeon, recognized as a global pioneer in minimally invasive and robotic-assisted surgery. As the",
+      "Paediatrician, Healthcare IT Leader & Founder – EdQueries",
   },
   {
     id: 1,
-    name: "Prof. Alejandro Sosnik",
-    image: "/images/speakers/AlejandroSosnik3.png",
-    title: "Keynote Speaker",
+    name: "Dr A. V. S. Suresh",
+    image: "/images/speakers/AVSSuresh.png",
+    title: "Moderator",
     content:
-      "Prof. Alejandro Sosnik is a Full Professor of Materials Science and Engineering at Technion – Israel Institute of Technology, where he leads the Laboratory of Pharmaceutical Nanomaterial Science. ",
+      "Medical Oncologist & Haematologist, Hyderabad, India",
   },
   {
     id: 1,
-    name: "Dr. Jana M. Kainerstorfer",
-    image: "/images/speakers/JanaKainerstorfer3.png",
-    title: "Keynote Speaker",
+    name: "Dr Ashlesha Kelkar",
+    image: "/images/speakers/AshleshaKelkar.png",
+    title: "Moderator",
     content:
-      "Dr. Jana M. Kainerstorfer is an Associate Professor of Biomedical Engineering at Carnegie Mellon University and Principal Investigator of the Biophotonics Lab. Her research",
+      "Vertical Lead – Digital Health Community Medicine",
   },
-  // {
-  //   id: 1,
-  //   name: "Dr. M. Srinivas",
-  //   image: "/images/speakers/srinivas3.png",
-  //   content:
-  //     "Keynote Speaker",
-  // },
+  {
+    id: 1,
+    name: "Gp Capt (Dr) S. A. Raheem",
+    image: "/images/speakers/SARaheem.png",
+    title: "Panelist",
+    content:
+      "Radiologist, Associate Professor - Armed Forces Medical College (AFMC), Pune",
+  },
+  {
+    id: 1,
+    name: "Dr Arun Jamkar",
+    image: "/images/speakers/ArunJamkar.png",
+    title: "Moderator",
+    content:
+      "Distinguished Professor | Healthcare Innovation & Medical Education Symbiosis International (Deemed University), Pune, India",
+  },
 ];
 
 // Duplicate data for smoother infinite loop
@@ -141,7 +120,7 @@ export default function OurTestimonials() {
   const swiperRef = useRef<SwiperType | null>(null);
 
   return (
-    <section className="speakers_section">
+    <section className="speakers_section" id="speakers">
       <div className="container-fluid" style={{position:"relative", zIndex:"5"}}>
         <div className="row">
             <div className="col-lg-12 heading35_black mb-5 text-center">Our Speakers</div>
