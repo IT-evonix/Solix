@@ -23,7 +23,7 @@ export default function HackathonPage() {
               <div className={cx("hero-copy-block")}>
                 <h1 id="hero-title">SSETC <span className={cx("highlight")}>Hackathon 2026</span></h1>
                 <p className={cx("hero-subtitle")}>From Healthcare Challenges to Real-World Solutions</p>
-                <p className={cx("hero-copy")}>What if one idea could help solve a real healthcare challenge? The <strong>SSETC Hackathon 2026</strong> invites students to explore a scenario-based healthcare problem, think beyond disciplinary boundaries and propose technology-driven solutions with the potential to make a difference.</p>
+                <p className={cx("hero-copy")}>What if one idea could help solve a real healthcare challenge? The <b>SSETC Hackathon 2026</b> invites you to explore a scenario-based healthcare problem, think beyond disciplinary boundaries and propose technology-driven solutions with the potential to make a difference.</p>
                 <div className={cx("hero-actions")}>
                   <Link className={cx("btn", "btn-primary")} href="/hackathon/register">Register — Round 1 <span className={cx("arrow")} aria-hidden="true">→</span></Link>
                   <a className={cx("btn", "btn-secondary")} href="#challenge">Explore the Challenge <span className={cx("arrow")} aria-hidden="true">↓</span></a>
@@ -46,11 +46,11 @@ export default function HackathonPage() {
                 <div className={cx("section-head")}>
                   <div className={cx("eyebrow")}>The Challenge</div>
                   <h2>A realistic healthcare scenario.<br />A problem worth solving.</h2>
-                  <p>Participants will receive a healthcare problem statement framed around a real-world scenario. Analyse the challenge, consider the people and systems affected, and submit a proposed solution. The strongest entries will be shortlisted for the on-campus Grand Finale.</p>
+                  <p>The problem statement will be announced on the real world healthcare scenario. Analyse the challenge, consider the people and systems affected, and submit a proposed solution. The most innovative & realistic entries will be shortlisted for the on-campus Grand Finale.</p>
                 </div>
                 <aside className={cx("challenge-callout")}>
-                  <strong>Think beyond your discipline.</strong>
-                  <p>Healthcare problems rarely fit into one subject. Bring clinical understanding, technical creativity and a clear view of the people who may benefit.</p>
+                  <strong>Think cross boundaries.</strong>
+                  <p>Healthcare problems rarely fit into one subject. Bring clinical understanding, technical expertise and a clear view of the people who may benefit.</p>
                 </aside>
               </div>
               <div className={cx("challenge-pillars")}>
@@ -66,7 +66,7 @@ export default function HackathonPage() {
               <div className={cx("section-head", "center")}>
                 <div className={cx("eyebrow")}>Two Rounds. One Opportunity to Innovate.</div>
                 <h2>Your idea starts here.</h2>
-                <p>Begin with the free scenario challenge. If shortlisted, progress to the on-campus Grand Finale to develop, refine and present your solution.</p>
+                <p>Begin with the announced challenge. If shortlisted, progress to the on-campus Grand Finale to develop, refine and present your solution.</p>
               </div>
               <div className={cx("rounds-grid")}>
                 <article className={cx("round-card")}>
@@ -74,9 +74,9 @@ export default function HackathonPage() {
                     <div className={cx("round-header-info")}>
                       <div className={cx("round-label")}>
                         <span className={cx("round-badge", "orange")}>ROUND 1</span>
-                        <span className={cx("round-label-text")}>The Scenario Challenge</span>
+                        {/* <span className={cx("round-label-text")}>The Scenario Challenge</span> */}
                       </div>
-                      <h3>Explore. Analyse. Propose.</h3>
+                      <h3>The Scenario Challenge</h3>
                     </div>
                     <div className={cx("price-tag", "free-tag")}>FREE REGISTRATION</div>
                   </div>
@@ -84,7 +84,7 @@ export default function HackathonPage() {
                   <ul className={cx("round-list")}>
                     <li><span className={cx("check")}>✓</span><span>Review the scenario-based healthcare problem statement.</span></li>
                     <li><span className={cx("check")}>✓</span><span>Analyse the challenge and submit a solution proposal.</span></li>
-                    <li><span className={cx("check")}>✓</span><span>Compete for a place among the 100 shortlisted students.</span></li>
+                    <li><span className={cx("check")}>✓</span><span>Compete for a place among the first 100 shortlisted students.</span></li>
                   </ul>
                   <div style={{ marginTop: "1.25rem" }}>
                     <Link className={cx("btn", "btn-primary")} href="/hackathon/register" style={{ display: "block", textAlign: "center", fontSize: "0.92rem", padding: "0.75rem 1.25rem" }}>Register for Round 1 (Free) <span className={cx("arrow")} aria-hidden="true">→</span></Link>
@@ -95,9 +95,9 @@ export default function HackathonPage() {
                     <div className={cx("round-header-info")}>
                       <div className={cx("round-label")}>
                         <span className={cx("round-badge", "blue")}>ROUND 2</span>
-                        <span className={cx("round-label-text")}>The Grand Finale</span>
+                        {/* <span className={cx("round-label-text")}>The Grand Finale</span> */}
                       </div>
-                      <h3>Develop. Refine. Present.</h3>
+                      <h3>The Grand Finale</h3>
                     </div>
                     <div className={cx("price-tag", "paid-tag")}>₹1,500 / STUDENT</div>
                   </div>
@@ -118,10 +118,10 @@ export default function HackathonPage() {
               <div className={cx("audience-copy")}>
                 <div className={cx("eyebrow")}>Who should participate?</div>
                 <h2>Different disciplines.<br />One shared challenge.</h2>
-                <p>Students interested in healthcare, medicine, engineering, artificial intelligence, data science, design, life sciences and management are invited to apply their knowledge to real-world healthcare challenges.</p>
+                <p>Students interested in healthcare, medicine, engineering, artificial intelligence, data science are invited to apply their knowledge to real-world healthcare challenges.</p>
               </div>
               <div className={cx("discipline-grid")} aria-label="Relevant areas of study">
-                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">✚</span><strong>Healthcare &amp; Medicine</strong></div>
+                <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">✚</span><strong>Healthcare </strong></div>
                 <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌘</span><strong>Technology</strong></div>
                 <div className={cx("discipline")}><span className={cx("tiny-icon")} aria-hidden="true">⌬</span><strong>Medicine</strong></div>
               </div>
@@ -147,8 +147,8 @@ export default function HackathonPage() {
           <section className={cx("final-cta")} id="registration-info">
             <div className={cx("container")}>
               <div className={cx("cta-panel")}>
-                <div className={cx("cta-copy")}><div className={cx("eyebrow")}>Ready to take on the challenge?</div><h2>Your first step is free. Your idea could be the beginning of something meaningful.</h2><p>Register for Round 1, explore the scenario and put your solution forward. Only 100 shortlisted students will be invited to the paid Grand Finale.</p></div>
-                <div className={cx("cta-action")}><Link className={cx("btn", "btn-primary")} href="/hackathon/register">Register — Round 1 <span className={cx("arrow")} aria-hidden="true">→</span></Link><small>Round 1 is free. The ₹1,500 fee applies only after shortlisting for the Grand Finale.</small></div>
+                <div className={cx("cta-copy")}><div className={cx("eyebrow")}>Ready to take on the challenge?</div><h2>Your first step is free. Your idea could be the beginning of something meaningful.</h2><p>Register Now</p></div>
+                <div className={cx("cta-action")}><Link className={cx("btn", "btn-primary")} href="/hackathon/register">Register — Round 1 <span className={cx("arrow")} aria-hidden="true">→</span></Link></div>
               </div>
             </div>
           </section>

@@ -126,12 +126,12 @@ const ContactPage = () => {
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-4">
-                                SCIE supports internationalisation at Symbiosis by facilitating global academic engagement and international student mobility. Its presence reinforces the Conclave’s emphasis on cross-cultural exchange, global perspectives and collaborative learning.
+                                SCEI is a technology business incubator established by Symbiosis International (Deemed University), dedicated to fostering entrepreneurship, research and innovation. It supports technology-driven start-ups through incubation, mentorship and industry collaboration, with a focus on emerging technologies and innovative solutions.
                               </div>
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-4">
-                                <Link href="https://www.scie.ac.in/" target="_blank">www.scie.ac.in</Link>
+                                <Link href="https://scei.org.in/" target="_blank">https://scei.org.in/</Link>
                               </div>
                             </div>
                           </div>

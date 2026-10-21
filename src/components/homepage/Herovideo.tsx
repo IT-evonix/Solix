@@ -16,8 +16,8 @@ const Herovideo = () => {
           <div className="col-lg-12">
             <div className="row">
               <div className="banner_textbox">
-                <div className="col-lg-12 mb-4 banner_text1">Symbiosis - Solix Empower</div>
-                <div className="col-lg-12 mb-4 banner_tech_img">
+                <div className="col-lg-12 mb-3 banner_text1">Symbiosis - Solix Empower</div>
+                <div className="col-lg-12 mb-3 banner_tech_img">
                   <Image src="/images/tech.png" className="img-fluid" alt="Logo" width={450} height={10} />
                 </div>
                 <div className="col-lg-12">
