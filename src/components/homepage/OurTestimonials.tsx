@@ -162,7 +162,7 @@ export default function OurTestimonials() {
                     slidesPerView: 3,
                   },
                   1200: {
-                    slidesPerView: 6,
+                    slidesPerView: 5,
                   },
                 }}
                 className="testimonials_slider"
@@ -185,6 +185,9 @@ export default function OurTestimonials() {
                           </div>
                           <div className="col-lg-12 testi_content mb-4">
                             {testimonial.content}
+                          </div>
+                          <div className="col-lg-12 mb-4">
+                            <Link href="/speakers">View Profile</Link>
                           </div>
                         </div>
                       </div>
@@ -213,7 +216,7 @@ export default function OurTestimonials() {
             </div>
           </div>
           <div className="col-lg-12 mt-5 mb-5 text-center">
-              <Link href="/speakers" className="button_box">View More Speakers</Link>
+              <Link href="/speakers" className="button_box">View More</Link>
           </div>
         </div>
       </div>

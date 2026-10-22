@@ -261,12 +261,12 @@ export default function ConferenceRegistration() {
       <RegHero
         badge="Official Summit Registration"
         eyebrow="Symbiosis–SolixEmpower Tech Conclave 2026"
-        title="Conference Delegate Pass"
-        sub="Secure your verified 3-day credential for the Conclave — keynotes, panels, tracks and networking across healthcare, technology and innovation."
+        title="Conference Registration Form"
+        sub="Secure Your Spot"
         pills={[
           { icon: "calendar", text: "10–12 December 2026" },
           { icon: "pin", text: "SMCW & SUHRC, SIU Campus, Lavale, Pune" },
-          { icon: "shield", text: "Verified Credential • ₹1,500" },
+          // { icon: "shield", text: "Verified Credential • ₹1,500" },
         ]}
       />
 
@@ -851,6 +851,7 @@ export default function ConferenceRegistration() {
               "Official Delegate Kit & Verified Badge",
               "Lunch & High Tea on All 3 Days",
               "Certificate of Participation",
+              "Networking",
             ]}
             badge={{
               label: "Delegate Badge",
