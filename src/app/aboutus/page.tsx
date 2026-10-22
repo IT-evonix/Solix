@@ -85,7 +85,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={150} height={95} priority />
+                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={200} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
                           <div className="col-lg-12 mb-4 about_text">
@@ -105,8 +105,8 @@ const ContactPage = () => {
                     <div className="col-lg-6 mb-4">
                       <div className="about_white_list">
                         <div className="row">
-                          <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={500} height={500} priority />
+                          <div className="col-lg-12 mb-4 mt-3">
+                            <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={250} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>A Multidisciplinary Academic Ecosystem</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SIU-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -131,7 +131,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/suhrc2.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
+                            <Image src="/images/aboutus/SMCWSUHRC-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Medical Education • Healthcare • Clinical Research</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -154,7 +154,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-pune.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITPUNE-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Engineering & Technology for a Changing World</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITpune-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -179,7 +179,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-nagpur.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITNAGPUR-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Building Future-Ready Technology Professionals</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITNagpur-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -204,7 +204,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-hyderabad.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITHYDERABAD-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Shaping the Next Generation of Technology Leaders</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITHyderabad-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -229,7 +229,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={300} priority />
+                            <Image src="/images/aboutus/SCEI-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Fostering Entrepreneurship & Innovation</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -306,7 +306,7 @@ const ContactPage = () => {
 
                           More than a conference programme, the Conclave creates a continuum from insight to interaction to innovation — with opportunities to learn, question, experiment, collaborate and build.
                           Connect with diverse minds, exchange perspectives and transform promising ideas into meaningful, scalable healthcare solutions.
-                        </div>
+                        </div> 
                       </div>
                     </div>
                   </div>

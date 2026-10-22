@@ -75,7 +75,7 @@ const Whythis = () => {
                     </div>
                 </div>
                 <div className="col-lg-4 text-center">
-                    <Image src="/images/welcome_img2.png" className="img-fluid" alt="Logo" width={540} height={95} priority />
+                    <Image src="/images/whythisconclave2.png" className="img-fluid" style={{borderRadius:"20px"}} alt="Logo" width={540} height={95} priority />
                 </div>
             </div>
             

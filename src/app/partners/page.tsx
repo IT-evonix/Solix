@@ -31,7 +31,7 @@ const ContactPage = () => {
                       <div className="about_white_list" style={{position:"sticky", top:"100px"}}>
                         
                         <div className="row">
-                          <div className="col-lg-12 mb-4"><Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={150} height={95} priority /></div>
+                          <div className="col-lg-12 mb-4"><Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={200} height={100} priority /></div>
                         </div>
                         <div className="row">
                           <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
@@ -56,7 +56,7 @@ const ContactPage = () => {
                         <div className="col-lg-12 mb-4">
                           <div className="about_white_list">
                             <div className="row">
-                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/sit-pune.png" className="img-fluid" alt="" width={540} height={95} priority /></div>
+                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/SITPUNE-logo.png" className="img-fluid" alt="" width={300} height={100} priority /></div>
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-3 heading19_black">Symbiosis Institute of Technology, Pune (SIT Pune)</div>
@@ -77,7 +77,7 @@ const ContactPage = () => {
                         <div className="col-lg-12 mb-4">
                           <div className="about_white_list">
                             <div className="row">
-                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/sit-nagpur.png" className="img-fluid" alt="" width={540} height={95} priority /></div>
+                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/SITNAGPUR-logo.png" className="img-fluid" alt="" width={300} height={100} priority /></div>
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-3 heading19_black">Symbiosis Institute of Technology, Nagpur (SIT Nagpur)</div>
@@ -98,7 +98,7 @@ const ContactPage = () => {
                         <div className="col-lg-12 mb-4">
                           <div className="about_white_list">
                             <div className="row">
-                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/sit-hyderabad.png" className="img-fluid" alt="" width={540} height={95} priority /></div>
+                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/SITHYDERABAD-logo.png" className="img-fluid" alt="" width={300} height={100} priority /></div>
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-3 heading19_black">Symbiosis Institute of Technology, Hyderabad (SIT Hyderabad)</div>
@@ -119,7 +119,7 @@ const ContactPage = () => {
                         <div className="col-lg-12 mb-4">
                           <div className="about_white_list">
                             <div className="row">
-                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={95} priority /></div>
+                              <div className="col-lg-12 mb-4"><Image src="/images/aboutus/SCEI-logo.png" className="img-fluid" alt="" width={300} height={100} priority /></div>
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-3 heading19_black">Symbiosis Centre for International Education (SCIE)</div>
