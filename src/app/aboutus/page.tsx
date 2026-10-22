@@ -16,10 +16,10 @@ const ContactPage = () => {
                   </div>
                 </div>
                 <div className="row">
-                    <div className="col-lg-12 mb-5">
+                    <div className="col-lg-12 mb-5 text16_black">
                       As technology continues to reshape the way healthcare is delivered, taught and researched, the Conclave brings together clinicians, academicians, researchers, technologists, industry leaders, innovators and students to explore what comes next.
                       <br></br><br></br>
-                      The three-day experience moves from <b>CONNECT → CREATE → TRANSFORM.</b> It will connect people and ideas, create solutions through collaboration and explore how promising ideas can move towards future applications through the med-tech hackathon.
+                      The three-day experience moves from <b>CONNECT → CREATE → TRANSFORM.</b> It will connect people and ideas, create solutions through collaboration and explore how promising ideas can move towards future applications through the one of its own kind of hackathon.
                       <br></br><br></br>
                       The Conclave is designed as an ecosystem, not a sponsor wall. Partners can bring a problem, technology, capability, research question, mentor, demonstration, network or pathway to scale — and participate in the innovation journey itself.
                     </div>
@@ -35,11 +35,27 @@ const ContactPage = () => {
                     priority
                   />
               </div>
-              <div className="col-lg-12 mb-5 text-center">
-                This is not a hackathon where technology searches for a problem. It is a MedTech innovation challenge where healthcare problems provide the starting point and multidisciplinary teams work towards solutions that can make sense in the real world.
-                <br></br><br></br>
-                A successful outcome need not always be a finished product. It may be a validated concept, clinical workflow solution, digital health intervention, medical-device concept, data/AI application, simulation, decision-support approach or another workable pathway — provided it responds meaningfully to the challenge.
+              <div className="col-lg-12 mb-4">
+                This is not a conventional hackathon where technology searches for a problem. It is a MedTech innovation challenge where healthcare problems provide the starting point and multidisciplinary teams work towards solutions that simplify medical innovation, accelerate its real-world adoption, and enable scalable impact across healthcare.
               </div>
+              <div className="col-lg-12 heading19_black mb-2">
+                A successful outcome may include:
+              </div>
+              <div className="col-lg-10 mb-5 aboutus_outcomes_box">
+                <ul>
+                  <li>A validated concept</li>
+                  <li>A clinical workflow solution</li>
+                  <li>A digital health intervention</li>
+                  <li>A medical-device concept</li>
+                  <li>A data or AI application</li>
+                  <li>A simulation</li>
+                  <li>A clinical decision-support approach</li>
+                  <li>Any other workable solution that meaningfully addresses the challenge.</li>
+
+                </ul>
+              </div>
+              <div className="col-lg-12"></div>
+
             </div>
             <div className="row">
               <div className="col-lg-12" style={{display:"flex", justifyContent:"center"}}>
@@ -57,13 +73,11 @@ const ContactPage = () => {
               <div className="col-lg-12">
                 <div>
                   <div className="row">
-                    <div className="col-lg-12 heading35_black mb-4 text-center">THE INSTITUTIONS BEHIND THE CONCLAVE</div>
+                    <div className="col-lg-12 heading35_black mb-3 text-center">Our Host Institutions: United by Innovation</div>
                   </div>
                   <div className="row">
                     <div className="col-lg-12 text-center mb-5">
-                      The Conclave draws its character from the convergence of four complementary strengths: a multidisciplinary university, a women-focused medical education ecosystem, a tertiary-care teaching hospital and a global data and AI technology company.
-                      <br></br><br></br>
-                      The <b>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> brings together the complementary strengths of a multidisciplinary university, a women-focused medical education ecosystem, a tertiary-care teaching hospital and a global Data + AI technology company.
+                      The <b style={{color:"#e8480c"}}>SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026</b> brings together the complementary strengths of a multidisciplinary university, a women-focused medical education ecosystem, a tertiary-care teaching hospital and a global Data + AI technology company.
                     </div>
                   </div>
                   <div className="row">
@@ -71,7 +85,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={200} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
                           <div className="col-lg-12 mb-4 about_text">
@@ -91,8 +105,8 @@ const ContactPage = () => {
                     <div className="col-lg-6 mb-4">
                       <div className="about_white_list">
                         <div className="row">
-                          <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={500} height={500} priority />
+                          <div className="col-lg-12 mb-4 mt-3">
+                            <Image src="/images/aboutus/siu_logo.png" className="img-fluid" alt="" width={250} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>A Multidisciplinary Academic Ecosystem</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SIU-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -117,15 +131,15 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/suhrc2.png" className="img-fluid" alt="" style={{maxHeight:"80px"}} width={540} height={95} priority />
+                            <Image src="/images/aboutus/SMCWSUHRC-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
-                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Educ  arch</i></div>
+                          <div className="col-lg-12 mb-3 text19_black"><i>Medical Education • Healthcare • Clinical Research</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SMCW&SUHRC-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
                           <div className="col-lg-7 mb-3">
                             Symbiosis Medical College for Women (SMCW) is the first medical college in Maharashtra exclusively meant for girl students, created with a vision of empowering women through medical education. 
                           </div>
                           <div className="col-lg-12 mb-4 about_text">
-                            SMCW is closely integrated with Symbiosis University Hospital & Research Centre (SUHRC), its dedicated teaching hospital. SUHRC is a 900-bed tertiary-care teaching hospital providing clinical exposure and patient-care experience to medical students alongside comprehensive healthcare services. The hospital includes advanced diagnostic and imaging facilities, operation theatres, intensive care, dialysis, endoscopy, oncology services and 24×7 emergency care.
+                            SMCW is closely integrated with SUHRC, its dedicated teaching hospital. SUHRC is a 900-bed tertiary-care teaching hospital providing clinical exposure and patient-care experience to medical students alongside comprehensive healthcare services. The hospital includes advanced diagnostic and imaging facilities, operation theatres, intensive care, dialysis, endoscopy, oncology services and 24×7 emergency care.
                           </div>
                           <div className="col-lg-12">
                             <div className="box_list">
@@ -140,7 +154,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-pune.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITPUNE-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Engineering & Technology for a Changing World</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITpune-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -165,7 +179,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-nagpur.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITNAGPUR-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Building Future-Ready Technology Professionals</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITNagpur-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -190,7 +204,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/sit-hyderabad.png" className="img-fluid" alt="" width={540} height={95} priority />
+                            <Image src="/images/aboutus/SITHYDERABAD-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Shaping the Next Generation of Technology Leaders</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SITHyderabad-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -215,7 +229,7 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/scie3.png" className="img-fluid" alt="" width={540} height={300} priority />
+                            <Image src="/images/aboutus/SCEI-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Fostering Entrepreneurship & Innovation</i></div>
                           <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
@@ -225,7 +239,7 @@ const ContactPage = () => {
                           <div className="col-lg-12 mb-4 about_text">
                             SCEI leverages Symbiosis's research capabilities in areas such as healthcare technology, medical imaging, waste management, artificial intelligence, machine learning and nanotechnology to support technology-driven start-ups. Its initiatives include incubation, pre-incubation, mentoring, prototyping and access to innovation facilities.
                             <br></br><br></br>
-                            With a focus on design thinking and sustainable development, SCEI encourages an entrepreneurial mindset among students, researchers and industry professionals, helping transform innovative ideas into practical solutions. 
+                            With a focus on design thinking and sustainable development, SCEI encourages an entrepreneurial mindset among students, researchers and industry professionals, helping transform innovative ideas into practical solutions.
                           </div>
                           <div className="col-lg-12">
                             <div className="box_list">
@@ -249,7 +263,7 @@ const ContactPage = () => {
         <section>
           <div className="container">
             <div className="row">
-              <div className="col-lg-12 mb-4">
+              {/* <div className="col-lg-12 mb-4">
                 <div className="about_white_list p-5" style={{backgroundColor:"#ecf5ff", boxShadow:"none"}}>
                   <div className="row justify-content-center align-items-center">
                     <div className="col-lg-2 text-center">
@@ -274,7 +288,7 @@ const ContactPage = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="col-lg-12">
                 <div className="about_white_list p-5" style={{backgroundColor:"#fbf4f2", boxShadow:"none"}}>
                   <div className="row justify-content-center align-items-center">
@@ -288,8 +302,11 @@ const ContactPage = () => {
                       <div className="row">
                         <div className="col-lg-12 heading21_black mb-3 pb-1" style={{color:"#107F44", borderBottom:"1px solid #ccc"}}>WHAT THE CONCLAVE OFFERS</div>
                         <div className="col-lg-12">
+                          Step away from your daily routine, immerse yourself in the lush beauty of the Lavale campus, and become part of a vibrant consortium of clinicians, technologists, researchers, entrepreneurs and innovators united by a shared vision for the future of healthcare.
+
                           More than a conference programme, the Conclave creates a continuum from insight to interaction to innovation — with opportunities to learn, question, experiment, collaborate and build.
-                        </div>
+                          Connect with diverse minds, exchange perspectives and transform promising ideas into meaningful, scalable healthcare solutions.
+                        </div> 
                       </div>
                     </div>
                   </div>
@@ -298,7 +315,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section>
-        <section className="signature_section">
+        {/* <section className="signature_section">
           <div className="container">
             <div className="row">
                 <div className="col-lg-12 heading35_black mb-2 text-center">CONNECT. CREATE. TRANSFORM.</div>
@@ -403,7 +420,7 @@ const ContactPage = () => {
                 <div className="col-lg-12"></div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="core_section text-center mb-0">
           <div className="container">
             <div className="row">
