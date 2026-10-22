@@ -16,11 +16,9 @@ type RegistrationDetailData = {
   departmentFunctionalArea: string;
   areasOfInterest: string[];
   exploreConclave: string[];
-  onCampusAccommodation: string;
   registrationFee: string;
   declarations: string[];
   preferredCommunicationChannel: string;
-  dietaryPreference: string | null;
   attendeePhotoPath: string | null;
   hearAbout: string[];
   status: string;
@@ -113,9 +111,7 @@ export function RegistrationDetail({
               <ChipField label="Areas of interest" values={detail.areasOfInterest} />
               <ChipField label="What would you like to explore at the Conclave?" values={detail.exploreConclave} />
             </Section>
-            <Section title="Accommodation and payment">
-              <Field label="On-campus accommodation" value={detail.onCampusAccommodation} />
-              <Field label="Dietary preference" value={detail.dietaryPreference ?? "—"} />
+            <Section title="Payment">
               <Field label="Registration fee" value={detail.registrationFee} />
               <Field label="Payer name" value={detail.payerName ?? "—"} />
               <Field label="Transaction ID" value={detail.transactionId ?? "—"} />
@@ -153,7 +149,7 @@ export function RegistrationDetail({
             </Section>
             <Section title="Declarations and communication">
               <ChipField label="Declarations and consent" values={detail.declarations} />
-              <Field label="Preferred communication channel" value={detail.preferredCommunicationChannel} />
+              {/* <Field label="Preferred communication channel" value={detail.preferredCommunicationChannel} /> */}
               <ChipField label="How did you hear about the Conclave?" values={detail.hearAbout} />
               <Field label="Created at" value={detail.createdAt} />
             </Section>

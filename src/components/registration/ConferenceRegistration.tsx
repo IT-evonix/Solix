@@ -19,7 +19,6 @@ import {
   Stepper,
   SuccessCard,
   toChoices,
-  type Choice,
 } from "./parts";
 import { useStepForm } from "./useStepForm";
 import { emailError, fileError, mobileError, nameError, toggleValue, type Errors } from "./validation";
@@ -48,18 +47,6 @@ const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
 const MAX_RECEIPT_BYTES = 5 * 1024 * 1024;
 const TRANSACTION_PATTERN = /^[A-Za-z0-9]{6,30}$/;
 
-const accommodationChoices: Choice[] = [
-  { value: "yes", label: "Yes — Book stay at Sandipani Hometel", note: "Separate accommodation charge applies" },
-  { value: "no", label: "No — I will arrange my own lodging" },
-];
-
-const channelChoices: Choice[] = [
-  { value: "Email", label: "Email Notification" },
-  { value: "WhatsApp", label: "WhatsApp Direct Messaging" },
-];
-
-const dietaryOptions = ["Vegetarian", "Non-Vegetarian", "Jain"];
-
 export default function ConferenceRegistration() {
   const [options, setOptions] = useState<Options>(emptyOptions);
   const [fullName, setFullName] = useState("");
@@ -76,9 +63,6 @@ export default function ConferenceRegistration() {
   const [departmentFunctionalArea, setDepartmentFunctionalArea] = useState("");
   const [areaOfInterest, setAreaOfInterest] = useState<string[]>([]);
   const [exploreConclave, setExploreConclave] = useState<string[]>([]);
-  const [onCampusAccommodation, setOnCampusAccommodation] = useState("");
-  const [preferredCommunicationChannel, setPreferredCommunicationChannel] = useState("");
-  const [dietaryPreference, setDietaryPreference] = useState("");
   const [hearAboutConclave, setHearAboutConclave] = useState<string[]>([]);
   const [payerName, setPayerName] = useState("");
   const [transactionId, setTransactionId] = useState("");
@@ -137,8 +121,6 @@ export default function ConferenceRegistration() {
     if (step === 3) {
       if (areaOfInterest.length === 0) next.areaOfInterest = "Select at least one topic of interest.";
       if (exploreConclave.length === 0) next.exploreConclave = "Select at least one option.";
-      if (!onCampusAccommodation) next.onCampusAccommodation = "Select whether you need on-campus accommodation.";
-      if (!preferredCommunicationChannel) next.preferredCommunicationChannel = "Select a communication channel.";
       if (hearAboutConclave.length === 0) next.hearAboutConclave = "Select how you heard about the Conclave.";
     }
     if (step === 4) {
@@ -177,9 +159,6 @@ export default function ConferenceRegistration() {
     setDepartmentFunctionalArea("");
     setAreaOfInterest([]);
     setExploreConclave([]);
-    setOnCampusAccommodation("");
-    setPreferredCommunicationChannel("");
-    setDietaryPreference("");
     setHearAboutConclave([]);
     setPayerName("");
     setTransactionId("");
@@ -226,9 +205,6 @@ export default function ConferenceRegistration() {
     body.set("departmentFunctionalArea", departmentFunctionalArea.trim());
     areaOfInterest.forEach((id) => body.append("areaOfInterest", id));
     exploreConclave.forEach((id) => body.append("exploreConclave", id));
-    body.set("onCampusAccommodation", onCampusAccommodation);
-    body.set("preferredCommunicationChannel", preferredCommunicationChannel);
-    if (dietaryPreference) body.set("dietaryPreference", dietaryPreference);
     hearAboutConclave.forEach((id) => body.append("hearAboutConclave", id));
     body.set("payerName", payerName.trim());
     body.set("transactionId", transactionId.trim());
@@ -252,9 +228,6 @@ export default function ConferenceRegistration() {
       setSubmitting(false);
     }
   }
-
-  const accommodationLabel =
-    onCampusAccommodation === "yes" ? "Requested" : onCampusAccommodation === "no" ? "Not Requested" : "—";
 
   return (
     <section className="reg_scope">
@@ -284,7 +257,7 @@ export default function ConferenceRegistration() {
             {registrationCode ? (
               <SuccessCard
                 title="Registration Received"
-                sub={`Thank you, ${fullName.trim()}. Your registration and payment details have been recorded. Our Finance team will verify your payment and confirm your Delegate Pass by ${preferredCommunicationChannel === "WhatsApp" ? "WhatsApp" : "email"}.`}
+                sub={`Thank you, ${fullName.trim()}. Your registration and payment details have been recorded. UPI payments may take up to one working day (T+1) to reflect in our account. Your registration will be verified and confirmed within 4–5 working days of submission, after which you will receive a confirmation email.`}
                 refLabel="Registration ID"
                 refValue={registrationCode}
               >
@@ -545,7 +518,7 @@ export default function ConferenceRegistration() {
                     <StepHeader
                       kicker="03 — Areas of Interest & Engagement"
                       title="Interests & Preferences"
-                      sub="Help us curate your Conclave experience, accommodation and communication."
+                      sub="Help us curate your Conclave experience."
                     />
                     <Field
                       label="Topics You're Interested In"
@@ -579,76 +552,18 @@ export default function ConferenceRegistration() {
                         }}
                       />
                     </Field>
-                    <h3 className="reg_section_title">Attendance</h3>
-                    <Field
-                      label="Do you require on-campus accommodation?"
-                      required
-                      helper="On-campus lodging is available at Sandipani Hometel, SIU Lavale Campus."
-                      error={errors.onCampusAccommodation}
-                    >
-                      <ChoiceCards
-                        name="onCampusAccommodation"
-                        type="radio"
-                        columns={2}
-                        items={accommodationChoices}
-                        selected={onCampusAccommodation ? [onCampusAccommodation] : []}
-                        onToggle={(value) => {
-                          setOnCampusAccommodation(value);
-                          clearError("onCampusAccommodation");
-                        }}
-                      />
-                      {onCampusAccommodation === "yes" ? (
-                        <div className="cond_box" style={{ display: "none" }}>
-                          Your accommodation preference will be forwarded to the{" "}
-                          <a href="https://www.sandipanihometel.com/" target="_blank" rel="noreferrer">
-                            Sandipani Hometel
-                          </a>{" "}
-                          reception desk for 10–12 December 2026. Room tariff options, check-in instructions and
-                          payment steps for lodging will be shared separately via email / WhatsApp.
-                        </div>
-                      ) : null}
-                    </Field>
-                    <Field
-                      label="Preferred Communication Channel"
-                      required
-                      helper="Choose how you wish to receive your delegate pass and live schedule announcements."
-                      error={errors.preferredCommunicationChannel}
-                    >
-                      <ChoiceCards
-                        name="preferredCommunicationChannel"
-                        type="radio"
-                        columns={2}
-                        items={channelChoices}
-                        selected={preferredCommunicationChannel ? [preferredCommunicationChannel] : []}
-                        onToggle={(value) => {
-                          setPreferredCommunicationChannel(value);
-                          clearError("preferredCommunicationChannel");
-                        }}
-                      />
-                    </Field>
-                    <div className="row">
-                      <div className="col-md-6">
-                        <Field
-                          label="Dietary Preference"
-                          htmlFor="dietaryPreference"
-                          optional
-                          helper="Helps our catering team arrange lunches and high tea across all 3 days."
-                        >
-                          <select
-                            id="dietaryPreference"
-                            className={`input_box ${dietaryPreference ? "" : "is-empty"}`}
-                            value={dietaryPreference}
-                            onChange={(event) => setDietaryPreference(event.target.value)}
-                          >
-                            <option value="">Select preference</option>
-                            {dietaryOptions.map((item) => (
-                              <option key={item} value={item}>
-                                {item}
-                              </option>
-                            ))}
-                          </select>
-                        </Field>
-                      </div>
+                    <div className="conclave_experience">
+                      <h3 className="conclave_experience_title">Your Conclave Experience</h3>
+                      <p className="conclave_experience_text">
+                        Let us help you plan your stay and stay connected throughout the Conclave.
+                      </p>
+                      <p className="conclave_experience_text">
+                        Planning to stay on campus? Complete your Conclave registration first, then visit the{" "}
+                        <a href="https://www.sandipanihometel.com/" target="_blank" rel="noreferrer">
+                          Sandipani Hometel booking link
+                        </a>{" "}
+                        to reserve your accommodation, subject to availability and applicable charges.
+                      </p>
                     </div>
                     <Field
                       label="How did you hear about the Conclave?"
@@ -690,17 +605,21 @@ export default function ConferenceRegistration() {
                         ["Mobile Phone", mobileNumber ? `+91 ${mobileNumber}` : ""],
                         ["Organisation", organisationInstitution.trim()],
                         ["Participant Category", categoryLabel],
-                        ["Accommodation", accommodationLabel],
                       ]}
-                      total={["Registration Fee", "₹1,500/- (All Inclusive)"]}
+                      total={["Registration Fee", "₹1,500/-"]}
                     />
+
+                    <div className="info_note is_green payment_verification_note">
+                      Your registration shall be confirmed within 4-5 working days after payment verification. An
+                      email will be sent with your delegate pass.
+                    </div>
 
                     <div className="payment_panel">
                       <div className="row align-items-center">
                         <div className="col-md-7 mb-4 mb-md-0">
                           <div className="payment_badge_title">Official Delegate Fee</div>
                           <div className="payment_amount_large">
-                            ₹1,500<span className="payment_amount_sub"> / All Inclusive</span>
+                            ₹1,500
                           </div>
                           <p className="reg_helper mb-3">
                             Scan the QR code using any UPI app (Google Pay, PhonePe, Paytm, BHIM) or transfer directly
@@ -718,9 +637,6 @@ export default function ConferenceRegistration() {
                                   {copied ? "Copied" : "Copy"}
                                 </button>
                               </span>
-                            </div>
-                            <div>
-                              <b>Bank:</b> Bank of India (BOI)
                             </div>
                           </div>
                         </div>
@@ -776,6 +692,10 @@ export default function ConferenceRegistration() {
                             autoComplete="off"
                           />
                         </Field>
+                        <p className="utr_note">
+                          Please note: Providing incorrect UTR details or failing to provide the correct UTR details
+                          may result in cancellation of registration.
+                        </p>
                       </div>
                       <div className="col-md-6">
                         <Field
@@ -840,7 +760,7 @@ export default function ConferenceRegistration() {
                 ₹1,500<span>/-</span>
               </>
             }
-            priceBadge="All Inclusive"
+            priceBadge=""
             meta={[
               { icon: "calendar", label: "Dates", value: "10–12 December 2026", sub: "3 Full Days • Connect, Create, Transform" },
               { icon: "pin", label: "Venue", value: "SMCW & SUHRC", sub: "SIU Lavale Campus, Pune, Maharashtra" },
@@ -861,7 +781,7 @@ export default function ConferenceRegistration() {
               photo: attendeePhoto,
               footerLeft: (
                 <>
-                  Accommodation: <b>{onCampusAccommodation === "yes" ? "Requested" : "Not Requested"}</b>
+                  Registration ID: <b>{registrationCode || "—"}</b>
                 </>
               ),
               footerRight: "SIU • 2026",

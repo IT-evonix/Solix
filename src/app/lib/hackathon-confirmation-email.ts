@@ -19,8 +19,7 @@ const BLUE = "#007bb7";
 const FONT = "font-family:Arial,Helvetica,sans-serif;";
 
 const EVENT = "SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026";
-const SHORTLIST =
-  "The top 100 shortlisted students will advance to the on-campus Grand Finale. The ₹1,500 fee is payable only after shortlisting.";
+const SHORTLIST = "The top 100 shortlisted students will advance to the on-campus Grand Finale.";
 const CLOSING = "Get ready to connect, create and transform healthcare challenges into meaningful solutions!";
 
 export function displayName(fullName: string) {

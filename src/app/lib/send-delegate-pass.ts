@@ -38,7 +38,6 @@ type ClaimRow = {
   email_address: string;
   organisation_institution: string;
   registration_fee: string;
-  on_campus_accommodation: boolean;
   attendee_photo_path: string | null;
 };
 
@@ -104,7 +103,7 @@ export async function sendDelegatePass(registrationId: string, { force = false }
          OR (pass_email_status = 'sending' AND pass_email_claimed_at < LOCALTIMESTAMP - ${STALE_CLAIM_SQL})
        )
      RETURNING registration_code, full_name, email_address, organisation_institution,
-               registration_fee, on_campus_accommodation, attendee_photo_path`,
+               registration_fee, attendee_photo_path`,
     [registrationId, force],
   );
 
@@ -123,7 +122,6 @@ export async function sendDelegatePass(registrationId: string, { force = false }
       fullName: row.full_name,
       organisation: row.organisation_institution,
       fee: row.registration_fee,
-      accommodation: row.on_campus_accommodation,
       icons,
       photo: await loadPhoto(row.attendee_photo_path),
     });

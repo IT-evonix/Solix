@@ -114,9 +114,10 @@ function textFields(input: Input) {
     return badRequest("Enter your institution, course, and specialisation.");
   }
   if (!fields.yearOfStudy) return badRequest("Select your current year of study.");
-  if (!institutionId) return badRequest("Upload your college / institution ID.");
-  if (institutionId.size > MAX_UPLOAD_BYTES) return badRequest("College ID must be 5 MB or smaller.");
-  if (!fields.institutionIdExtension) return badRequest("Upload the college ID as JPG, PNG, or PDF.");
+  if (institutionId) {
+    if (institutionId.size > MAX_UPLOAD_BYTES) return badRequest("College ID must be 5 MB or smaller.");
+    if (!fields.institutionIdExtension) return badRequest("Upload the college ID as JPG, PNG, or PDF.");
+  }
   if (!solution) return badRequest("Upload your solution to the Round 1 problem statement.");
   if (solution.size > MAX_UPLOAD_BYTES) return badRequest("Solution file must be 5 MB or smaller.");
   if (!fields.solutionExtension) return badRequest("Upload the solution as PDF, PPT, PPTX, DOC, DOCX, or ZIP.");
@@ -175,7 +176,7 @@ type HackathonInsert = {
   discipline: number;
   disciplineOther: string;
   declaration: string;
-  institutionId: File;
+  institutionId: File | null;
   institutionIdExtension: string;
   solution: File;
   solutionExtension: string;
@@ -232,14 +233,18 @@ async function saveRegistration(data: HackathonInsert) {
     );
 
     const row = inserted.rows[0];
-    const idFilename = `hk-${row.id}-id.${data.institutionIdExtension}`;
-    storedFiles.push(await storeUpload(data.institutionId, idFilename));
+    let institutionIdPath = "NA";
+    if (data.institutionId) {
+      const idFilename = `hk-${row.id}-id.${data.institutionIdExtension}`;
+      storedFiles.push(await storeUpload(data.institutionId, idFilename));
+      institutionIdPath = `/api/uploads/${idFilename}`;
+    }
     const solutionFilename = `hk-${row.id}-solution.${data.solutionExtension}`;
     storedFiles.push(await storeUpload(data.solution, solutionFilename));
 
     await client.query(
       `UPDATE hackathon_registration SET institution_id_path = $2, solution_path = $3 WHERE id = $1`,
-      [row.id, `/api/uploads/${idFilename}`, `/api/uploads/${solutionFilename}`],
+      [row.id, institutionIdPath, `/api/uploads/${solutionFilename}`],
     );
     await client.query("COMMIT");
 

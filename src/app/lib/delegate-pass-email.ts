@@ -9,18 +9,18 @@ export type DelegatePassData = {
   fullName: string;
   organisation: string;
   fee: string | number;
-  accommodation: boolean;
   icons: { calendar: PassImage; pin: PassImage; user: PassImage };
   photo?: PassImage | null;
 };
 
-export const CONTACT_EMAIL = "conclave@siu.edu.in";
+export const CONTACT_EMAIL = "s_semtechconclave@smcw.edu.in";
 export const HELPLINE = "+91 (020) 6693 6500";
 
-const NAVY = "#1e3a5f";
+const NAVY = "#1f3a5f";
 const RED = "#c8102e";
-const INK = "#12263a";
-const MUTED = "#6b7785";
+const ORANGE = "#e8480c";
+const INK = "#1b2533";
+const MUTED = "#7f7f7f";
 const FONT = "font-family:Arial,Helvetica,sans-serif;";
 
 const privileges = [
@@ -51,13 +51,13 @@ function infoRow(cid: string, alt: string, label: string, title: string, note: s
   <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
     <td width="34" valign="top" style="width:34px;">
       <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-        <td width="32" height="32" align="center" valign="middle" style="width:32px;height:32px;border:1px solid #d9e1ea;border-radius:8px;background:#ffffff;">
+        <td width="32" height="32" align="center" valign="middle" style="width:32px;height:32px;border:1px solid #cfd6df;border-radius:8px;background:#f2f5f9;">
           <img src="cid:${cid}" width="16" height="16" alt="${alt}" style="display:block;width:16px;height:16px;border:0;${FONT}font-size:9px;color:${MUTED};">
         </td>
       </tr></table>
     </td>
     <td valign="top" style="padding-left:12px;${FONT}">
-      <div style="font-size:10px;letter-spacing:1.2px;color:#7b8794;font-weight:bold;text-transform:uppercase;">${label}</div>
+      <div style="font-size:10px;letter-spacing:1.2px;color:${MUTED};font-weight:bold;text-transform:uppercase;">${label}</div>
       <div style="font-size:13px;color:${INK};font-weight:bold;padding-top:2px;">${title}</div>
       <div style="font-size:11px;color:${MUTED};font-style:italic;padding-top:1px;">${note}</div>
     </td>
@@ -70,7 +70,6 @@ export function renderDelegatePass(data: DelegatePassData) {
   const organisation = data.organisation.trim();
   const code = data.registrationCode.trim();
   const fee = formatFee(data.fee);
-  const accommodation = data.accommodation ? "Requested" : "Not Requested";
   const safeName = escapeHtml(name);
   const safeOrg = escapeHtml(organisation);
   const safeCode = escapeHtml(code);
@@ -91,9 +90,9 @@ export function renderDelegatePass(data: DelegatePassData) {
 <meta name="supported-color-schemes" content="light">
 <title>Delegate Pass</title>
 </head>
-<body style="margin:0;padding:0;background:#eef2f6;-webkit-text-size-adjust:100%;">
-<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#eef2f6;font-size:1px;line-height:1px;">${escapeHtml(preheader)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#eef2f6" style="background:#eef2f6;">
+<body style="margin:0;padding:0;background:#f7f8fa;-webkit-text-size-adjust:100%;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:#f7f8fa;font-size:1px;line-height:1px;">${escapeHtml(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f7f8fa" style="background:#f7f8fa;">
 <tr><td align="center" style="padding:24px 12px;">
 
 <table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:480px;">
@@ -103,26 +102,23 @@ export function renderDelegatePass(data: DelegatePassData) {
 </td></tr>
 </table>
 
-<table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:100%;max-width:480px;background:#ffffff;border-radius:16px;border:1px solid #dde4ec;">
+<table role="presentation" width="480" cellpadding="0" cellspacing="0" border="0" bgcolor="#ffffff" style="width:100%;max-width:480px;background:#ffffff;border-radius:16px;border:1px solid #e4e8ee;">
 
 <!-- Header -->
-<tr><td bgcolor="${NAVY}" style="background:${NAVY};background-image:linear-gradient(135deg,#1b2d4d 0%,#2b4b75 100%);border-radius:15px 15px 0 0;padding:20px 20px 18px 20px;">
+<tr><td bgcolor="${ORANGE}" style="background:${ORANGE};background-image:linear-gradient(0deg,${ORANGE} 0%,#d63d04 100%);border-radius:15px 15px 0 0;padding:20px 20px 18px 20px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-    <td valign="middle" style="${FONT}font-size:10px;letter-spacing:1.5px;font-weight:bold;color:#f4b6c2;text-transform:uppercase;">SIU · SolixEmpower</td>
+    <td valign="middle" style="${FONT}font-size:10px;letter-spacing:1.5px;font-weight:bold;color:#f3c4cc;text-transform:uppercase;">SIU · SolixEmpower</td>
     <td align="right" valign="middle">
-      <span style="display:inline-block;${FONT}font-size:10px;font-weight:bold;color:#b8f5d6;background:#1c4a45;border:1px solid #4fd1a1;border-radius:10px;padding:3px 8px;">&#10003; Official</span>
+      <span style="display:inline-block;${FONT}font-size:10px;font-weight:bold;color:#a7f3c4;background:#1c4a45;border:1px solid #4fd1a1;border-radius:10px;padding:3px 8px;">&#10003; Official</span>
     </td>
   </tr></table>
   <div style="${FONT}font-size:22px;line-height:28px;letter-spacing:2px;font-weight:bold;color:#ffffff;padding-top:12px;">DELEGATE PASS</div>
-  <div style="${FONT}font-size:12px;font-style:italic;color:#c9d4e3;padding-top:2px;">Symbiosis–SolixEmpower Tech Conclave 2026</div>
+  <div style="${FONT}font-size:12px;font-style:italic;color:#e2e8f0;padding-top:2px;">Symbiosis–SolixEmpower Tech Conclave 2026</div>
 
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#33507a" style="margin-top:16px;background:#33507a;border:1px solid #4a6690;border-radius:10px;"><tr>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#d94b16" style="margin-top:16px;background:#d94b16;border:1px solid #dc5827;border-radius:10px;"><tr>
     <td valign="middle" style="padding:12px 14px;${FONT}">
-      <div style="font-size:10px;letter-spacing:1.2px;font-weight:bold;color:#c9d4e3;text-transform:uppercase;white-space:nowrap;">Confirmed Fee</div>
-      <div style="font-size:26px;line-height:32px;font-weight:bold;color:#ffffff;">${fee}<span style="font-size:13px;color:#f08a9a;font-weight:normal;">/-</span></div>
-    </td>
-    <td align="right" valign="middle" style="padding:12px 14px;">
-      <span style="display:inline-block;${FONT}font-size:11px;font-weight:bold;letter-spacing:0.5px;color:#ffffff;background:${RED};border-radius:12px;padding:5px 11px;white-space:nowrap;">ALL INCLUSIVE</span>
+      <div style="font-size:10px;letter-spacing:1.2px;font-weight:bold;color:#f3ded6;text-transform:uppercase;white-space:nowrap;">Confirmed Fee</div>
+      <div style="font-size:26px;line-height:32px;font-weight:bold;color:#ffffff;">${fee}<span style="font-size:13px;color:#f3c4cc;font-weight:normal;">/-</span></div>
     </td>
   </tr></table>
 </td></tr>
@@ -137,12 +133,12 @@ export function renderDelegatePass(data: DelegatePassData) {
 </td></tr>
 
 <tr><td style="padding:4px 20px 16px 20px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f5f7fa" style="background:#f5f7fa;border:1px solid #e1e7ee;border-radius:10px;">
-    <tr><td style="padding:14px 16px 4px 16px;${FONT}font-size:11px;letter-spacing:1.2px;font-weight:bold;color:${NAVY};text-transform:uppercase;"><span style="color:#1f8a5b;">&#10003;</span>&nbsp; Delegate Privileges</td></tr>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f7f8fa" style="background:#f7f8fa;border:1px solid #e4e8ee;border-radius:10px;">
+    <tr><td style="padding:14px 16px 4px 16px;${FONT}font-size:11px;letter-spacing:1.2px;font-weight:bold;color:${NAVY};text-transform:uppercase;"><span style="color:#107f44;">&#10003;</span>&nbsp; Delegate Privileges</td></tr>
     ${privileges
       .map(
         (item) =>
-          `<tr><td style="padding:6px 16px 0 16px;${FONT}font-size:12px;color:#33414f;"><span style="color:#1f8a5b;font-weight:bold;">&#10003;</span>&nbsp;&nbsp;${item}</td></tr>`,
+          `<tr><td style="padding:6px 16px 0 16px;${FONT}font-size:12px;color:#3d4a5c;"><span style="color:#107f44;font-weight:bold;">&#10003;</span>&nbsp;&nbsp;${item}</td></tr>`,
       )
       .join("\n    ")}
     <tr><td height="14" style="height:14px;line-height:14px;font-size:0;">&nbsp;</td></tr>
@@ -151,19 +147,19 @@ export function renderDelegatePass(data: DelegatePassData) {
 
 <!-- Badge -->
 <tr><td style="padding:0 20px 18px 20px;">
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #d5dde6;border-radius:10px;">
-    <tr><td height="4" bgcolor="${NAVY}" style="height:4px;line-height:4px;font-size:0;background:${NAVY};background-image:linear-gradient(90deg,${NAVY} 0%,#5b2a4a 60%,${RED} 100%);border-radius:9px 9px 0 0;">&nbsp;</td></tr>
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:1px solid #cfd6df;border-radius:10px;">
+    <tr><td height="4" bgcolor="${RED}" style="height:4px;line-height:4px;font-size:0;background:${RED};background-image:linear-gradient(90deg,${RED} 0%,${NAVY} 100%);border-radius:9px 9px 0 0;">&nbsp;</td></tr>
     <tr><td style="padding:12px 14px 0 14px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-        <td valign="middle" style="${FONT}font-size:10px;letter-spacing:1.2px;font-weight:bold;color:#7b8794;text-transform:uppercase;">Delegate Badge</td>
-        <td align="right" valign="middle"><span style="display:inline-block;${FONT}font-size:10px;font-weight:bold;color:#1f5f8b;background:#e3f1f8;border-radius:4px;padding:3px 7px;">Participant</span></td>
+        <td valign="middle" style="${FONT}font-size:10px;letter-spacing:1.2px;font-weight:bold;color:${MUTED};text-transform:uppercase;">Delegate Badge</td>
+        <td align="right" valign="middle"><span style="display:inline-block;${FONT}font-size:10px;font-weight:bold;color:#01608f;background:#f0f7fc;border-radius:4px;padding:3px 7px;">Participant</span></td>
       </tr></table>
     </td></tr>
     <tr><td style="padding:12px 14px 12px 14px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
         <td width="50" valign="middle" style="width:50px;">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
-            <td width="48" height="48" align="center" valign="middle" bgcolor="#eef2f6" style="width:48px;height:48px;border-radius:24px;background:#eef2f6;border:1px solid #d5dde6;">${avatar}</td>
+            <td width="48" height="48" align="center" valign="middle" bgcolor="#f2f5f9" style="width:48px;height:48px;border-radius:24px;background:#f2f5f9;border:1px solid #cfd6df;">${avatar}</td>
           </tr></table>
         </td>
         <td valign="middle" style="padding-left:12px;${FONT}word-break:break-word;">
@@ -173,11 +169,11 @@ export function renderDelegatePass(data: DelegatePassData) {
         </td>
       </tr></table>
     </td></tr>
-    <tr><td style="padding:0 14px;"><div style="border-top:1px dashed #e1e7ee;height:1px;line-height:1px;font-size:0;">&nbsp;</div></td></tr>
+    <tr><td style="padding:0 14px;"><div style="border-top:1px dashed #e4e8ee;height:1px;line-height:1px;font-size:0;">&nbsp;</div></td></tr>
     <tr><td style="padding:9px 14px 11px 14px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-        <td style="${FONT}font-size:11px;color:#4a5866;">Accommodation: <b style="color:${INK};">${accommodation}</b></td>
-        <td align="right" style="${FONT}font-size:11px;color:#7b8794;white-space:nowrap;">SIU • 2026</td>
+        <td style="${FONT}font-size:11px;color:${MUTED};">&nbsp;</td>
+        <td align="right" style="${FONT}font-size:11px;color:${MUTED};white-space:nowrap;">SIU • 2026</td>
       </tr></table>
     </td></tr>
   </table>
@@ -185,7 +181,7 @@ export function renderDelegatePass(data: DelegatePassData) {
 
 <!-- Footer -->
 <tr><td style="padding:0 20px 20px 20px;">
-  <div style="border-top:1px solid #e1e7ee;height:1px;line-height:1px;font-size:0;">&nbsp;</div>
+  <div style="border-top:1px solid #e4e8ee;height:1px;line-height:1px;font-size:0;">&nbsp;</div>
   <div style="${FONT}font-size:11px;line-height:18px;color:${MUTED};padding-top:12px;">
     <i>Need assistance with your registration?</i><br>
     <i>Email:</i> <a href="mailto:${CONTACT_EMAIL}" style="color:${INK};font-weight:bold;text-decoration:none;">${CONTACT_EMAIL}</a><br>
@@ -209,8 +205,7 @@ export function renderDelegatePass(data: DelegatePassData) {
     `Registration ID: ${code}`,
     `Name: ${name}`,
     ...(organisation ? [`Organisation: ${organisation}`] : []),
-    `Confirmed fee: ${fee}/- (All inclusive)`,
-    `Accommodation: ${accommodation}`,
+    `Confirmed fee: ${fee}/-`,
     "",
     "Dates: 10–12 December 2026 (3 Full Days • Connect, Create, Transform)",
     "Venue: SMCW & SUHRC, SIU Lavale Campus, Pune, Maharashtra",

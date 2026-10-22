@@ -83,7 +83,7 @@ export function buildMime(message: MailMessage, now = new Date()) {
     `Date: ${now.toUTCString().replace("GMT", "+0000")}`,
     `Message-ID: <${crypto.randomUUID()}@${headerSafe(domain)}>`,
     "MIME-Version: 1.0",
-    `Content-Type: multipart/related; boundary="${related}"`,
+    `Content-Type: multipart/related; boundary="${related}"; type="multipart/alternative"`,
   ];
 
   const parts = [

@@ -4,7 +4,6 @@ import { FormEvent, useEffect, useState } from "react";
 import { appPath } from "@/app/lib/app-url";
 import {
   GENDERS,
-  INSTITUTION_ID_EXTENSIONS,
   MAX_UPLOAD_BYTES,
   MIN_AGE,
   SOLUTION_EXTENSIONS,
@@ -67,7 +66,6 @@ export default function HackathonRegistration() {
   const [courseProgramme, setCourseProgramme] = useState("");
   const [specialisation, setSpecialisation] = useState("");
   const [yearOfStudy, setYearOfStudy] = useState("");
-  const [institutionId, setInstitutionId] = useState<File | null>(null);
   const [discipline, setDiscipline] = useState("");
   const [disciplineOther, setDisciplineOther] = useState("");
   const [commitments, setCommitments] = useState<string[]>([]);
@@ -122,12 +120,6 @@ export default function HackathonRegistration() {
       if (!courseProgramme.trim()) next.courseProgramme = "Course / programme is required.";
       if (!specialisation.trim()) next.specialisation = "Specialisation / branch is required.";
       if (!yearOfStudy) next.yearOfStudy = "Select your current year of study.";
-      const idFile = fileError(institutionId, {
-        label: "College ID",
-        maxBytes: MAX_UPLOAD_BYTES,
-        extensions: INSTITUTION_ID_EXTENSIONS,
-      });
-      if (idFile) next.institutionId = idFile;
       if (!discipline) next.discipline = "Select your primary discipline.";
       else if (isOtherDiscipline && !disciplineOther.trim()) next.discipline = "Please specify your discipline.";
     }
@@ -165,7 +157,6 @@ export default function HackathonRegistration() {
     setCourseProgramme("");
     setSpecialisation("");
     setYearOfStudy("");
-    setInstitutionId(null);
     setDiscipline("");
     setDisciplineOther("");
     setCommitments([]);
@@ -203,7 +194,6 @@ export default function HackathonRegistration() {
     body.set("discipline", discipline);
     if (isOtherDiscipline) body.set("disciplineOther", disciplineOther.trim());
     [...commitments, ...consents].forEach((id) => body.append("declaration", id));
-    if (institutionId) body.set("institutionId", institutionId);
     if (solution) body.set("solution", solution);
 
     try {
@@ -505,24 +495,6 @@ export default function HackathonRegistration() {
                       </div>
                     </div>
                     <Field
-                      label="College / Institution ID"
-                      required
-                      helper="Upload a clear photo or scan of your valid college / institution ID card."
-                      error={errors.institutionId}
-                    >
-                      <Dropzone
-                        id="institutionId"
-                        accept="image/jpeg,image/png,application/pdf"
-                        hint="JPG / PNG / PDF • Max 5 MB"
-                        file={institutionId}
-                        onFile={(file) => {
-                          setInstitutionId(file);
-                          clearError("institutionId");
-                        }}
-                        invalid={Boolean(errors.institutionId)}
-                      />
-                    </Field>
-                    <Field
                       label="Primary Discipline Category"
                       required
                       helper="Tick the one category that best describes your primary discipline."
@@ -566,11 +538,7 @@ export default function HackathonRegistration() {
 
                 {step === 3 ? (
                   <div className="step_pane">
-                    <StepHeader
-                      kicker="03 — Participate"
-                      title="Hackathon Participation"
-                      sub="Round 1 is an individual submission. Confirm your participation and upload your proposed solution."
-                    />
+                    <StepHeader kicker="03 — Participate" title="Hackathon Participation" />
                     <Field
                       label="Participation Confirmation"
                       required
@@ -678,7 +646,7 @@ export default function HackathonRegistration() {
             brand="SIU • SolixEmpower"
             title="HACKATHON PASS"
             subtitle="Symbiosis–SolixEmpower Tech Conclave 2026"
-            priceLabel="Round 1 Registration"
+            priceLabel="Screening Round Registration"
             price="Free"
             priceBadge="No Payment"
             meta={[
@@ -687,10 +655,13 @@ export default function HackathonRegistration() {
             ]}
             inclusionsTitle="How It Works"
             inclusions={[
-              "Round 1: individual solution to the official problem statement",
-              "Shortlisted participants form cross-disciplinary teams",
-              "On-campus Grand Finale with expert mentoring",
-              "Certificate of Participation",
+              "Screening Round: individual solution to the official problem statement",
+              // "Shortlisted participants form cross-disciplinary teams",
+              // "On-campus Grand Finale with expert mentoring",
+              // "Certificate of Participation",
+              "Winning Certificate & Cash Prizes",
+              "Complimentary access to Tech Conference",
+              "Incubation Opportunity: The top 5 winning nominations/ideas shall be incubated at SCEI (Symbiosis Centre for Entrepreneurship and Innovation), supporting promising ideas as they progress towards real-world implementation.",
             ]}
             badge={{
               label: "Participant Badge",
@@ -699,10 +670,10 @@ export default function HackathonRegistration() {
               org: institutionName.trim() || "Your Institution",
               footerLeft: (
                 <>
-                  Year: <b>{yearOfStudy || "—"}</b>
+                  Registration ID: <b>{registrationCode || "—"}</b>
                 </>
               ),
-              footerRight: "Round 1 • 2026",
+              footerRight: "Screening Round • 2026",
             }}
           />
         </div>

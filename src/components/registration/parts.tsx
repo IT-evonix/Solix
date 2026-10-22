@@ -165,12 +165,12 @@ export function Stepper({
   );
 }
 
-export function StepHeader({ kicker, title, sub }: { kicker: string; title: string; sub: string }) {
+export function StepHeader({ kicker, title, sub }: { kicker: string; title: string; sub?: string }) {
   return (
     <div className="step_pane_header">
       <p className="step_pane_kicker">{kicker}</p>
       <h2 className="step_pane_title">{title}</h2>
-      <p className="step_pane_sub">{sub}</p>
+      {sub ? <p className="step_pane_sub">{sub}</p> : null}
     </div>
   );
 }
@@ -608,7 +608,7 @@ export type PassCardProps = {
   subtitle: string;
   priceLabel: string;
   price: ReactNode;
-  priceBadge: string;
+  priceBadge?: string;
   meta: { icon: IconName; label: string; value: string; sub?: string }[];
   inclusionsTitle: string;
   inclusions: string[];
@@ -655,7 +655,7 @@ export function PassCard({
                 <div className="pass_price_label">{priceLabel}</div>
                 <div className="pass_price_fig">{price}</div>
               </div>
-              <span className="pass_price_badge">{priceBadge}</span>
+              {priceBadge ? <span className="pass_price_badge">{priceBadge}</span> : null}
             </div>
           </div>
           <div className="pass_card_body">
