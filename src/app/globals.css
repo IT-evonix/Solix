@@ -647,6 +647,17 @@ opacity: 0;
 opacity: 1;
   height: 110%;
 }
+.aboutus_outcomes_box ul{
+  margin: 0;
+  padding: 0 0 0 10px;
+}
+.aboutus_outcomes_box li{
+  margin: 0;
+  padding: 0;
+  width: 50%;
+  float: left;
+  font-size: 16px;
+}
 /* ------------ABOUT-US-PAGE-END---------- */
 
 
