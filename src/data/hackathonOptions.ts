@@ -9,7 +9,6 @@ export const YEARS_OF_STUDY = [
   "4th Year",
   "5th Year",
   "Postgraduate",
-  "PhD / Research",
 ];
 
 export const STATES_AND_UTS = [

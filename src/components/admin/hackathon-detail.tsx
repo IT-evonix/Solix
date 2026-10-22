@@ -74,7 +74,10 @@ export function HackathonDetail({
     if (updated) setDetail((current) => (current ? { ...current, status: updated } : current));
   }
 
-  const idIsImage = detail ? !isPdfPath(detail.institutionIdPath) : false;
+  const hasInstitutionId = detail
+    ? !["", "NA"].includes(detail.institutionIdPath.trim().toUpperCase())
+    : false;
+  const idIsImage = detail && hasInstitutionId ? !isPdfPath(detail.institutionIdPath) : false;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#071422]/50 p-4">
@@ -132,7 +135,9 @@ export function HackathonDetail({
               <Field label="Primary discipline" value={detail.discipline} />
               <div className="sm:col-span-2">
                 <p className="text-sm font-medium text-[#12263a]">College / institution ID</p>
-                {idIsImage ? (
+                {!hasInstitutionId ? (
+                  <p className="mt-2 text-sm text-[#7b8d99]">Not provided</p>
+                ) : idIsImage ? (
                   <a href={detail.institutionIdPath} target="_blank" rel="noreferrer" className="mt-2 inline-block">
                     <img
                       src={detail.institutionIdPath}

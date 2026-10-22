@@ -678,6 +678,46 @@
     color: #2f5c43;
 }
 
+.reg_scope .payment_verification_note {
+    margin: 0 0 18px;
+}
+
+.reg_scope .conclave_experience {
+    margin: 6px 0 26px;
+    padding: 20px 22px;
+    border: 1px solid var(--reg-border);
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--reg-blue-light) 0%, #ffffff 100%);
+}
+
+.reg_scope .conclave_experience_title {
+    font-family: var(--reg-font-display);
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--reg-navy);
+    margin: 0 0 8px;
+}
+
+.reg_scope .conclave_experience_text {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: #3f5873;
+    margin: 0 0 6px;
+}
+
+.reg_scope .conclave_experience_text a {
+    color: var(--reg-blue);
+    font-weight: 600;
+}
+
+.reg_scope .utr_note {
+    margin: 8px 0 16px;
+    font-size: 12px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--reg-red);
+}
+
 /* ==========================================================================
    REVIEW, PAYMENT, UPLOADS, DECLARATIONS
    ========================================================================== */
@@ -1234,6 +1274,10 @@
     position: sticky;
     top: 110px;
     z-index: 10;
+    max-height: calc(100vh - 130px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
 }
 
 .reg_scope .summit_pass_card {
@@ -1639,6 +1683,8 @@
     }
     .reg_scope .sticky_pass_wrapper {
         position: static;
+        max-height: none;
+        overflow: visible;
     }
     .reg_scope .form_nav_bar {
         flex-direction: column-reverse;

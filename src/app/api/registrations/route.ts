@@ -125,12 +125,6 @@ function textFields(input: Input) {
     return badRequest("Enter your organisation, designation, profession, and department.");
   }
   const onCampusAccommodation = fields.onCampusAccommodation;
-  if (onCampusAccommodation === null) {
-    return badRequest("Select whether you need on-campus accommodation.");
-  }
-  if (!fields.preferredCommunicationChannel) {
-    return badRequest("Select Email or WhatsApp as your communication channel.");
-  }
   if (dietaryInput && !fields.dietaryPreference) return badRequest("Select a valid dietary preference.");
   if (!fields.payerName) return badRequest("Enter the payer name as per the UPI / bank transaction.");
   if (!fields.transactionId) return badRequest("Enter the transaction ID.");
@@ -139,7 +133,8 @@ function textFields(input: Input) {
     return badRequest("Payment receipt must be 5 MB or smaller.");
   }
   if (!fields.extension) return badRequest("Upload a JPG, PNG, WEBP, or PDF payment receipt.");
-  return { ...fields, onCampusAccommodation, screenshot, attendeePhoto };
+  // The column is NOT NULL and the form no longer asks, so unanswered means false.
+  return { ...fields, onCampusAccommodation: onCampusAccommodation ?? false, screenshot, attendeePhoto };
 }
 
 async function choiceFields(input: Input, categoryOther: string) {
@@ -272,7 +267,7 @@ async function saveRegistration(data: RegistrationInsert) {
         data.exploreConclave,
         data.onCampusAccommodation,
         data.declaration,
-        data.preferredCommunicationChannel,
+        data.preferredCommunicationChannel || "NA",
         data.hearAboutConclave,
         data.categoryOther || null,
         data.dietaryPreference || null,

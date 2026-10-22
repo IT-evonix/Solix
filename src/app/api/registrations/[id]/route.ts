@@ -105,6 +105,13 @@ export async function GET(
     }
 
     const fee = Number(row.registration_fee);
+    // New form submissions no longer ask for accommodation, so channel "NA" marks them.
+    const accommodation =
+      row.preferred_communication_channel === "NA"
+        ? "NA"
+        : row.on_campus_accommodation
+          ? "Yes – Book my stay"
+          : "No – I'll arrange my own";
     return NextResponse.json({
       fullName: row.full_name,
       emailAddress: row.email_address,
@@ -120,11 +127,11 @@ export async function GET(
       departmentFunctionalArea: row.department_functional_area,
       areasOfInterest: row.areas_of_interest,
       exploreConclave: row.explore_conclave,
-      onCampusAccommodation: row.on_campus_accommodation ? "Yes – Book my stay" : "No – I'll arrange my own",
+      onCampusAccommodation: accommodation,
       registrationFee: `₹ ${fee.toLocaleString("en-IN")}`,
       declarations: row.declarations,
-      preferredCommunicationChannel: row.preferred_communication_channel,
-      dietaryPreference: row.dietary_preference,
+      preferredCommunicationChannel: row.preferred_communication_channel || "NA",
+      dietaryPreference: row.dietary_preference ?? "NA",
       attendeePhotoPath: row.attendee_photo_path,
       hearAbout: row.hear_about,
       status: statusLabel[row.status] ?? "Pending",
