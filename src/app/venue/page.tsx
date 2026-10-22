@@ -13,18 +13,18 @@ const ContactPage = () => {
           <div className="container-fluid">
             <div className="row align-items-center">
               <div className="col-lg-7 text-center venue_banner_img p-0">
-                <Image src="/images/venues/venue_banner2.png" className="img-fluid" alt="Logo" width={1000} height={1000}  />
+                <Image src="/images/venues/venue_banner.png" className="img-fluid" alt="Logo" width={1200} height={1200}  />
               </div>
               <div className="col-lg-4 mt-4 mb-4">
                 <div className="row">
-                  <div className="col-lg-12 heading35_black mb-1">
-                    The Lavale campus
+                  <div className="col-lg-12 heading35_black mb-2">
+                    Where Knowledge Meets Innovation
                   </div>
-                  <div className="col-lg-12 heading19_black mb-3">
-                    Offers an unusual setting for a technology and healthcare Conclave:
+                  <div className="col-lg-12 heading19_black mb-2">
+                    Set amidst the serene hills of Lavale
                   </div>
                   <div className="col-lg-12">
-                    The academic ecosystem, medical education environment and tertiary-care teaching hospital are part of the same wider campus story. Participants encounter not only a conference venue, but a living environment where healthcare is taught, delivered, researched and continuously reimagined.
+                    The Symbiosis campus offers more than a venue it is a living ecosystem of learning, healthcare, research and discovery. With academic institutions, medical education and a tertiary-care teaching hospital within the same ecosystem, it provides a distinctive setting where disciplines converge, ideas take shape and future-tech finds real-world relevance.
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@ const ContactPage = () => {
             </div>
           </div>
         </section> */}
-        <section className="pt-5">
+        {/* <section className="pt-5">
           <div className="container">
             <div className="row">
               <div className="col-lg-12 heading35_black text-center mb-2">THE CONCLAVE CAMPUS</div>
@@ -143,37 +143,29 @@ const ContactPage = () => {
               <div className="col-lg-12"></div>
             </div>
           </div>
-        </section>
+        </section> */}
         <section className="">
           <div className="container">
             <div style={{backgroundColor:"#fbf4f2", borderRadius: "30px"}} className="p-5">
               <div className="row">
                 <div className="col-lg-6">
                   <div className="row">
-                    <div className="col-lg-12 heading21_black" style={{color:"#c00808"}}>STAY ON CAMPUS</div>
+                    <div className="col-lg-12 heading21_black" style={{color:"#c00808"}}>Stay on Campus. Stay Connected.</div>
                   </div>
                   <div className="row">
                     <div className="col-lg-12 heading35_black mb-4">SANDIPANI HOMETEL</div>
                   </div>
                   <div className="row">
                     <div className="col-lg-11 mb-5">
-                      Participants and delegates can experience the convenience of <b>staying within the Symbiosis campus</b> at Sandipani Hometel.
+                      Make the most of your Conclave experience by staying at Sandipani Hometel, located within the Symbiosis campus. Conference participants are welcome to explore this convenient accommodation option, offering easy access to the venue and more opportunities to connect, collaborate and network throughout the event.
                       <br></br><br></br>
-                      Being on campus allows participants to remain connected to the Conclave experience while making networking and participation more convenient throughout the event.
+                      Plan your stay and book directly through the accommodation link below. Please note that accommodation arrangements and bookings are to be made individually by participants, subject to availability and applicable charges.
                     </div>
                   </div>
                   <div className="row">
                       <div className="col-lg-12 mb-4">
-                          <Link href="/" className="button_box">Book Accommodation</Link>
+                          <Link href="https://www.sandipanihometel.com/" target="_blank" className="button_box" style={{float:"left"}}>Explore Accommodation & Book Your Stay</Link>
                       </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-11 mb-4" style={{fontSize:"12px"}}>
-                      <i>Accommodation availability, booking process, room options and applicable charges will be updated separately.</i>
-                    </div>
-                  </div>
-                  <div className="row">
-                    <div className="col-lg-12"></div>
                   </div>
                 </div>
                 <div className="col-lg-6 text-center">

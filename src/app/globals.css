@@ -421,10 +421,10 @@ background-color: #F1F1F1;
 padding: 30px 12px;
 }
 .testimonials_innerbox{
-text-align: center;
+/* text-align: center; */
   background-color: #fff;
   border-radius: 30px;
-  padding: 8px;
+  padding: 10px 20px;
   box-shadow: 0 0px 20px #0000001f;
   margin: 0 0 30px 0;
   transition-duration: 0.2s;
@@ -432,6 +432,28 @@ text-align: center;
 .testimonials_innerbox:hover{
   margin: -10px 0 0 0;
 }
+.testimonials_innerbox a{
+  color: #007ab7;
+  text-decoration: none;
+  font-family: Roboto-SemiBold;
+}
+.swiper-slide:nth-child(2n) a{
+  color: #e8480c;
+}
+.testimonials_innerbox a::after{
+  content: "";
+  background-color: #fff;
+  background-image: url("/images/black_arrow.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 100px;
+  width: 19px;
+  height: 12px;
+  position: absolute;
+  transform: rotate(180deg);
+  margin: 5px 0 0 5px;
+}
+.testimonials_innerbox a
 .testi_img{
   background-color: #fff;
   min-height: 220px;
@@ -449,7 +471,7 @@ font-family: Roboto-Black;
   font-size: 16px;
   min-height: 50px;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
 }
 .testi_title{
@@ -676,8 +698,8 @@ background-color: #fff;
 
 /* ------------CONFERENCE-PAGE-START---------- */
 .conference_page_mainbox .attend_list{
-min-height: inherit;
-  padding: 10px;
+  min-height: 180px;
+  /* padding: 10px; */
 }
 /* ------------CONFERENCE-PAGE-END---------- */
 
@@ -1012,7 +1034,11 @@ background-color: #ea5e2a;
   gap:20px;
   width:100%;
   padding:13px 30px;
-  display:flex
+  display:flex;
+  transition-duration: 0.3s;
+}
+.faq-question:hover{
+  color: #007bb7;
 }
 .faq-question .subheading {
   font-size:16px;

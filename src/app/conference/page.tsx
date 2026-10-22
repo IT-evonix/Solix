@@ -35,10 +35,10 @@ const ContactPage = () => {
             </div>
             </div>
         </section>
-        <section className="text-center">
+        <section className="text-center pt-4">
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-12 mb-2 heading35_black">CONFERENCE HIGHLIGHTS</div>
+                    <div className="col-lg-12 mb-2 heading35_black" style={{color:"#e8480c"}}>CONFERENCE HIGHLIGHTS</div>
                 </div>
                 <div className="row">
                     <div className="col-lg-12 mb-4 heading19_black">Key Focus Areas</div>
@@ -48,6 +48,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>AI & Emerging Technologies in Healthcare</div>
+                                <div className="col-lg-12 mb-1">
+                                    Advancing the responsible application of AI and emerging technologies to transform clinical practice, research and healthcare delivery—building on Symbiosis’ interdisciplinary expertise in technology and health sciences.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -55,6 +58,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Digital Health & Healthcare Data</div>
+                                <div className="col-lg-12 mb-1">
+                                    Harnessing connected health systems and trusted data to enable informed decisions, continuity of care and measurable outcomes—aligned with Symbiosis’ commitment to digitally enabled healthcare and research.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -62,6 +68,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>AI Ethics, Governance & Cybersecurity</div>
+                                <div className="col-lg-12 mb-1">
+                                    Building trust in digital innovation through responsible AI, robust data governance, privacy and cyber resilience—essential to protecting institutional systems, research integrity and sensitive healthcare information.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -69,6 +78,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Healthcare Informatics & ABDM</div>
+                                <div className="col-lg-12 mb-1">
+                                    Advancing interoperability, standardised health information and digitally connected care in alignment with India’s Ayushman Bharat Digital Mission—strengthening the bridge between technology, clinical workflows and patient-centred services.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -76,6 +88,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Medical Education & Technology</div>
+                                <div className="col-lg-12 mb-1">
+                                    Reimagining medical education through simulation, immersive learning and intelligent digital tools—reflecting Symbiosis’ focus on preparing future healthcare professionals for a technology-enabled clinical environment.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -83,6 +98,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Clinical AI & Outcomes</div>
+                                <div className="col-lg-12 mb-1">
+                                    Moving beyond technological promise to measurable clinical value, with AI-enabled decision support, outcome evaluation and evidence-led care that prioritises patient safety, effectiveness and quality.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,6 +108,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Medical Devices & MedTech</div>
+                                <div className="col-lg-12 mb-1">
+                                    Catalysing the development of practical, accessible and clinically relevant medical technologies through collaboration among clinicians, engineers, researchers and innovators—turning unmet healthcare needs into solutions.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -97,6 +118,9 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Research & Drug Discovery</div>
+                                <div className="col-lg-12 mb-1">
+                                    Accelerating scientific discovery through interdisciplinary research, advanced computing and data-driven approaches—creating opportunities to connect foundational science with translational healthcare innovation.
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -104,13 +128,16 @@ const ContactPage = () => {
                         <div className="attend_list">
                             <div className="row">
                                 <div className="col-lg-12 heading21_black mb-1" style={{fontSize:"16px"}}>Healthcare Innovation & Entrepreneurship</div>
+                                <div className="col-lg-12 mb-1">
+                                    Bridging research, clinical insight and enterprise to translate promising ideas into scalable solutions—fostering collaboration, entrepreneurship and pathways from innovation to real-world impact.
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section className="">
+        <section className="d-none">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12 heading35_black mb-5 text-center">THREE-DAY EXPERIENCE</div>
@@ -204,7 +231,7 @@ const ContactPage = () => {
 
         <OurTestimonials />
         
-        <section className="text-center">
+        {/* <section className="text-center">
             <div className="container">
                 <div className="row">
                     <div className="col-lg-12 mb-4 heading35_black">MORE THAN A CONFERENCE</div>
@@ -252,7 +279,7 @@ const ContactPage = () => {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> */}
         <section className="pt-4 pb-4" style={{backgroundColor:"#fbf4f2"}}>
             <div className="container">
                 <div className="row justify-content-center align-items-center">
@@ -266,10 +293,10 @@ const ContactPage = () => {
                             <div className="col-lg-12 heading19_black">Be part of the Future-Tech Conference 2026.</div>
                             </div>
                             <div className="row">
-                            <div className="col-lg-12 heading19_black mb-3">₹1,500/- per participant</div>
+                            <div className="col-lg-12 heading19_black mb-3">₹1,500/- per delegate</div>
                             </div>
                             <div className="row">
-                            <div className="col-lg-12 text16_black mb-4">Full conference access | 10-11-12 December 2026</div>
+                            <div className="col-lg-12 text16_black mb-4">Tech conclave conference access | 10-11-12 December 2026</div>
                             </div>
                             <div className="row">
                             <div className="col-lg-12 mb-3">

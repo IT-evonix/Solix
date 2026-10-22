@@ -9,19 +9,7 @@ const Footer = () => {
   return (
     <>
     <footer>
-      <section className="footer_faq_section mb-0 mt-5">
-        <div className="container" style={{position:"relative", zIndex:"5"}}>
-          <div className="row">
-            <div className="col-lg-12 mb-2 heading35_black text-center mb-4" style={{color:"#fff"}}>Frequently Asked Questions</div>
-          </div>
-          <div className="row">
-            <div className="col-lg-1"></div>
-            <div className="col-lg-10">
-              <Faq faqs={footerFaq} />
-            </div>
-          </div>
-        </div>
-      </section>
+      
       <section className="footer_blackbox mb-0">
         <div className="container" style={{position:"relative", zIndex:"5"}}>
           <div className="row">
@@ -33,7 +21,7 @@ const Footer = () => {
                       <Link href="/"><Image src="/images/Symbiosis-logo2.png" className="img-fluid" alt="Logo" width={300} height={300} /></Link>
                     </div>
                   </div>
-                  <div className="col-lg-12 mb-3 heading21_black">
+                  <div className="col-lg-12 mb-3 heading21_black" style={{color:"#e41b15", lineHeight:"normal"}}>
                     SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026
                   </div>
                   <div className="col-lg-12 mb-2">
@@ -43,7 +31,11 @@ const Footer = () => {
                   </div>
                   <div className="col-lg-12">
                     <div className="row">
-                      <div className="col-lg-12"><Image src="/images/footer_location_black.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SMCW & SUHRC, SIU CAMPUS, Pune</div>
+                      <div className="col-lg-12">
+                        <Link href="https://maps.app.goo.gl/qAdngeM8VrRuX7rAA" target="_blank" style={{color:"#000", textDecoration:"none"}}>
+                          <Image src="/images/footer_location_black.png" className="img-fluid" alt="Logo" width={13} height={13} />&nbsp;&nbsp;&nbsp; SMCW & SUHRC, SIU CAMPUS, Pune
+                        </Link>
+                      </div>
                     </div>
                   </div>
                   <div className="col-lg-12"></div>
@@ -52,7 +44,7 @@ const Footer = () => {
               </div>
               <div className="footer_list2 footer_list">
                 <div className="row">
-                  <div className="col-lg-12 footer_heading pb-2">Other Menu</div>
+                  <div className="col-lg-12 footer_heading pb-2">Quick Links</div>
                 </div>
                 <div className="row">
                   <div className="col-lg-12">
@@ -74,7 +66,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="footer_list3 footer_list">
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-lg-12 footer_heading pb-2">Follow Us</div>
                 </div>
                 <div className="row">
@@ -90,6 +82,9 @@ const Footer = () => {
                       </div>
                     </Link>
                   </div>
+                </div> */}
+                <div className="row">
+                  <div className="col-lg-12 footer_heading pb-2">Follow Us on Social Media</div>
                 </div>
                 <div className="row">
                   <div className="col-lg-12 footer_social_iconbox">
@@ -111,10 +106,10 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-7 col-md-7">
-              © 2026 Symbiosis–Solix Empower Tech Conclave. All Rights Reserved.
+              © 2026 Symbiosis SolixEmpower Tech Conclave. All rights Reserved.
             </div>
             <div className="col-lg-5 col-md-5 craftedby_text">
-              Crafted by <Link href="https://www.evonix.co/" target="_blank"><Image src="/images/evonix-logo.png" className="img-fluid" alt="Logo" width={80} height={10} /></Link>
+              Designed by <Link href="https://www.evonix.co/" target="_blank"><Image src="/images/evonix-logo.png" className="img-fluid" alt="Logo" width={80} height={10} /></Link>
             </div>
           </div>
         </div>

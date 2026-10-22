@@ -26,12 +26,12 @@ const ContactPage = () => {
                   <div className="row">
                     <div className="col-lg-5 mb-5">
                       <div className="row">
-                        <div className="col-lg-12 mb-3 heading35_black" style={{color:"#c00805"}}>Technology Collaboration Partner</div>
+                        <div className="col-lg-12 mb-3 heading35_black" style={{color:"#c00805"}}>Technology Partner & Co-Organiser</div>
                       </div>
                       <div className="about_white_list" style={{position:"sticky", top:"100px"}}>
                         
                         <div className="row">
-                          <div className="col-lg-12 mb-4"><Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={540} height={95} priority /></div>
+                          <div className="col-lg-12 mb-4"><Image src="/images/aboutus/solix.png" className="img-fluid" alt="" width={150} height={95} priority /></div>
                         </div>
                         <div className="row">
                           <div className="col-lg-12 mb-3 text19_black"><i>Data • AI • Enterprise Technology</i></div>
@@ -126,7 +126,7 @@ const ContactPage = () => {
                             </div>
                             <div className="row">
                               <div className="col-lg-12 mb-4">
-                                SCEI is a technology business incubator established by Symbiosis International (Deemed University), dedicated to fostering entrepreneurship, research and innovation. It supports technology-driven start-ups through incubation, mentorship and industry collaboration, with a focus on emerging technologies and innovative solutions.
+                                Symbiosis Centre for Entrepreneurship & Innovation (SCEI) is a Technology Business Incubator established by Symbiosis International (Deemed University). As a not-for-profit Section 8 company promoted by SIU and supported by the Department of Science and Technology, Government of India, SCEI works towards socio-economic development by promoting and nurturing entrepreneurship.
                               </div>
                             </div>
                             <div className="row">

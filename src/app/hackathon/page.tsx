@@ -25,7 +25,7 @@ export default function HackathonPage() {
                 <p className={cx("hero-subtitle")}>From Healthcare Challenges to Real-World Solutions</p>
                 <p className={cx("hero-copy")}>What if one idea could help solve a real healthcare challenge? The <b>SSETC Hackathon 2026</b> invites you to explore a scenario-based healthcare problem, think beyond disciplinary boundaries and propose technology-driven solutions with the potential to make a difference.</p>
                 <div className={cx("hero-actions")}>
-                  <Link className={cx("btn", "btn-primary")} href="/hackathon/register">Register — Round 1 <span className={cx("arrow")} aria-hidden="true">→</span></Link>
+                  <Link className={cx("btn", "btn-primary")} href="/hackathon/register">Screening Round<span className={cx("arrow")} aria-hidden="true">→</span></Link>
                   <a className={cx("btn", "btn-secondary")} href="#challenge">Explore the Challenge <span className={cx("arrow")} aria-hidden="true">↓</span></a>
                 </div>
                 <div className={cx("event-meta")} id="event-details">
@@ -73,14 +73,14 @@ export default function HackathonPage() {
                   <div className={cx("round-card-top")}>
                     <div className={cx("round-header-info")}>
                       <div className={cx("round-label")}>
-                        <span className={cx("round-badge", "orange")}>ROUND 1</span>
+                        {/* <span className={cx("round-badge", "orange")}>ROUND 1</span> */}
                         {/* <span className={cx("round-label-text")}>The Scenario Challenge</span> */}
                       </div>
                       <h3>The Scenario Challenge</h3>
                     </div>
                     <div className={cx("price-tag", "free-tag")}>FREE REGISTRATION</div>
                   </div>
-                  <p>Explore the released problem statement, understand the healthcare challenge and submit your proposed solution. Entries will be evaluated, and 100 students will be shortlisted for the Grand Finale.</p>
+                  {/* <p>Explore the released problem statement, understand the healthcare challenge and submit your proposed solution. Entries will be evaluated, and 100 students will be shortlisted for the Grand Finale.</p> */}
                   <ul className={cx("round-list")}>
                     <li><span className={cx("check")}>✓</span><span>Review the scenario-based healthcare problem statement.</span></li>
                     <li><span className={cx("check")}>✓</span><span>Analyse the challenge and submit a solution proposal.</span></li>
@@ -94,12 +94,12 @@ export default function HackathonPage() {
                   <div className={cx("round-card-top")}>
                     <div className={cx("round-header-info")}>
                       <div className={cx("round-label")}>
-                        <span className={cx("round-badge", "blue")}>ROUND 2</span>
+                        {/* <span className={cx("round-badge", "blue")}>ROUND 2</span> */}
                         {/* <span className={cx("round-label-text")}>The Grand Finale</span> */}
                       </div>
                       <h3>The Grand Finale</h3>
                     </div>
-                    <div className={cx("price-tag", "paid-tag")}>₹1,500 / STUDENT</div>
+                    <div className={cx("price-tag", "paid-tag")}>₹1,500 / PARTICIPANT</div>
                   </div>
                   <p>The 100 shortlisted students will come to the Symbiosis campus at Lavale, Pune, to develop, refine and present their solutions during the on-campus Grand Finale.</p>
                   <ul className={cx("round-list")}>
@@ -144,11 +144,11 @@ export default function HackathonPage() {
             </div>
           </section> */}
       
-          <section className={cx("final-cta")} id="registration-info">
+          <section className={cx("final-cta mb-0")} id="registration-info">
             <div className={cx("container")}>
               <div className={cx("cta-panel")}>
-                <div className={cx("cta-copy")}><div className={cx("eyebrow")}>Ready to take on the challenge?</div><h2>Your first step is free. Your idea could be the beginning of something meaningful.</h2><p>Register Now</p></div>
-                <div className={cx("cta-action")}><Link className={cx("btn", "btn-primary")} href="/hackathon/register">Register — Round 1 <span className={cx("arrow")} aria-hidden="true">→</span></Link></div>
+                <div className={cx("cta-copy")}><div className={cx("eyebrow")} style={{color:"#ffffff"}}>Ready to take on the challenge?</div><h2>Your first step is free. Your idea could be the beginning of something meaningful.</h2></div>
+                {/* <div className={cx("cta-action")}><Link className={cx("btn", "btn-primary")} href="/hackathon/register">Screening Round <span className={cx("arrow")} aria-hidden="true">→</span></Link></div> */}
               </div>
             </div>
           </section>

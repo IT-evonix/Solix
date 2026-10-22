@@ -136,7 +136,7 @@ const SpeakersPage = () => {
                       <div className="speaker_card_role">{speaker.role}</div>
                       <div className="speaker_card_name">{speaker.name}</div>
                       <div className="speaker_card_title">{speaker.title}</div>
-                      <div className="speaker_card_btn" onClick={() => setSelectedSpeaker(speaker)}>Click Here</div>
+                      <div className="speaker_card_btn" onClick={() => setSelectedSpeaker(speaker)}>Click to Know More</div>
                     </div>
                   </div>
                 </div>

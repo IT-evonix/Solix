@@ -14,7 +14,7 @@ const Whythis = () => {
                     </div>
                     <div className="row">
                         <div className="col-lg-12 mb-5">
-                            The Symbiosis–SOLIXEMPOWER Tech Conclave 2026 brings together healthcare, technology, research, innovation and industry on one platform. Through the Conference, Hackathon and TALFest, participants can learn from experts, exchange ideas, build meaningful connections and collaborate on real-world healthcare challenges.
+                            The future of healthcare, technology and innovation demands collaboration across disciplines, institutions and industries. SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026 brings together thought leaders, researchers, clinicians, technologists and innovators to translate emerging technologies into meaningful real-world impact. Through dialogue, discovery and hands-on innovation, the conclave aims to accelerate collaboration and turn bold ideas into transformative solutions.
                         </div>
                     </div>
                     {/* <div className="row">

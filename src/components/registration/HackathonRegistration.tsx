@@ -41,7 +41,7 @@ type Options = {
 
 const emptyOptions: Options = { disciplines: [], commitments: [], consents: [] };
 
-const STEPS = ["Personal", "Academic", "Hackathon", "Confirm"];
+const STEPS = ["Profile", "Academic", "Participate", "Confirm"];
 const genderChoices: Choice[] = GENDERS.map((item) => ({ value: item, label: item }));
 
 function todayIso() {
@@ -226,10 +226,10 @@ export default function HackathonRegistration() {
   return (
     <section className="reg_scope">
       <RegHero
-        badge="Round 1 Registration"
+        badge="Screening Round Registration"
         eyebrow="Symbiosis–SolixEmpower Tech Conclave 2026"
-        title="Hackathon 2026"
-        sub="Register for the scenario-based healthcare challenge and submit your proposed solution. No payment is required for Round 1."
+        title="HACKATHON 2026"
+        sub="Register now and submit your innovative solution to real-world healthcare challenge"
         pills={[
           { icon: "calendar", text: "10–12 December 2026" },
           { icon: "pin", text: "SMCW & SUHRC, SIU, Lavale, Pune" },
@@ -267,7 +267,7 @@ export default function HackathonRegistration() {
                   <div className="step_pane">
                     <StepHeader
                       kicker="01 — Personal Profile"
-                      title="Personal Details"
+                      title="Profile Details"
                       sub="Fields marked * are mandatory. Please enter details exactly as they appear on your official ID."
                     />
                     <Field
@@ -567,7 +567,7 @@ export default function HackathonRegistration() {
                 {step === 3 ? (
                   <div className="step_pane">
                     <StepHeader
-                      kicker="03 — Hackathon Registration"
+                      kicker="03 — Participate"
                       title="Hackathon Participation"
                       sub="Round 1 is an individual submission. Confirm your participation and upload your proposed solution."
                     />

@@ -7,11 +7,11 @@ const WhyAttend = () => {
     <section className="text-center">
         <div className="container">
             <div className="row">
-                <div className="col-lg-12 mb-1 heading35_black">Why Attend?</div>
+                <div className="col-lg-12 mb-4 heading35_black">Why Attend?</div>
             </div>
-            <div className="row">
+            {/* <div className="row">
                 <div className="col-lg-12 mb-4">A dedicated conversion-oriented section can bring the proposition together.</div>
-            </div>
+            </div> */}
             <div className="row">
                 <div className="col-lg-4 col-md-6 mb-3">
                     <div className="attend_list">
