@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Prof. (Dr) Ramakrishnan Raman",
-    image: "/images/speakers/RamakrishnanRaman.png",
+    image: "/images/speakers/RamakrishnanRaman2.png",
     title: "Keynote Speaker",
     content:
       "Vice Chancellor, SIU",

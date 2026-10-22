@@ -23,7 +23,7 @@ const speakers: Speaker[] = [
     name: "Prof. (Dr) Ramakrishnan Raman", 
     role: "Keynote Speaker", 
     title: "Vice Chancellor, SIU", 
-    image: "RamakrishnanRaman.png",
+    image: "RamakrishnanRaman2.png",
     content: "•	Holds a Bachelor’s degree in Computer Science and Engineering, an MBA in Systems and Marketing, and a PhD in Management from Pune University.•	Over two decades of experience across corporate, academic and research domains.•	Has served Symbiosis as Director of the Symbiosis Centre for Information Technology and of SIBM Pune, Dean of the Faculty of Management, and Director – Strategy & Development.•	Research interests include Information Systems, IT Strategy, Entrepreneurship, AI and Big Data, with papers in Scopus and Web of Science indexed journals.•	Built international collaborations with universities in Japan, Canada, the United Kingdom and the United States.	Honorary Professor at Aston University’s Aston India Centre for Applied Research (term ending 2027); appointed to University Grants Commission committees in 2024.",
   },
   { 
