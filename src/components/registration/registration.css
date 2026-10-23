@@ -1285,24 +1285,25 @@
 
 .reg_scope .pass_card {
     --u: calc(100cqw / 788);
-    /* Palette sampled from the pass mockup; keep in sync with delegate-pass-email.ts / delegate-pass-art.ts */
+    /* Brand blue #007bb7 / green #00602d / orange #e8480c (tints of the blue for lines and pills);
+       red and navy from the pass mockup. Keep in sync with delegate-pass-email.ts / delegate-pass-art.ts */
     --p-card: #fefaf7;
     --p-panel: #fffbf9;
     --p-red: #c4060a;
     --p-red-bar: #d00d0d;
     --p-navy: #04056a;
     --p-navy-soft: #0f0f66;
-    --p-green: #0b720b;
-    --p-line: #5b98c4;
-    --p-rule: #4a8cbc;
-    --p-pill: #c3e8fd;
+    --p-green: #00602d;
+    --p-line: #66b0d4;
+    --p-rule: #4da3cd;
+    --p-pill: #cce5f1;
     --p-pill-text: #0510c8;
-    --p-blue: #0384e0;
-    --p-green2: #057214;
-    --p-orange: #fa7005;
-    --p-footer: #0186c6;
-    --p-arch-green: #036822;
-    --p-arch-orange: #fe7602;
+    --p-blue: #007bb7;
+    --p-green2: #00602d;
+    --p-orange: #e8480c;
+    --p-footer: #007bb7;
+    --p-arch-green: #00602d;
+    --p-arch-orange: #e8480c;
     --p-frame: #0b3067;
     --p-tri: linear-gradient(90deg, var(--p-blue) 0 33.4%, var(--p-green2) 0 66.7%, var(--p-orange) 0);
     position: relative;
@@ -1516,8 +1517,8 @@
 }
 
 .reg_scope .pass_meta_icon.is_pin {
-    background: #c1e5fd;
-    color: #0f76d9;
+    background: #cce5f1;
+    color: #007bb7;
 }
 
 .reg_scope .pass_meta_label {
