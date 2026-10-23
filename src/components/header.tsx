@@ -7,7 +7,7 @@ import Image from "next/image";
 
 
 export default function Header() {
-  const [isSticky, setIsSticky] = useState(false);
+const [isSticky, setIsSticky] = useState(false);
 const pathname = usePathname();
 
 
