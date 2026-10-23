@@ -2,6 +2,10 @@ import { mkdir, unlink, writeFile } from "fs/promises";
 import path from "path";
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
+import { FORM_OVERHEAD_BYTES, MAX_JSON_BYTES, TOO_LARGE, readBody } from "./body-limit.ts";
+import { firstBadUpload, type UploadCheck } from "./upload-guards.ts";
+
+export { TOO_LARGE };
 
 export type LookupTable =
   | "category"
@@ -68,16 +72,26 @@ function fromJson(body: Record<string, unknown>): Input {
   };
 }
 
-export async function readInput(request: Request) {
+export function formLimit(...uploadLimits: number[]) {
+  return uploadLimits.reduce((sum, limit) => sum + limit, FORM_OVERHEAD_BYTES);
+}
+
+export async function readInput(request: Request, maxBytes: number): Promise<Input | null | typeof TOO_LARGE> {
   const contentType = request.headers.get("content-type") ?? "";
   try {
-    if (contentType.includes("application/json")) {
-      return fromJson((await request.json()) as Record<string, unknown>);
-    }
-    return fromForm(await request.formData());
+    const isJson = contentType.includes("application/json");
+    const body = await readBody(request, isJson ? Math.min(maxBytes, MAX_JSON_BYTES) : maxBytes);
+    if (body === TOO_LARGE) return TOO_LARGE;
+    const replay = new Response(new Uint8Array(body), { headers: { "content-type": contentType } });
+    if (isJson) return fromJson((await replay.json()) as Record<string, unknown>);
+    return fromForm(await replay.formData());
   } catch {
     return null;
   }
+}
+
+export function tooLarge() {
+  return NextResponse.json({ message: "The submission is too large." }, { status: 413 });
 }
 
 export function first(input: Input, names: string[]) {
@@ -145,6 +159,12 @@ export function fileExtension(file: File, allowed: string[]) {
   const extension = match?.[1] === "jpeg" ? "jpg" : match?.[1];
   if (extension && allowed.includes(extension)) return extension;
   return "";
+}
+
+// Rejects the request when an upload's bytes do not match its claimed type.
+export async function rejectBadUploads(uploads: UploadCheck[]) {
+  const message = await firstBadUpload(uploads);
+  return message ? badRequest(message) : null;
 }
 
 export function uploadDirectory() {

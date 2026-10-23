@@ -2,6 +2,13 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { pool } from "@/lib/db";
 import {
+  clientIp,
+  rateLimitCheck,
+  rateLimitClear,
+  rateLimitHit,
+  tooManyRequests,
+} from "@/lib/rate-limit";
+import {
   adminCookieName,
   adminCookieOptions,
   createAdminToken,
@@ -20,6 +27,14 @@ type LoginRow = {
   status: number;
 };
 
+const LOGIN_WINDOW_MS = 15 * 60 * 1000;
+const MAX_FAILURES_PER_IP = 5;
+const MAX_FAILURES_PER_EMAIL = 10;
+const MAX_BODY_BYTES = 4 * 1024;
+
+// Compared against when the account is missing so a wrong email takes as long as a wrong password.
+const DUMMY_HASH = bcrypt.hashSync("solix-no-such-account", 10);
+
 export async function GET(request: Request) {
   const auth = await requireAdmin(request);
   if ("response" in auth) return auth.response;
@@ -27,7 +42,14 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
+  const declared = Number(request.headers.get("content-length"));
+  if (Number.isFinite(declared) && declared > MAX_BODY_BYTES) {
+    return NextResponse.json({ message: "Invalid sign-in request." }, { status: 413 });
+  }
+  const body = (await request.json().catch(() => null)) as Record<string, unknown> | null;
+  if (!body || typeof body !== "object") {
+    return NextResponse.json({ message: "Invalid sign-in request." }, { status: 400 });
+  }
   const email = String(body.email ?? "").trim();
   const password = String(body.password ?? "");
   const remember = body.remember === true;
@@ -39,6 +61,19 @@ export async function POST(request: Request) {
     );
   }
 
+  const ipKey = `login-ip:${clientIp(request)}`;
+  const emailKey = `login-email:${email.toLowerCase()}`;
+  const blocked = [
+    rateLimitCheck(ipKey, MAX_FAILURES_PER_IP),
+    rateLimitCheck(emailKey, MAX_FAILURES_PER_EMAIL),
+  ].find((state) => !state.ok);
+  if (blocked) return tooManyRequests(blocked);
+
+  const recordFailure = () => {
+    rateLimitHit(ipKey, LOGIN_WINDOW_MS);
+    rateLimitHit(emailKey, LOGIN_WINDOW_MS);
+  };
+
   try {
     const result = await pool.query<LoginRow>(
       `SELECT id, email, mobile, name, password, role, login_date, created_at, status
@@ -48,18 +83,17 @@ export async function POST(request: Request) {
       [email],
     );
     const user = result.rows[0];
-    const passwordMatches = user
-      ? await bcrypt.compare(password, user.password)
-      : false;
+    const passwordMatches = await bcrypt.compare(password, user?.password || DUMMY_HASH);
 
-    if (!user || !passwordMatches) {
+    if (!user || !user.password || !passwordMatches) {
+      recordFailure();
       return NextResponse.json(
         { message: "Invalid email or password." },
         { status: 401 },
       );
     }
 
-    if (user.status !== 1) {
+    if (Number(user.status) !== 1) {
       return NextResponse.json(
         { message: "This account is inactive." },
         { status: 403 },
@@ -84,6 +118,8 @@ export async function POST(request: Request) {
       );
     }
 
+    rateLimitClear(ipKey);
+    rateLimitClear(emailKey);
     const response = NextResponse.json(updated.rows[0]);
     response.cookies.set(adminCookieName, session.token, adminCookieOptions(session.maxAge));
     return response;
@@ -92,10 +128,7 @@ export async function POST(request: Request) {
       typeof error === "object" && error && "code" in error
         ? String(error.code)
         : "";
-    const message =
-      code === "28P01"
-        ? "Database rejected the password for user postgres."
-        : "Unable to reach the database.";
-    return NextResponse.json({ message }, { status: 500 });
+    console.error(`Admin sign-in failed (database error ${code || "unknown"}).`);
+    return NextResponse.json({ message: "Unable to reach the database." }, { status: 500 });
   }
 }

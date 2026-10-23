@@ -643,37 +643,35 @@ export default function HackathonRegistration() {
           </div>
 
           <PassCard
-            brand="SIU • SolixEmpower"
+            variant="hackathon"
             title="HACKATHON PASS"
-            subtitle="Symbiosis–SolixEmpower Tech Conclave 2026"
-            priceLabel="Screening Round Registration"
-            price="Free"
-            priceBadge="No Payment"
+            subtitle="Symbiosis-SolixEmpower Tech Conclave"
             meta={[
-              { icon: "calendar", label: "Grand Finale", value: "10–12 December 2026", sub: "On-campus, for shortlisted participants" },
+              { icon: "calendar", label: "Grand Finale", value: "10–12 December", sub: "On-campus, for shortlisted participants" },
               { icon: "pin", label: "Venue", value: "SMCW & SUHRC", sub: "Symbiosis International University, Lavale, Pune" },
             ]}
             inclusionsTitle="How It Works"
             inclusions={[
-              "Screening Round: individual solution to the official problem statement",
-              // "Shortlisted participants form cross-disciplinary teams",
-              // "On-campus Grand Finale with expert mentoring",
-              // "Certificate of Participation",
-              "Winning Certificate & Cash Prizes",
-              "Complimentary access to Tech Conference",
-              "Incubation Opportunity: The top 5 winning nominations/ideas shall be incubated at SCEI (Symbiosis Centre for Entrepreneurship and Innovation), supporting promising ideas as they progress towards real-world implementation.",
+              <>
+                <b>Screening Round:</b> individual solution to the official problem statement
+              </>,
+              "Shortlisted participants form cross-disciplinary teams",
+              "On-campus Grand Finale with expert mentoring",
+              "Certificate of Participation",
+              <b key="prizes">Winning Certificate &amp; Cash Prizes</b>,
+              <b key="conference">Complimentary access to Tech Conference</b>,
+              <>
+                <b>Incubation Opportunity:</b> The top 5 winning nominations/<wbr />ideas shall be incubated at SCEI (Symbiosis
+                Centre for Entrepreneurship and Innovation), supporting promising ideas as they progress towards
+                real-world implementation.
+              </>,
             ]}
             badge={{
               label: "Participant Badge",
-              role: disciplineLabel || "Hackathon",
+              role: "Hackathon",
               name: fullName.trim(),
-              org: institutionName.trim() || "Your Institution",
-              footerLeft: (
-                <>
-                  Registration ID: <b>{registrationCode || "—"}</b>
-                </>
-              ),
-              footerRight: "Screening Round • 2026",
+              org: institutionName.trim(),
+              orgPlaceholder: "Your Institution",
             }}
           />
         </div>

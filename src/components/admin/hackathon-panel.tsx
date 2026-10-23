@@ -239,24 +239,16 @@ async function exportPdf(rows: HackathonRegistration[]) {
 }
 
 async function exportExcel(rows: HackathonRegistration[]) {
-  const XLSX = await import("xlsx");
-  const sheet = XLSX.utils.aoa_to_sheet([exportHeadings, ...exportCells(rows)]);
-  sheet["!cols"] = [
-    { wch: 28 },
-    { wch: 16 },
-    { wch: 32 },
-    { wch: 36 },
-    { wch: 18 },
-    { wch: 14 },
-    { wch: 28 },
-    { wch: 22 },
-    { wch: 12 },
-    { wch: 16 },
-    { wch: 14 },
-  ];
-  const book = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(book, sheet, "Hackathon");
-  XLSX.writeFile(book, exportFileName("xlsx"));
+  const { downloadWorkbook } = await import("@/lib/excel-export");
+  await downloadWorkbook(
+    {
+      sheetName: "Hackathon",
+      headings: exportHeadings,
+      rows: exportCells(rows),
+      widths: [28, 16, 32, 36, 18, 14, 28, 22, 12, 16, 14],
+    },
+    exportFileName("xlsx"),
+  );
 }
 
 function List({

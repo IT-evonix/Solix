@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/lib/db";
 import { formatRegistrationId } from "@/app/lib/payments";
+import { clientIp, rateLimitConsume, tooManyRequests } from "@/lib/rate-limit";
 import {
   EMAIL_PATTERN,
   badRequest,
@@ -11,7 +12,11 @@ import {
   readInput,
   removeUploads,
   resolveIds,
+  rejectBadUploads,
   storeUpload,
+  tooLarge,
+  formLimit,
+  TOO_LARGE,
   type Input,
 } from "@/app/lib/registration-input";
 
@@ -189,11 +194,20 @@ async function choiceFields(input: Input, categoryOther: string) {
 }
 
 export async function POST(request: Request) {
-  const input = await readInput(request);
+  const limited = rateLimitConsume(`register:${clientIp(request)}`, 10, 60 * 60 * 1000);
+  if (!limited.ok) return tooManyRequests(limited);
+
+  const input = await readInput(request, formLimit(MAX_UPLOAD_BYTES, MAX_PHOTO_BYTES));
+  if (input === TOO_LARGE) return tooLarge();
   if (!input) return badRequest("Invalid registration submission.");
 
   const texts = textFields(input);
   if (texts instanceof NextResponse) return texts;
+  const badUpload = await rejectBadUploads([
+    { file: texts.screenshot, extension: texts.extension, label: "The payment receipt" },
+    { file: texts.attendeePhoto, extension: texts.photoExtension, label: "The attendee photo" },
+  ]);
+  if (badUpload) return badUpload;
 
   try {
     const choices = await choiceFields(input, texts.categoryOther);

@@ -19,6 +19,7 @@ import {
   Stepper,
   SuccessCard,
   toChoices,
+  useObjectUrl,
 } from "./parts";
 import { useStepForm } from "./useStepForm";
 import { emailError, fileError, mobileError, nameError, toggleValue, type Errors } from "./validation";
@@ -51,6 +52,7 @@ export default function ConferenceRegistration() {
   const [options, setOptions] = useState<Options>(emptyOptions);
   const [fullName, setFullName] = useState("");
   const [attendeePhoto, setAttendeePhoto] = useState<File | null>(null);
+  const attendeePhotoUrl = useObjectUrl(attendeePhoto);
   const [emailAddress, setEmailAddress] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [country, setCountry] = useState("India");
@@ -751,18 +753,11 @@ export default function ConferenceRegistration() {
           </div>
 
           <PassCard
-            brand="SIU • SolixEmpower"
+            variant="delegate"
             title="DELEGATE PASS"
-            subtitle="Symbiosis–SolixEmpower Tech Conclave 2026"
-            priceLabel="Confirmed Fee"
-            price={
-              <>
-                ₹1,500<span>/-</span>
-              </>
-            }
-            priceBadge=""
+            subtitle="Symbiosis-SolixEmpower Tech Conclave 2026"
             meta={[
-              { icon: "calendar", label: "Dates", value: "10–12 December 2026", sub: "3 Full Days • Connect, Create, Transform" },
+              { icon: "calendar", label: "Dates", value: "10-12 December 2026", sub: "3 Full Days • Connect, Create, Transform" },
               { icon: "pin", label: "Venue", value: "SMCW & SUHRC", sub: "SIU Lavale Campus, Pune, Maharashtra" },
             ]}
             inclusionsTitle="Delegate Privileges"
@@ -771,20 +766,14 @@ export default function ConferenceRegistration() {
               "Official Delegate Kit & Verified Badge",
               "Lunch & High Tea on All 3 Days",
               "Certificate of Participation",
-              "Networking",
+              "Networking Opportunities",
             ]}
             badge={{
-              label: "Delegate Badge",
-              role: categoryLabel || "Participant",
+              role: "Delegate",
               name: fullName.trim(),
               org: organisationInstitution.trim(),
-              photo: attendeePhoto,
-              footerLeft: (
-                <>
-                  Registration ID: <b>{registrationCode || "—"}</b>
-                </>
-              ),
-              footerRight: "SIU • 2026",
+              orgPlaceholder: "Your Organisation",
+              photoUrl: attendeePhotoUrl,
             }}
           />
         </div>

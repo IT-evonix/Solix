@@ -457,23 +457,16 @@ async function exportPdf(rows: Payment[]) {
 }
 
 async function exportExcel(rows: Payment[]) {
-  const XLSX = await import("xlsx");
-  const sheet = XLSX.utils.aoa_to_sheet([exportHeadings, ...exportCells(rows)]);
-  sheet["!cols"] = [
-    { wch: 28 },
-    { wch: 16 },
-    { wch: 32 },
-    { wch: 32 },
-    { wch: 18 },
-    { wch: 22 },
-    { wch: 28 },
-    { wch: 16 },
-    { wch: 16 },
-    { wch: 12 },
-  ];
-  const book = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(book, sheet, "Payments");
-  XLSX.writeFile(book, exportFileName("xlsx"));
+  const { downloadWorkbook } = await import("@/lib/excel-export");
+  await downloadWorkbook(
+    {
+      sheetName: "Payments",
+      headings: exportHeadings,
+      rows: exportCells(rows),
+      widths: [28, 16, 32, 32, 18, 22, 28, 16, 16, 12],
+    },
+    exportFileName("xlsx"),
+  );
 }
 
 function PaymentList({
