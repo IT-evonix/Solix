@@ -1,9 +1,10 @@
 // Delegate Pass email artwork, rasterised with sharp so sending never depends on the working
 // directory or public/ being deployed. Coordinates are mockup units (788-wide card), matching
-// .pass_card in registration.css. Only imports sharp so it can be unit-tested with `node --test`.
+// .pass_card in registration.css. Only imports sharp and the import-free template module, so it can be
+// unit-tested with `node --test`.
 
 import sharp from "sharp";
-import type { PassArt, PassImage } from "./delegate-pass-email.ts";
+import { PHOTO_H, PHOTO_W, photoPx, type PassArt, type PassImage } from "./delegate-pass-email.ts";
 
 // Wave ribbon cut from the pass mockup (public/images/pass/pass-waves.jpg), 768x160 JPEG.
 export const PASS_WAVES_JPG =
@@ -11,9 +12,9 @@ export const PASS_WAVES_JPG =
 
 // Blue footer bar with the green and orange arches; 788x103, transparent above the bar.
 export const PASS_FOOTER_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="788" height="103" viewBox="0 0 788 103">
-<rect x="0" y="17" width="788" height="86" fill="#0a7cbd"/>
-<path d="M599 103V59a59 59 0 0 1 118 0v44z" fill="#0b6b35"/>
-<path d="M666 103V57a57 57 0 0 1 114 0v46z" fill="#ec620b"/>
+<rect x="0" y="17" width="788" height="86" fill="#0186c6"/>
+<path d="M599 103V59a59 59 0 0 1 118 0v44z" fill="#036822"/>
+<path d="M666 103V57a57 57 0 0 1 114 0v46z" fill="#fe7602"/>
 </svg>`;
 
 const tile = (background: string, color: string, icon: string) =>
@@ -23,8 +24,8 @@ const tile = (background: string, color: string, icon: string) =>
 </svg>`;
 
 // Lucide calendar / map-pin on their pass tiles.
-export const PASS_CALENDAR_TILE_SVG = tile("#fde2d4", "#c0201a", '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>');
-export const PASS_PIN_TILE_SVG = tile("#d4eaf8", "#1c6fb5", '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>');
+export const PASS_CALENDAR_TILE_SVG = tile("#fddabc", "#bf120a", '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>');
+export const PASS_PIN_TILE_SVG = tile("#c1e5fd", "#0f76d9", '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>');
 
 // SVG art rasterised at 2x the email's display size (480px card = 788 mockup units).
 async function svgToPng(svg: string, width: number, filename: string): Promise<PassImage> {
@@ -40,6 +41,70 @@ export async function renderPassArt(): Promise<PassArt> {
   ]);
   const waves = { data: Buffer.from(PASS_WAVES_JPG, "base64"), contentType: "image/jpeg", filename: "waves.jpg" };
   return { calendar, pin, waves, footer };
+}
+
+// Badge photo frame (mockup units): navy rounded border on the warm-white badge panel. Corners and
+// border are baked into the image because Outlook and Gmail ignore border-radius on <img>.
+const FRAME = "#0b3067";
+const PANEL = "#fffbf9";
+export const PHOTO_SIZE = { width: photoPx.width * 2, height: photoPx.height * 2 };
+
+const frameSvg = (inner: string) =>
+  `<svg xmlns="http://www.w3.org/2000/svg" width="${PHOTO_W}" height="${PHOTO_H}" viewBox="0 0 ${PHOTO_W} ${PHOTO_H}">${inner}</svg>`;
+const FRAME_RECT = `x="1.5" y="1.5" width="${PHOTO_W - 3}" height="${PHOTO_H - 3}" rx="28.5" ry="28.5"`;
+
+export const PASS_PHOTO_MASK_SVG = frameSvg(`<rect ${FRAME_RECT} fill="#000"/>`);
+export const PASS_PHOTO_BORDER_SVG = frameSvg(`<rect ${FRAME_RECT} fill="none" stroke="${FRAME}" stroke-width="3"/>`);
+// Empty frame with the Lucide user icon, as on the mockup.
+export const PASS_PHOTO_PLACEHOLDER_SVG = frameSvg(
+  `<rect width="${PHOTO_W}" height="${PHOTO_H}" fill="${PANEL}"/>` +
+    `<rect ${FRAME_RECT} fill="#ffffff" stroke="${FRAME}" stroke-width="3"/>` +
+    `<g transform="translate(38 48) scale(7.5)" fill="none" stroke="${FRAME}" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">` +
+    `<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g>`,
+);
+
+const rasterise = (svg: string) =>
+  sharp(Buffer.from(svg), { density: 300 }).resize(PHOTO_SIZE.width, PHOTO_SIZE.height, { fit: "fill" }).png().toBuffer();
+
+export async function framePhoto(bytes: Uint8Array): Promise<PassImage> {
+  const { width, height } = PHOTO_SIZE;
+  const photo = await sharp(bytes)
+    .rotate() // honour EXIF orientation from phone cameras
+    .resize(width, height, { fit: "cover", position: sharp.strategy.attention })
+    .flatten({ background: "#ffffff" })
+    .png()
+    .toBuffer();
+  const [mask, border] = await Promise.all([rasterise(PASS_PHOTO_MASK_SVG), rasterise(PASS_PHOTO_BORDER_SVG)]);
+  const clipped = await sharp(photo).ensureAlpha().composite([{ input: mask, blend: "dest-in" }]).png().toBuffer();
+  const data = await sharp({ create: { width, height, channels: 3, background: PANEL } })
+    .composite([{ input: clipped }, { input: border }])
+    .jpeg({ quality: 86, chromaSubsampling: "4:4:4" }) // no colour bleed on the thin border
+    .toBuffer();
+  return { data, contentType: "image/jpeg", filename: "photo.jpg" };
+}
+
+let placeholderPromise: Promise<PassImage> | null = null;
+
+function photoPlaceholder() {
+  placeholderPromise ??= rasterise(PASS_PHOTO_PLACEHOLDER_SVG)
+    .then((data): PassImage => ({ data, contentType: "image/png", filename: "photo.png" }))
+    .catch((error) => {
+      placeholderPromise = null;
+      throw error;
+    });
+  return placeholderPromise;
+}
+
+// The attendee photo framed for the pass, or the empty frame when there is none or it can't be decoded.
+export async function passPhoto(bytes: Uint8Array | null): Promise<PassImage> {
+  if (bytes?.length) {
+    try {
+      return await framePhoto(bytes);
+    } catch (error) {
+      console.warn(`Delegate pass photo could not be processed: ${error instanceof Error ? error.message : error}`);
+    }
+  }
+  return photoPlaceholder();
 }
 
 let artPromise: Promise<PassArt> | null = null;

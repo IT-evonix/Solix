@@ -1,7 +1,10 @@
+import { readFile } from "fs/promises";
+import path from "path";
 import { pool } from "@/lib/db";
 import { formatRegistrationId } from "@/app/lib/payments";
 import { renderDelegatePass } from "@/app/lib/delegate-pass-email";
-import { passArt } from "@/app/lib/delegate-pass-art";
+import { passArt, passPhoto } from "@/app/lib/delegate-pass-art";
+import { uploadDirectory } from "@/app/lib/registration-input";
 import { buildMime, isSingleAddress, toBase64Url } from "@/app/lib/mime";
 import { emailDisabled, gmailConfig, sendRawMail } from "@/app/lib/gmail";
 
@@ -32,7 +35,22 @@ type ClaimRow = {
   email_address: string;
   organisation_institution: string;
   registration_fee: string;
+  attendee_photo_path: string | null;
 };
+
+const UPLOAD_URL_PREFIX = "/api/uploads/";
+
+// Reads the stored attendee photo; a missing or unreadable file just leaves the pass with the empty frame.
+async function readAttendeePhoto(photoPath: string | null): Promise<Uint8Array | null> {
+  if (!photoPath?.startsWith(UPLOAD_URL_PREFIX)) return null;
+  const filename = path.basename(photoPath.slice(UPLOAD_URL_PREFIX.length));
+  try {
+    return await readFile(path.join(uploadDirectory(), filename));
+  } catch (error) {
+    console.warn(`Delegate pass photo not readable (${filename}): ${errorText(error)}`);
+    return null;
+  }
+}
 
 function errorText(error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
@@ -70,7 +88,7 @@ export async function sendDelegatePass(registrationId: string, { force = false }
          OR (pass_email_status = 'sending' AND pass_email_claimed_at < LOCALTIMESTAMP - ${STALE_CLAIM_SQL})
        )
      RETURNING registration_code, full_name, email_address, organisation_institution,
-               registration_fee`,
+               registration_fee, attendee_photo_path`,
     [registrationId, force],
   );
 
@@ -90,6 +108,7 @@ export async function sendDelegatePass(registrationId: string, { force = false }
       organisation: row.organisation_institution,
       fee: row.registration_fee,
       art: await passArt(),
+      photo: await passPhoto(await readAttendeePhoto(row.attendee_photo_path)),
     });
     const raw = buildMime({
       from: { email: config.sender, name: config.senderName },

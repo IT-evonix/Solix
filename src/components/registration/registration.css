@@ -1285,18 +1285,25 @@
 
 .reg_scope .pass_card {
     --u: calc(100cqw / 788);
-    --p-card: #fcf9f5;
-    --p-panel: #f8fbff;
-    --p-red: #c0100f;
-    --p-navy: #0b1158;
-    --p-navy-soft: #24264f;
-    --p-green: #12731a;
-    --p-line: #7d97b3;
-    --p-rule: #8fb0cc;
-    --p-pill: #c8e3f6;
-    --p-blue: #0a7cbd;
-    --p-green2: #0b6b35;
-    --p-orange: #ec620b;
+    /* Palette sampled from the pass mockup; keep in sync with delegate-pass-email.ts / delegate-pass-art.ts */
+    --p-card: #fefaf7;
+    --p-panel: #fffbf9;
+    --p-red: #c4060a;
+    --p-red-bar: #d00d0d;
+    --p-navy: #04056a;
+    --p-navy-soft: #0f0f66;
+    --p-green: #0b720b;
+    --p-line: #5b98c4;
+    --p-rule: #4a8cbc;
+    --p-pill: #c3e8fd;
+    --p-pill-text: #0510c8;
+    --p-blue: #0384e0;
+    --p-green2: #057214;
+    --p-orange: #fa7005;
+    --p-footer: #0186c6;
+    --p-arch-green: #036822;
+    --p-arch-orange: #fe7602;
+    --p-frame: #0b3067;
     --p-tri: linear-gradient(90deg, var(--p-blue) 0 33.4%, var(--p-green2) 0 66.7%, var(--p-orange) 0);
     position: relative;
     background: var(--p-card);
@@ -1504,13 +1511,13 @@
 }
 
 .reg_scope .pass_meta_icon.is_calendar {
-    background: #fde2d4;
-    color: #c0201a;
+    background: #fddabc;
+    color: #bf120a;
 }
 
 .reg_scope .pass_meta_icon.is_pin {
-    background: #d4eaf8;
-    color: #1c6fb5;
+    background: #c1e5fd;
+    color: #0f76d9;
 }
 
 .reg_scope .pass_meta_label {
@@ -1598,11 +1605,86 @@
     margin-top: calc(var(--u) * 24);
 }
 
+/* Delegate badge: photo | red divider | name & organisation, pill pinned top-right */
+.reg_scope .pass_card.is_delegate .pass_badge {
+    margin-left: calc(var(--u) * -29);
+    margin-right: calc(var(--u) * -31);
+    padding: calc(var(--u) * 41) calc(var(--u) * 18) calc(var(--u) * 20) calc(var(--u) * 20);
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge::before {
+    height: calc(var(--u) * 13);
+}
+
+.reg_scope .pass_card.is_delegate .pass_tri_rule {
+    height: calc(var(--u) * 12);
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge_top {
+    position: absolute;
+    top: calc(var(--u) * 31);
+    right: calc(var(--u) * 18);
+    z-index: 1;
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge_role {
+    height: calc(var(--u) * 42);
+    max-width: none;
+    padding: 0 calc(var(--u) * 24);
+    color: var(--p-pill-text);
+}
+
+.reg_scope .pass_badge_body {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--u) * 22);
+}
+
+.reg_scope .pass_badge_photo {
+    flex: none;
+    width: calc(var(--u) * 256);
+    height: calc(var(--u) * 276);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: calc(var(--u) * 3) solid var(--p-frame);
+    border-radius: calc(var(--u) * 30);
+    overflow: hidden;
+    color: var(--p-frame);
+}
+
+.reg_scope .pass_badge_photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reg_scope .pass_badge_photo svg {
+    width: calc(var(--u) * 180);
+    height: calc(var(--u) * 180);
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge_person {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: calc(var(--u) * 235);
+    margin-top: 0;
+    padding: calc(var(--u) * 8) 0 calc(var(--u) * 8) calc(var(--u) * 40);
+    border-left: calc(var(--u) * 4) solid var(--p-red-bar);
+}
+
+/* Poppins runs wider than the mockup face; these sizes match the mockup's text widths */
 .reg_scope .pass_card.is_delegate .pass_badge_name {
-    font-size: calc(var(--u) * 68);
+    font-size: calc(var(--u) * 58);
 }
 
 .reg_scope .pass_card.is_delegate .pass_badge_org {
+    margin-top: calc(var(--u) * 12);
+    font-size: max(11px, calc(var(--u) * 36));
     font-weight: 700;
 }
 
@@ -1675,7 +1757,7 @@
     right: 0;
     bottom: 0;
     height: calc(var(--u) * 86);
-    background: var(--p-blue);
+    background: var(--p-footer);
 }
 
 .reg_scope .pass_arch {
@@ -1688,13 +1770,13 @@
 .reg_scope .pass_arch.is_green {
     left: calc(var(--u) * 599);
     width: calc(var(--u) * 118);
-    background: var(--p-green2);
+    background: var(--p-arch-green);
 }
 
 .reg_scope .pass_arch.is_orange {
     left: calc(var(--u) * 666);
     width: calc(var(--u) * 114);
-    background: var(--p-orange);
+    background: var(--p-arch-orange);
 }
 
 /* ==========================================================================

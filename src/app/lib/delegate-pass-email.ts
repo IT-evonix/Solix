@@ -13,6 +13,7 @@ export type DelegatePassData = {
   organisation: string;
   fee: string | number;
   art: PassArt;
+  photo: PassImage; // attendee photo (or placeholder) already framed, see passPhoto
 };
 
 export const CONTACT_EMAIL = "s_semtechconclave@smcw.edu.in";
@@ -22,18 +23,27 @@ export const HELPLINE = "+91 (020) 6693 6500";
 const WIDTH = 480;
 const u = (n: number) => Math.round((n * WIDTH) / 788);
 
-const CARD = "#fcf9f5";
-const PANEL = "#f8fbff";
-const RED = "#c0100f";
-const NAVY = "#0b1158";
-const NAVY_SOFT = "#24264f";
-const GREEN = "#12731a";
-const LINE = "#7d97b3";
-const RULE = "#8fb0cc";
-const PILL = "#c8e3f6";
-const BLUE = "#0a7cbd";
-const GREEN2 = "#0b6b35";
-const ORANGE = "#ec620b";
+// Pass palette, sampled from the mockup. Keep in sync with the --p-* variables on .pass_card
+// in registration.css and the colours in delegate-pass-art.ts.
+const CARD = "#fefaf7";
+const PANEL = "#fffbf9";
+const RED = "#c4060a";
+const RED_BAR = "#d00d0d";
+const NAVY = "#04056a";
+const NAVY_SOFT = "#0f0f66";
+const GREEN = "#0b720b";
+const LINE = "#5b98c4";
+const RULE = "#4a8cbc";
+const PILL = "#c3e8fd";
+const PILL_TEXT = "#0510c8";
+const BLUE = "#0384e0";
+const GREEN2 = "#057214";
+const ORANGE = "#fa7005";
+
+// Badge photo frame in mockup units (rendered at 2x by passPhoto in delegate-pass-art.ts).
+export const PHOTO_W = 256;
+export const PHOTO_H = 276;
+export const photoPx = { width: u(PHOTO_W), height: u(PHOTO_H) };
 const FONT = "font-family:Poppins,'Segoe UI',Arial,Helvetica,sans-serif;";
 
 const privileges = [
@@ -132,19 +142,29 @@ export function renderDelegatePass(data: DelegatePassData) {
 </td></tr>
 <tr><td style="padding:0 ${side}px;${FONT}font-size:${u(26)}px;line-height:${u(34)}px;font-style:italic;color:${RED};">Symbiosis-SolixEmpower Tech Conclave 2026</td></tr>
 
-<!-- Badge -->
-<tr><td style="padding:${u(26)}px ${u(29)}px 0 ${u(31)}px;">
+<!-- Badge: photo | red divider | name & organisation, "Delegate" pill top-right -->
+<tr><td style="padding:${u(26)}px ${u(23)}px 0 ${u(25)}px;">
   <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="${PANEL}" style="background:${PANEL};border:1px solid ${LINE};border-radius:${u(24)}px;">
-    <tr><td style="padding:0;">${triStripe(u(11), `${u(23)}px`)}</td></tr>
-    <tr><td align="right" style="padding:${u(19)}px ${u(20)}px 0 ${u(30)}px;">
-      <span style="display:inline-block;${FONT}font-size:${u(28)}px;line-height:${u(47)}px;font-weight:600;color:${NAVY};background:${PILL};border-radius:${u(47)}px;padding:0 ${u(22)}px;">Delegate</span>
-    </td></tr>
-    <tr><td style="padding:${u(34)}px ${u(20)}px ${u(40)}px ${u(30)}px;">
+    <tr><td style="padding:0;">${triStripe(u(13), `${u(23)}px`)}</td></tr>
+    <tr><td style="padding:${u(18)}px ${u(18)}px ${u(20)}px ${u(20)}px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr>
-        <td width="3" bgcolor="${RED}" style="width:3px;background:${RED};font-size:0;line-height:0;">&nbsp;</td>
-        <td valign="middle" style="padding:${u(8)}px 0 ${u(8)}px ${u(22)}px;${FONT}word-break:break-word;">
-          <div style="font-size:${u(68)}px;line-height:${u(75)}px;font-weight:800;color:${NAVY};">${safeName}</div>
-          ${safeOrg ? `<div style="font-size:${u(44)}px;line-height:${u(53)}px;font-weight:bold;font-style:italic;color:${NAVY};padding-top:${u(10)}px;">${safeOrg}</div>` : ""}
+        <td width="${photoPx.width}" valign="top" style="width:${photoPx.width}px;padding-top:${u(10)}px;font-size:0;line-height:0;">
+          <img src="cid:pass-photo" width="${photoPx.width}" height="${photoPx.height}" alt="${safeName}" style="display:block;width:${photoPx.width}px;height:${photoPx.height}px;border:0;">
+        </td>
+        <td width="${u(22)}" style="width:${u(22)}px;font-size:0;line-height:0;">&nbsp;</td>
+        <td valign="top">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tr><td colspan="2" align="right" style="font-size:0;line-height:0;">
+              <span style="display:inline-block;${FONT}font-size:${u(28)}px;line-height:${u(42)}px;font-weight:600;color:${PILL_TEXT};background:${PILL};border-radius:${u(42)}px;padding:0 ${u(24)}px;">Delegate</span>
+            </td></tr>
+            <tr>
+              <td width="3" height="${u(224)}" bgcolor="${RED_BAR}" style="width:3px;height:${u(224)}px;background:${RED_BAR};font-size:0;line-height:0;">&nbsp;</td>
+              <td valign="middle" style="padding:${u(8)}px 0 ${u(8)}px ${u(40)}px;${FONT}word-break:break-word;overflow-wrap:anywhere;">
+                <div style="font-size:${u(64)}px;line-height:${u(70)}px;font-weight:800;color:${NAVY};">${safeName}</div>
+                ${safeOrg ? `<div style="font-size:${u(40)}px;line-height:${u(48)}px;font-weight:bold;font-style:italic;color:${NAVY};padding-top:${u(12)}px;">${safeOrg}</div>` : ""}
+              </td>
+            </tr>
+          </table>
         </td>
       </tr></table>
     </td></tr>
@@ -155,7 +175,7 @@ export function renderDelegatePass(data: DelegatePassData) {
 <tr><td style="padding:${u(2)}px 0 0 0;font-size:0;line-height:0;">
   <img src="cid:pass-waves" width="${WIDTH}" height="${u(164)}" alt="" style="display:block;width:100%;max-width:${WIDTH}px;height:auto;border:0;">
 </td></tr>
-<tr><td style="padding:0;">${triStripe(u(11))}</td></tr>
+<tr><td style="padding:0;">${triStripe(u(12))}</td></tr>
 
 <!-- Dates & venue -->
 <tr><td style="padding:${u(32)}px ${side}px 0 ${side + u(2)}px;">
@@ -229,6 +249,7 @@ export function renderDelegatePass(data: DelegatePassData) {
     { cid: "icon-pin", ...data.art.pin },
     { cid: "pass-waves", ...data.art.waves },
     { cid: "pass-footer", ...data.art.footer },
+    { cid: "pass-photo", ...data.photo },
   ];
 
   return { subject, html, text, inline };

@@ -19,6 +19,7 @@ import {
   Stepper,
   SuccessCard,
   toChoices,
+  useObjectUrl,
 } from "./parts";
 import { useStepForm } from "./useStepForm";
 import { emailError, fileError, mobileError, nameError, toggleValue, type Errors } from "./validation";
@@ -51,6 +52,7 @@ export default function ConferenceRegistration() {
   const [options, setOptions] = useState<Options>(emptyOptions);
   const [fullName, setFullName] = useState("");
   const [attendeePhoto, setAttendeePhoto] = useState<File | null>(null);
+  const attendeePhotoUrl = useObjectUrl(attendeePhoto);
   const [emailAddress, setEmailAddress] = useState("");
   const [mobileNumber, setMobileNumber] = useState("");
   const [country, setCountry] = useState("India");
@@ -771,6 +773,7 @@ export default function ConferenceRegistration() {
               name: fullName.trim(),
               org: organisationInstitution.trim(),
               orgPlaceholder: "Your Organisation",
+              photoUrl: attendeePhotoUrl,
             }}
           />
         </div>

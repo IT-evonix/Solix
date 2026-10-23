@@ -615,6 +615,7 @@ export type PassCardProps = {
     name: string;
     org: string;
     orgPlaceholder: string;
+    photoUrl?: string; // delegate only: shown in the photo frame, person icon when empty
   };
 };
 
@@ -625,6 +626,12 @@ export function PassCard({ variant, title, subtitle, meta, inclusionsTitle, incl
       <Icon name="check" size={14} strokeWidth={3} />
       Official
     </span>
+  );
+  const person = (
+    <div className="pass_badge_person">
+      <div className="pass_badge_name">{badge.name || "Your Name"}</div>
+      <div className="pass_badge_org">{badge.org || badge.orgPlaceholder}</div>
+    </div>
   );
   return (
     <div className="col-lg-4 register_rightbox">
@@ -644,10 +651,21 @@ export function PassCard({ variant, title, subtitle, meta, inclusionsTitle, incl
               {badge.label ? <span className="pass_badge_label">{badge.label}</span> : null}
               <span className="pass_badge_role">{badge.role}</span>
             </div>
-            <div className="pass_badge_person">
-              <div className="pass_badge_name">{badge.name || "Your Name"}</div>
-              <div className="pass_badge_org">{badge.org || badge.orgPlaceholder}</div>
-            </div>
+            {variant === "delegate" ? (
+              <div className="pass_badge_body">
+                <div className="pass_badge_photo">
+                  {badge.photoUrl ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={badge.photoUrl} alt="" />
+                  ) : (
+                    <Icon name="user" size={90} strokeWidth={1.1} />
+                  )}
+                </div>
+                {person}
+              </div>
+            ) : (
+              person
+            )}
           </div>
 
           <div className="pass_waves" aria-hidden="true" />
