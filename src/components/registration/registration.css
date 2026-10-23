@@ -1265,6 +1265,8 @@
 
 /* ==========================================================================
    RIGHT COLUMN: PASS CARD
+   Sizes are measured from the 788px-wide pass mockups: N * var(--u) is N
+   mockup pixels, so the card keeps the mockup's proportions at any width.
    ========================================================================== */
 .reg_scope .register_rightbox {
     position: relative;
@@ -1278,361 +1280,421 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: thin;
+    container-type: inline-size;
 }
 
-.reg_scope .summit_pass_card {
-    background: #ffffff;
-    border: 1px solid var(--reg-border);
-    border-radius: 22px;
-    overflow: hidden;
-    box-shadow: 0 16px 40px rgba(31, 58, 95, 0.09);
-}
-
-.reg_scope .pass_card_hero {
-    background: linear-gradient(0deg,#e8480c,#d63d04);
-    padding: 24px;
-    color: #ffffff;
+.reg_scope .pass_card {
+    --u: calc(100cqw / 788);
+    --p-card: #fcf9f5;
+    --p-panel: #f8fbff;
+    --p-red: #c0100f;
+    --p-navy: #0b1158;
+    --p-navy-soft: #24264f;
+    --p-green: #12731a;
+    --p-line: #7d97b3;
+    --p-rule: #8fb0cc;
+    --p-pill: #c8e3f6;
+    --p-blue: #0a7cbd;
+    --p-green2: #0b6b35;
+    --p-orange: #ec620b;
+    --p-tri: linear-gradient(90deg, var(--p-blue) 0 33.4%, var(--p-green2) 0 66.7%, var(--p-orange) 0);
     position: relative;
+    background: var(--p-card);
+    border: 1px solid #ebebeb;
+    border-radius: calc(var(--u) * 40);
+    box-shadow: 0 calc(var(--u) * 16) calc(var(--u) * 40) rgba(15, 30, 70, 0.1);
+    overflow: hidden;
+    padding: 0 calc(var(--u) * 54);
+    font-family: Poppins, var(--reg-font);
+    color: var(--p-navy);
 }
 
-.reg_scope .pass_card_hero::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--reg-red) 0%, var(--reg-orange) 45%, var(--reg-blue) 100%);
+/* Header */
+.reg_scope .pass_head {
+    position: relative;
+    padding-top: calc(var(--u) * 83);
 }
 
-.reg_scope .pass_hero_top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
+.reg_scope .pass_card.is_delegate .pass_head {
+    padding-top: calc(var(--u) * 26);
 }
 
-.reg_scope .pass_brand_tag {
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 1.4px;
-    color: #f3c4cc;
-    text-transform: uppercase;
-}
-
-.reg_scope .pass_verified_pill {
-    background: rgba(16, 127, 68, 0.28);
-    border: 1px solid rgba(110, 231, 160, 0.45);
-    color: #a7f3c4;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 3px 10px;
-    border-radius: 100px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.reg_scope .pass_hero_title {
-    font-family: var(--reg-font-display);
-    font-weight: 700;
-    font-size: 21px;
-    letter-spacing: 2px;
-    line-height: 1.25;
-    margin: 0 0 4px;
-    color: #ffffff;
-}
-
-.reg_scope .pass_hero_sub {
-    font-size: 12.5px;
-    font-style: italic;
-    color: rgba(226, 232, 240, 0.8);
-    margin: 0;
-}
-
-.reg_scope .pass_price_strip {
-    background: rgba(255, 255, 255, 0.07);
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    border-radius: 14px;
-    padding: 12px 16px;
-    margin-top: 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-}
-
-.reg_scope .pass_price_label {
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: rgba(226, 232, 240, 0.75);
-    margin-bottom: 4px;
-}
-
-.reg_scope .pass_price_fig {
-    font-family: var(--reg-font-display);
-    font-weight: 700;
-    font-size: 26px;
-    color: #ffffff;
-    line-height: 1;
-}
-
-.reg_scope .pass_price_fig span {
-    font-size: 13px;
-    font-weight: 400;
-    color: #f3c4cc;
-    margin-left: 2px;
-}
-
-.reg_scope .pass_price_badge {
-    background: var(--reg-red);
-    color: #ffffff;
-    font-weight: 700;
-    font-size: 10.5px;
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    padding: 5px 11px;
-    border-radius: 100px;
-    white-space: nowrap;
-}
-
-.reg_scope .pass_card_body {
-    padding: 22px 24px 24px;
-}
-
-.reg_scope .pass_meta_list {
-    margin-bottom: 20px;
-}
-
-.reg_scope .pass_meta_item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 14px;
-}
-
-.reg_scope .pass_meta_item:last-child {
-    margin-bottom: 0;
-}
-
-.reg_scope .pass_meta_icon {
-    width: 34px;
-    height: 34px;
-    border-radius: 9px;
-    background: var(--reg-navy-light);
-    color: var(--reg-navy);
-    display: flex;
+.reg_scope .pass_official {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: calc(var(--u) * 8);
+    height: calc(var(--u) * 45);
+    min-width: calc(var(--u) * 144);
+    padding: 0 calc(var(--u) * 18);
+    background: #ffffff;
+    border: calc(var(--u) * 2.5) solid var(--p-green);
+    border-radius: 999px;
+    color: var(--p-green);
+    font-size: max(10px, calc(var(--u) * 26));
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
     flex-shrink: 0;
 }
 
-.reg_scope .pass_meta_label {
-    font-size: 10.5px;
-    text-transform: uppercase;
-    color: var(--reg-muted);
-    font-weight: 600;
-    letter-spacing: 1px;
-    line-height: 1;
-    margin-bottom: 4px;
+.reg_scope .pass_official svg {
+    width: 1em;
+    height: 1em;
 }
 
-.reg_scope .pass_meta_val {
-    font-weight: 600;
-    font-size: 13.5px;
-    color: var(--reg-ink);
-    line-height: 1.3;
+.reg_scope .pass_card.is_hackathon .pass_official {
+    position: absolute;
+    top: calc(var(--u) * 32);
+    right: calc(var(--u) * -14);
 }
 
-.reg_scope .pass_meta_sub {
-    font-size: 12px;
-    font-style: italic;
-    color: var(--reg-muted);
-}
-
-.reg_scope .pass_inclusions_box {
-    background: var(--reg-surface);
-    border: 1px solid var(--reg-border);
-    border-radius: 14px;
-    padding: 16px;
-    margin-bottom: 20px;
-}
-
-.reg_scope .pass_inclusions_title {
-    font-weight: 700;
-    font-size: 11.5px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--reg-navy);
-    margin-bottom: 10px;
+.reg_scope .pass_title_row {
     display: flex;
     align-items: center;
-    gap: 6px;
+    justify-content: space-between;
+    gap: calc(var(--u) * 16);
 }
 
-.reg_scope .pass_inclusions_title svg,
-.reg_scope .pass_inclusions_list li svg {
-    color: var(--reg-green);
-    flex-shrink: 0;
+.reg_scope .pass_card.is_delegate .pass_title_row {
+    margin-right: calc(var(--u) * -20);
 }
 
-.reg_scope .pass_inclusions_list {
-    list-style: none;
-    padding: 0;
+.reg_scope .pass_title {
     margin: 0;
+    font-family: inherit;
+    font-size: calc(var(--u) * 55);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: calc(var(--u) * -1.5);
+    color: var(--p-red);
 }
 
-.reg_scope .pass_inclusions_list li {
-    font-size: 13px;
-    color: var(--reg-body);
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 8px;
-    line-height: 1.4;
+.reg_scope .pass_subtitle {
+    margin: calc(var(--u) * -6) 0 0;
+    font-size: max(11px, calc(var(--u) * 26));
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--p-red);
 }
 
-.reg_scope .pass_inclusions_list li:last-child {
-    margin-bottom: 0;
-}
-
-.reg_scope .pass_inclusions_list li svg {
-    margin-top: 3px;
-}
-
-.reg_scope .live_badge_card {
-    background: linear-gradient(135deg, #ffffff 0%, var(--reg-surface) 100%);
-    border: 1px solid var(--reg-border-strong);
-    border-radius: 14px;
-    padding: 18px 16px 14px;
+/* Badge panel */
+.reg_scope .pass_badge {
     position: relative;
+    margin: calc(var(--u) * 26) calc(var(--u) * -23) 0;
+    padding: calc(var(--u) * 30) calc(var(--u) * 20) calc(var(--u) * 40) calc(var(--u) * 30);
+    background: var(--p-panel);
+    border: calc(var(--u) * 1.5) solid var(--p-line);
+    border-radius: calc(var(--u) * 24);
     overflow: hidden;
 }
 
-.reg_scope .live_badge_card::before {
+.reg_scope .pass_badge::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--reg-red) 0%, var(--reg-navy) 100%);
+    height: calc(var(--u) * 11);
+    background: var(--p-tri);
 }
 
-.reg_scope .live_badge_top {
+.reg_scope .pass_badge_top {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 12px;
+    justify-content: space-between;
+    gap: calc(var(--u) * 12);
 }
 
-.reg_scope .live_badge_label {
-    font-size: 10.5px;
+.reg_scope .pass_badge_label {
+    font-size: max(10px, calc(var(--u) * 31));
     font-weight: 700;
-    letter-spacing: 1.2px;
+    letter-spacing: calc(var(--u) * 0.3);
     text-transform: uppercase;
-    color: var(--reg-muted);
+    color: var(--p-navy);
+    line-height: 1.2;
 }
 
-.reg_scope .live_badge_role {
-    font-size: 11px;
+.reg_scope .pass_badge_role {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    height: calc(var(--u) * 47);
+    padding: 0 calc(var(--u) * 22);
+    background: var(--p-pill);
+    border-radius: 999px;
+    font-size: max(10px, calc(var(--u) * 28));
     font-weight: 600;
-    background: var(--reg-blue-light);
-    color: #01608f;
-    padding: 2px 8px;
-    border-radius: 6px;
+    color: var(--p-navy);
+    white-space: nowrap;
     max-width: 60%;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
 }
 
-.reg_scope .live_badge_person {
+.reg_scope .pass_badge_person {
+    margin-top: calc(var(--u) * 34);
+    padding: calc(var(--u) * 8) 0 calc(var(--u) * 8) calc(var(--u) * 22);
+    border-left: calc(var(--u) * 5) solid var(--p-red);
+    min-width: 0;
+}
+
+.reg_scope .pass_badge_name {
+    font-size: calc(var(--u) * 62);
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--p-navy);
+    overflow-wrap: anywhere;
+}
+
+.reg_scope .pass_badge_org {
+    margin-top: calc(var(--u) * 10);
+    font-size: max(12px, calc(var(--u) * 44));
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--p-navy);
+    overflow-wrap: anywhere;
+}
+
+/* Wave ribbon */
+.reg_scope .pass_waves {
+    height: calc(var(--u) * 164);
+    margin: calc(var(--u) * 2) calc(var(--u) * -54) 0;
+    /* Ribbon cut from the pass mockup, flattened onto --p-card */
+    background: var(--p-card) url("/images/pass/pass-waves.jpg") center / 100% 100% no-repeat;
+}
+
+.reg_scope .pass_tri_rule {
+    height: calc(var(--u) * 11);
+    margin: 0 calc(var(--u) * -54);
+    background: var(--p-tri);
+}
+
+/* Dates & venue */
+.reg_scope .pass_meta_list {
+    margin-top: calc(var(--u) * 26);
+}
+
+.reg_scope .pass_meta_item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 10px;
+    gap: calc(var(--u) * 22);
+    margin-left: calc(var(--u) * 2);
 }
 
-.reg_scope .live_badge_avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    background: var(--reg-navy-light);
-    color: var(--reg-navy);
-    font-family: var(--reg-font-display);
-    font-weight: 700;
-    font-size: 16px;
+.reg_scope .pass_meta_item + .pass_meta_item {
+    margin-top: calc(var(--u) * 14);
+}
+
+.reg_scope .pass_meta_icon {
+    width: calc(var(--u) * 76);
+    height: calc(var(--u) * 76);
+    border-radius: calc(var(--u) * 18);
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
-    border: 2px solid #ffffff;
-    box-shadow: 0 0 0 1px var(--reg-border-strong);
+    flex-shrink: 0;
 }
 
-.reg_scope .live_badge_avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.reg_scope .pass_meta_icon svg {
+    width: calc(var(--u) * 40);
+    height: calc(var(--u) * 40);
 }
 
-.reg_scope .live_badge_name {
-    font-family: var(--reg-font-display);
+.reg_scope .pass_meta_icon.is_calendar {
+    background: #fde2d4;
+    color: #c0201a;
+}
+
+.reg_scope .pass_meta_icon.is_pin {
+    background: #d4eaf8;
+    color: #1c6fb5;
+}
+
+.reg_scope .pass_meta_label {
+    font-size: max(10px, calc(var(--u) * 24));
     font-weight: 700;
-    font-size: 16px;
-    color: var(--reg-navy);
-    line-height: 1.3;
-    word-break: break-word;
+    letter-spacing: calc(var(--u) * 0.6);
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--p-navy);
 }
 
-.reg_scope .live_badge_org {
-    font-size: 12.5px;
+.reg_scope .pass_meta_val {
+    font-size: max(13px, calc(var(--u) * 31));
+    font-weight: 800;
+    line-height: 1.15;
+    color: var(--p-navy);
+}
+
+.reg_scope .pass_meta_sub {
+    font-size: max(10.5px, calc(var(--u) * 23));
+    font-weight: 500;
     font-style: italic;
-    color: var(--reg-muted);
-    line-height: 1.35;
-    word-break: break-word;
+    line-height: 1.15;
+    color: var(--p-navy-soft);
 }
 
-.reg_scope .live_badge_footer {
+/* How it works / privileges */
+.reg_scope .pass_inclusions {
+    margin: calc(var(--u) * 44) calc(var(--u) * -17) 0;
+    padding: calc(var(--u) * 8) calc(var(--u) * 6) calc(var(--u) * 12) calc(var(--u) * 34);
+    background: var(--p-panel);
+    border: calc(var(--u) * 1.5) solid var(--p-line);
+    border-radius: calc(var(--u) * 22);
+}
+
+.reg_scope .pass_inclusions_title {
+    margin-left: calc(var(--u) * 47);
+    font-size: max(12px, calc(var(--u) * 31));
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--p-red);
+}
+
+.reg_scope .pass_inclusions_list {
+    list-style: none;
+    margin: calc(var(--u) * 4) 0 0;
+    padding: 0;
+}
+
+.reg_scope .pass_inclusions_list li {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 8px;
-    border-top: 1px dashed var(--reg-border);
-    padding-top: 9px;
-    font-size: 11.5px;
-    color: var(--reg-muted);
+    align-items: flex-start;
+    gap: calc(var(--u) * 20);
+    font-size: max(10.5px, calc(var(--u) * 21));
+    font-weight: 500;
+    line-height: 1.14;
+    color: var(--p-navy-soft);
 }
 
-.reg_scope .live_badge_footer b {
-    color: var(--reg-ink);
-    font-weight: 600;
+.reg_scope .pass_inclusions_list li + li {
+    margin-top: calc(var(--u) * 5);
 }
 
-.reg_scope .pass_help_box {
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid var(--reg-border);
-    font-size: 12.5px;
+.reg_scope .pass_inclusions_list li svg {
+    width: calc(var(--u) * 27);
+    height: calc(var(--u) * 27);
+    min-width: 12px;
+    min-height: 12px;
+    flex-shrink: 0;
+    margin-top: -0.05em;
+    color: var(--p-green);
+}
+
+.reg_scope .pass_inclusions_list b {
+    font-weight: 700;
+    color: var(--p-navy);
+}
+
+.reg_scope .pass_card.is_delegate .pass_meta_list {
+    margin-top: calc(var(--u) * 32);
+}
+
+.reg_scope .pass_card.is_delegate .pass_meta_item + .pass_meta_item {
+    margin-top: calc(var(--u) * 24);
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge_name {
+    font-size: calc(var(--u) * 68);
+}
+
+.reg_scope .pass_card.is_delegate .pass_badge_org {
+    font-weight: 700;
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions {
+    padding-top: calc(var(--u) * 12);
+    padding-bottom: calc(var(--u) * 18);
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions_title {
+    margin-left: 0;
+    font-size: max(12px, calc(var(--u) * 40));
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions_list {
+    margin-top: calc(var(--u) * 14);
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions_list li {
+    font-size: max(11px, calc(var(--u) * 27));
+    line-height: 1.1;
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions_list li svg {
+    width: calc(var(--u) * 31);
+    height: calc(var(--u) * 31);
+}
+
+.reg_scope .pass_card.is_delegate .pass_inclusions_list li + li {
+    margin-top: calc(var(--u) * 13);
+}
+
+/* Help */
+.reg_scope .pass_help {
+    margin: calc(var(--u) * 22) calc(var(--u) * -4) 0;
+    padding: calc(var(--u) * 14) calc(var(--u) * 2) 0;
+    border-top: calc(var(--u) * 2) solid var(--p-rule);
+    font-size: max(10.5px, calc(var(--u) * 21));
+    line-height: max(15px, calc(var(--u) * 31));
+    color: var(--p-navy);
+}
+
+.reg_scope .pass_help_ask {
     font-style: italic;
-    color: var(--reg-muted);
-    line-height: 1.6;
+    font-weight: 500;
 }
 
-.reg_scope .pass_help_box a {
-    color: var(--reg-navy);
+.reg_scope .pass_help a {
+    color: var(--p-navy);
+    font-weight: 700;
     text-decoration: none;
-    font-weight: 600;
-    font-style: normal;
+    overflow-wrap: anywhere;
 }
 
-.reg_scope .pass_help_box a:hover {
-    color: var(--reg-red);
+.reg_scope .pass_help a:hover {
+    color: var(--p-red);
     text-decoration: underline;
+}
+
+/* Footer bar with the two arches */
+.reg_scope .pass_footer {
+    position: relative;
+    height: calc(var(--u) * 103);
+    margin: calc(var(--u) * 37) calc(var(--u) * -54) 0;
+}
+
+.reg_scope .pass_footer::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--u) * 86);
+    background: var(--p-blue);
+}
+
+.reg_scope .pass_arch {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px 999px 0 0;
+}
+
+.reg_scope .pass_arch.is_green {
+    left: calc(var(--u) * 599);
+    width: calc(var(--u) * 118);
+    background: var(--p-green2);
+}
+
+.reg_scope .pass_arch.is_orange {
+    left: calc(var(--u) * 666);
+    width: calc(var(--u) * 114);
+    background: var(--p-orange);
 }
 
 /* ==========================================================================
@@ -1685,6 +1747,8 @@
         position: static;
         max-height: none;
         overflow: visible;
+        max-width: 440px;
+        margin: 0 auto;
     }
     .reg_scope .form_nav_bar {
         flex-direction: column-reverse;

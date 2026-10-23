@@ -1,7 +1,7 @@
 "use client";
 
 import { DragEvent, ReactNode, useEffect, useState } from "react";
-import { formatBytes, initials } from "./validation";
+import { formatBytes } from "./validation";
 
 export type Choice = { value: string; label: string; note?: string };
 
@@ -603,123 +603,93 @@ export function SuccessCard({
 /* ---------- Pass card ---------- */
 
 export type PassCardProps = {
-  brand: string;
+  variant: "hackathon" | "delegate";
   title: string;
   subtitle: string;
-  priceLabel: string;
-  price: ReactNode;
-  priceBadge?: string;
-  meta: { icon: IconName; label: string; value: string; sub?: string }[];
+  meta: { icon: "calendar" | "pin"; label: string; value: string; sub?: string }[];
   inclusionsTitle: string;
-  inclusions: string[];
+  inclusions: ReactNode[];
   badge: {
-    label: string;
+    label?: string;
     role: string;
     name: string;
     org: string;
-    photo?: File | null;
-    footerLeft: ReactNode;
-    footerRight: string;
+    orgPlaceholder: string;
   };
 };
 
-export function PassCard({
-  brand,
-  title,
-  subtitle,
-  priceLabel,
-  price,
-  priceBadge,
-  meta,
-  inclusionsTitle,
-  inclusions,
-  badge,
-}: PassCardProps) {
-  const photoUrl = useObjectUrl(badge.photo ?? null);
+// Layout and sizes follow the pass mockups; see .pass_card in registration.css.
+export function PassCard({ variant, title, subtitle, meta, inclusionsTitle, inclusions, badge }: PassCardProps) {
+  const official = (
+    <span className="pass_official">
+      <Icon name="check" size={14} strokeWidth={3} />
+      Official
+    </span>
+  );
   return (
     <div className="col-lg-4 register_rightbox">
       <div className="sticky_pass_wrapper">
-        <aside className="summit_pass_card" aria-label={title}>
-          <div className="pass_card_hero">
-            <div className="pass_hero_top">
-              <span className="pass_brand_tag">{brand}</span>
-              <span className="pass_verified_pill">
-                <Icon name="check" size={12} strokeWidth={2.5} />
-                Official
-              </span>
+        <aside className={`pass_card is_${variant}`} aria-label={title}>
+          <header className="pass_head">
+            {variant === "hackathon" ? official : null}
+            <div className="pass_title_row">
+              <h3 className="pass_title">{title}</h3>
+              {variant === "delegate" ? official : null}
             </div>
-            <h3 className="pass_hero_title">{title}</h3>
-            <p className="pass_hero_sub">{subtitle}</p>
-            <div className="pass_price_strip">
-              <div>
-                <div className="pass_price_label">{priceLabel}</div>
-                <div className="pass_price_fig">{price}</div>
-              </div>
-              {priceBadge ? <span className="pass_price_badge">{priceBadge}</span> : null}
+            <p className="pass_subtitle">{subtitle}</p>
+          </header>
+
+          <div className="pass_badge">
+            <div className="pass_badge_top">
+              {badge.label ? <span className="pass_badge_label">{badge.label}</span> : null}
+              <span className="pass_badge_role">{badge.role}</span>
+            </div>
+            <div className="pass_badge_person">
+              <div className="pass_badge_name">{badge.name || "Your Name"}</div>
+              <div className="pass_badge_org">{badge.org || badge.orgPlaceholder}</div>
             </div>
           </div>
-          <div className="pass_card_body">
-            <div className="pass_meta_list">
-              {meta.map((item) => (
-                <div className="pass_meta_item" key={item.label}>
-                  <div className="pass_meta_icon">
-                    <Icon name={item.icon} />
-                  </div>
-                  <div>
-                    <div className="pass_meta_label">{item.label}</div>
-                    <div className="pass_meta_val">{item.value}</div>
-                    {item.sub ? <div className="pass_meta_sub">{item.sub}</div> : null}
-                  </div>
+
+          <div className="pass_waves" aria-hidden="true" />
+          {variant === "delegate" ? <div className="pass_tri_rule" aria-hidden="true" /> : null}
+
+          <div className="pass_meta_list">
+            {meta.map((item) => (
+              <div className="pass_meta_item" key={item.label}>
+                <div className={`pass_meta_icon is_${item.icon}`}>
+                  <Icon name={item.icon} size={20} strokeWidth={2.25} />
                 </div>
+                <div>
+                  <div className="pass_meta_label">{item.label}</div>
+                  <div className="pass_meta_val">{item.value}</div>
+                  {item.sub ? <div className="pass_meta_sub">{item.sub}</div> : null}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="pass_inclusions">
+            <div className="pass_inclusions_title">{inclusionsTitle}</div>
+            <ul className="pass_inclusions_list">
+              {inclusions.map((item, index) => (
+                <li key={index}>
+                  <Icon name="check" size={14} strokeWidth={3.5} />
+                  <span>{item}</span>
+                </li>
               ))}
+            </ul>
+          </div>
+
+          <div className="pass_help">
+            <div className="pass_help_ask">Need assistance with your registration?</div>
+            <div>
+              Email: <a href="mailto:s_semtechconclave@smcw.edu.in">s_semtechconclave@smcw.edu.in</a>
             </div>
-            <div className="pass_inclusions_box">
-              <div className="pass_inclusions_title">
-                <Icon name="check" size={14} strokeWidth={2.5} />
-                {inclusionsTitle}
-              </div>
-              <ul className="pass_inclusions_list">
-                {inclusions.map((item) => (
-                  <li key={item}>
-                    <Icon name="check" size={14} strokeWidth={2.5} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="live_badge_card">
-              <div className="live_badge_top">
-                <span className="live_badge_label">{badge.label}</span>
-                <span className="live_badge_role">{badge.role}</span>
-              </div>
-              <div className="live_badge_person">
-                <span className="live_badge_avatar">
-                  {photoUrl ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={photoUrl} alt="" />
-                  ) : (
-                    initials(badge.name) || <Icon name="user" size={20} />
-                  )}
-                </span>
-                <div style={{ minWidth: 0 }}>
-                  <div className="live_badge_name">{badge.name || "Your Name"}</div>
-                  <div className="live_badge_org">{badge.org || "Your Organisation"}</div>
-                </div>
-              </div>
-              <div className="live_badge_footer">
-                <span>{badge.footerLeft}</span>
-                <span>{badge.footerRight}</span>
-              </div>
-            </div>
-            <div className="pass_help_box">
-              <div>Need assistance with your registration?</div>
-              <div>
-                Email: <a href="mailto:s_semtechconclave@smcw.edu.in">s_semtechconclave@smcw.edu.in</a>
-              </div>
-              {/* <div>
-                Helpline: <a href="tel:+912066936500">+91 (020) 6693 6500</a>
-              </div> */}
-            </div>
+          </div>
+
+          <div className="pass_footer" aria-hidden="true">
+            <span className="pass_arch is_green" />
+            <span className="pass_arch is_orange" />
           </div>
         </aside>
       </div>

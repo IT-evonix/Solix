@@ -2,6 +2,7 @@ import { NextResponse, after } from "next/server";
 import { pool } from "@/lib/db";
 import { requireAdmin } from "@/app/lib/admin-auth";
 import { isSingleAddress } from "@/app/lib/mime";
+import { clientIp, rateLimitConsume, tooManyRequests } from "@/lib/rate-limit";
 import { sendHackathonConfirmation } from "@/app/lib/send-hackathon-confirmation";
 import { listSelect, toListItem, type ListRow } from "@/app/lib/hackathon-records";
 import {
@@ -19,7 +20,11 @@ import {
   readInput,
   removeUploads,
   resolveIds,
+  rejectBadUploads,
   storeUpload,
+  tooLarge,
+  formLimit,
+  TOO_LARGE,
   type Input,
 } from "@/app/lib/registration-input";
 import {
@@ -146,11 +151,20 @@ async function choiceFields(input: Input, disciplineOther: string) {
 }
 
 export async function POST(request: Request) {
-  const input = await readInput(request);
+  const limited = rateLimitConsume(`hackathon:${clientIp(request)}`, 10, 60 * 60 * 1000);
+  if (!limited.ok) return tooManyRequests(limited);
+
+  const input = await readInput(request, formLimit(MAX_UPLOAD_BYTES, MAX_UPLOAD_BYTES));
+  if (input === TOO_LARGE) return tooLarge();
   if (!input) return badRequest("Invalid registration submission.");
 
   const texts = textFields(input);
   if (texts instanceof NextResponse) return texts;
+  const badUpload = await rejectBadUploads([
+    { file: texts.institutionId, extension: texts.institutionIdExtension, label: "The college ID" },
+    { file: texts.solution, extension: texts.solutionExtension, label: "The solution file" },
+  ]);
+  if (badUpload) return badUpload;
 
   try {
     const choices = await choiceFields(input, texts.disciplineOther);

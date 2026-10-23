@@ -1,11 +1,7 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
-import sharp from "sharp";
 import { pool } from "@/lib/db";
 import { formatRegistrationId } from "@/app/lib/payments";
-import { uploadDirectory } from "@/app/lib/registration-input";
-import { renderDelegatePass, type PassImage } from "@/app/lib/delegate-pass-email";
-import { CALENDAR_PNG, PIN_PNG, USER_PNG } from "@/app/lib/delegate-pass-icons";
+import { renderDelegatePass } from "@/app/lib/delegate-pass-email";
+import { passArt } from "@/app/lib/delegate-pass-art";
 import { buildMime, isSingleAddress, toBase64Url } from "@/app/lib/mime";
 import { emailDisabled, gmailConfig, sendRawMail } from "@/app/lib/gmail";
 
@@ -15,8 +11,6 @@ export type PassEmailResult =
   | { result: "sent"; messageId: string }
   | { result: "skipped"; code: SkipCode; reason: string }
   | { result: "failed"; error: string };
-
-const MAX_PHOTO_BYTES = 2 * 1024 * 1024;
 
 // A 'sending' claim older than this is assumed to belong to a crashed request and may be reclaimed.
 // Must stay well above the worst-case send time (token + two send attempts at 15 s each).
@@ -38,34 +32,7 @@ type ClaimRow = {
   email_address: string;
   organisation_institution: string;
   registration_fee: string;
-  attendee_photo_path: string | null;
 };
-
-const png = (base64: string, filename: string): PassImage => ({
-  data: Buffer.from(base64, "base64"),
-  contentType: "image/png",
-  filename,
-});
-
-const icons = {
-  calendar: png(CALENDAR_PNG, "calendar.png"),
-  pin: png(PIN_PNG, "pin.png"),
-  user: png(USER_PNG, "user.png"),
-};
-
-// Square, EXIF-rotated, small JPEG of the attendee photo; null falls back to the placeholder icon.
-async function loadPhoto(storedPath: string | null): Promise<PassImage | null> {
-  if (!storedPath) return null;
-  try {
-    const file = path.join(uploadDirectory(), path.basename(storedPath));
-    const source = await readFile(file);
-    if (!source.length || source.length > MAX_PHOTO_BYTES) return null;
-    const data = await sharp(source).rotate().resize(160, 160, { fit: "cover" }).jpeg({ quality: 85 }).toBuffer();
-    return { data, contentType: "image/jpeg", filename: "photo.jpg" };
-  } catch {
-    return null;
-  }
-}
 
 function errorText(error: unknown) {
   const message = error instanceof Error ? error.message : String(error);
@@ -103,7 +70,7 @@ export async function sendDelegatePass(registrationId: string, { force = false }
          OR (pass_email_status = 'sending' AND pass_email_claimed_at < LOCALTIMESTAMP - ${STALE_CLAIM_SQL})
        )
      RETURNING registration_code, full_name, email_address, organisation_institution,
-               registration_fee, attendee_photo_path`,
+               registration_fee`,
     [registrationId, force],
   );
 
@@ -122,8 +89,7 @@ export async function sendDelegatePass(registrationId: string, { force = false }
       fullName: row.full_name,
       organisation: row.organisation_institution,
       fee: row.registration_fee,
-      icons,
-      photo: await loadPhoto(row.attendee_photo_path),
+      art: await passArt(),
     });
     const raw = buildMime({
       from: { email: config.sender, name: config.senderName },
