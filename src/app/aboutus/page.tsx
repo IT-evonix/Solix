@@ -35,7 +35,7 @@ const ContactPage = () => {
                     priority
                   />
               </div>
-              <div className="col-lg-12 mb-4">
+              <div className="col-lg-12 mb-4 text16_black">
                 This is not a conventional hackathon where technology searches for a problem. It is a MedTech innovation challenge where healthcare problems provide the starting point and multidisciplinary teams work towards solutions that simplify medical innovation, accelerate its real-world adoption, and enable scalable impact across healthcare.
               </div>
               <div className="col-lg-12 heading19_black mb-2">
@@ -229,10 +229,10 @@ const ContactPage = () => {
                       <div className="about_white_list">
                         <div className="row">
                           <div className="col-lg-12 mb-4">
-                            <Image src="/images/aboutus/SCEI-logo.png" className="img-fluid" alt="" width={300} height={100} priority />
+                            <Image src="/images/aboutus/SCEI-logo2.png" className="img-fluid" alt="" width={300} height={100} priority />
                           </div>
                           <div className="col-lg-12 mb-3 text19_black"><i>Fostering Entrepreneurship & Innovation</i></div>
-                          <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img.png" className="img-fluid" alt="" width={900} height={900} priority /></div>
+                          <div className="col-lg-5 about_college_img mb-3"><Image src="/images/aboutus/SCIE-img2.png" className="img-fluid" style={{border:"1px solid #a9a9a9"}} alt="" width={900} height={900} priority /></div>
                           <div className="col-lg-7 mb-3">
                             Symbiosis Centre for Entrepreneurship & Innovation (SCEI) is a Technology Business Incubator established by Symbiosis International (Deemed University). As a not-for-profit Section 8 company promoted by SIU and supported by the Department of Science and Technology, Government of India, SCEI works towards socio-economic development by promoting and nurturing entrepreneurship.
                           </div>

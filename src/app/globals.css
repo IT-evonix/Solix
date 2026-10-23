@@ -16,6 +16,30 @@
   font-weight: 600;
   font-display: swap;
 }
+
+
+@font-face {
+  font-family: "Aptos";
+  src: url("/fonts/Aptos.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos-Bold";
+  src: url("/fonts/Aptos-Bold.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Aptos-Black";
+  src: url("/fonts/Aptos-Black.ttf") format("truetype");
+  font-weight: 600;
+  font-display: swap;
+}
+
+
+
+
 body {
   width: 100%; 
   height: 100%;
@@ -387,12 +411,26 @@ background-color: #F1F1F1;
 
 /* ------------HOME-SPEAKERS-SECTION-START---------- */
 .speakers_section{
-  background-image: url("/images/speakers_bg.webp");
+  /* background-image: url("/images/speakers_bg.webp"); */
   background-position: center top;
   background-repeat: no-repeat;
   background-size: contain;
   position: relative;
   padding: 50px 0 0 0;
+}
+.speakers_section::before{
+  content: "";
+  background-image: url("/images/home-speakers_bg.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  width: 100%;
+  height: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.2;
+  margin: -70px 0 0 0;
 }
 .speaker_bg{
   content: "";
@@ -657,6 +695,66 @@ opacity: 1;
 }
 /* ------------ABOUT-US-PAGE-END---------- */
 
+/* ------------PROGRAMME-PAGE-START---------- */
+.programme_dates{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+.programme_dates .about_datebox{
+  float: none;
+  text-decoration: none;
+}
+.programme_session{
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+.programme_session_time{
+  flex: 0 0 170px;
+  font-family: Roboto-SemiBold;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.programme_session_body{
+  flex: 1;
+}
+.programme_session_type{
+  display: inline-block;
+  color: #fff;
+  font-family: Roboto-SemiBold;
+  font-size: 12px;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 10px;
+}
+.programme_session_people{
+  color: #007bb7;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 6px;
+}
+.programme_mentors ul::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.programme_green_box{
+position: sticky;
+  top: 80px;
+  background-color: #fff;
+  padding: 10px 0;
+}
+.programme_day{
+  scroll-margin-top: 240px;
+}
+
+
+/* ------------PROGRAMME-PAGE-END---------- */
 
 /* ------------VENUES-PAGE-START---------- */
 .venue_whitebox{
@@ -1021,12 +1119,14 @@ background-color: #ea5e2a;
   opacity: 0.1;
 }
 .faq-item {
-  background:#fff;
-  border-radius:14px;
-  transition:all .3s;
-  overflow:hidden;
+background: #fff;
+  border-radius: 14px;
   margin: 0 0 10px;
-  /* box-shadow:0 8px 24px #00000014 */
+  transition: all .3s;
+  overflow: hidden;
+  font-family: Aptos;
+  font-size: 16px;
+  line-height: normal;
 }
 .faq-item.active {
   box-shadow:0 12px 28px #00000014
@@ -1049,10 +1149,19 @@ background-color: #ea5e2a;
   color: #007bb7;
 }
 .faq-question .subheading {
-  font-size:16px;
+  font-size: 18px;
+  font-family: Aptos-Bold;
+  color: #007bb7;
+  transition-duration: 0.3s;
 }
-.active .subheading{
-  color:#007bb7;
+.faq-question:hover .subheading {
+  color: #e8480c;
+}
+.faq-list .active .subheading{
+  color:#e8480c;
+}
+.faq-list .active svg{
+  color:#e8480c;
 }
 .faq-answer {
   max-height:0;
@@ -1064,6 +1173,11 @@ background-color: #ea5e2a;
   max-height:500px;
   padding: 0 30px 20px 30px;
 }
+
+.footer_faq_section .heading35_black{
+  font-family: Aptos-Black;
+}
+
 /* ------------FOOTER-FAQ-SECTION-END---------- */
 
 
@@ -1402,6 +1516,19 @@ background-color: #000;
   border-radius: 0;
 }
 /* ------------VENUES-PAGE-END---------- */
+
+
+/* ------------PROGRAMME-PAGE-START---------- */
+  .programme_session{
+    flex-direction: column;
+    gap: 8px;
+  }
+  .programme_session_time{
+    flex-basis: auto;
+  }
+
+/* ------------PROGRAMME-PAGE-END---------- */
+
 
 /* ------------FOOTER-FAQ-SECTION-START---------- */
 .faq-question .subheading {

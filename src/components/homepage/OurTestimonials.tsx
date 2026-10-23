@@ -30,7 +30,7 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     name: "Prof. (Dr) Ramakrishnan Raman",
-    image: "/images/speakers/RamakrishnanRaman2.png",
+    image: "/images/speakers/RamakrishnanRaman4.png",
     title: "Keynote Speaker",
     content:
       "Vice Chancellor, SIU",
@@ -123,7 +123,7 @@ export default function OurTestimonials() {
     <section className="speakers_section" id="speakers">
       <div className="container-fluid" style={{position:"relative", zIndex:"5"}}>
         <div className="row">
-            <div className="col-lg-12 heading35_black mb-5 text-center">Our Speakers</div>
+            <div className="col-lg-12 heading35_black mb-3 text-center" style={{color:"#e8480c"}}>Our Speakers</div>
         </div>
         {/* <div className="row">
             <div className="col-lg-12 mb-3 text-center mb-5" style={{color:"#fff"}}>
@@ -172,7 +172,7 @@ export default function OurTestimonials() {
                     <div className="testimonials_box">
                       <div className="testimonials_innerbox">
                         <div className="row">
-                          <div className="col-lg-12 mb-3">
+                          <div className="col-lg-12 mb-3 p-0">
                             <div className="testi_img">
                               <Image src={testimonial.image} alt={testimonial.name} width={180} height={160} />
                             </div>

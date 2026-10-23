@@ -13,7 +13,7 @@ const Whythis = () => {
                         <div className="col-lg-12 heading35_black mb-3">Why This Conclave?</div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-12 mb-5">
+                        <div className="col-lg-12 mb-4">
                             The future of healthcare, technology and innovation demands collaboration across disciplines, institutions and industries. SYMBIOSIS–SOLIXEMPOWER TECH CONCLAVE 2026 brings together thought leaders, researchers, clinicians, technologists and innovators to translate emerging technologies into meaningful real-world impact. Through dialogue, discovery and hands-on innovation, the conclave aims to accelerate collaboration and turn bold ideas into transformative solutions.
                         </div>
                     </div>
@@ -22,6 +22,11 @@ const Whythis = () => {
                             <Link href="/aboutus" className="button_box">Explore More</Link>
                         </div>
                     </div> */}
+                    <div className="row">
+                        <div className="col-lg-12 mb-5">
+                        <div className="about_datebox p-4 pt-2 pb-2">Empowering Future-Tech. Shaping Tomorrow.</div>
+                        </div>
+                    </div>
                     <div className="row mb-5">
                         <div className="col-lg-12">
                             <div className="row">
