@@ -23,22 +23,23 @@ export const HELPLINE = "+91 (020) 6693 6500";
 const WIDTH = 480;
 const u = (n: number) => Math.round((n * WIDTH) / 788);
 
-// Pass palette, sampled from the mockup. Keep in sync with the --p-* variables on .pass_card
-// in registration.css and the colours in delegate-pass-art.ts.
+// Pass palette: brand blue / green / orange (tints of the blue for lines and pills), red and navy
+// from the mockup. Keep in sync with the --p-* variables on .pass_card in registration.css and the
+// colours in delegate-pass-art.ts.
 const CARD = "#fefaf7";
 const PANEL = "#fffbf9";
 const RED = "#c4060a";
 const RED_BAR = "#d00d0d";
 const NAVY = "#04056a";
 const NAVY_SOFT = "#0f0f66";
-const GREEN = "#0b720b";
-const LINE = "#5b98c4";
-const RULE = "#4a8cbc";
-const PILL = "#c3e8fd";
+const GREEN = "#00602d";
+const LINE = "#66b0d4";
+const RULE = "#4da3cd";
+const PILL = "#cce5f1";
 const PILL_TEXT = "#0510c8";
-const BLUE = "#0384e0";
-const GREEN2 = "#057214";
-const ORANGE = "#fa7005";
+const BLUE = "#007bb7";
+const GREEN2 = "#00602d";
+const ORANGE = "#e8480c";
 
 // Badge photo frame in mockup units (rendered at 2x by passPhoto in delegate-pass-art.ts).
 export const PHOTO_W = 256;

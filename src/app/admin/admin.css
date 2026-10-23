@@ -241,10 +241,10 @@ body:has(.admin-login) {
 }
 
 
-header{
-  display: none;
-}
-footer{
+/* Hide the public site's header and footer (root layout) on admin pages; a bare `header`
+   selector would also hide the <header> of the admin detail dialogs (photo, name, Close). */
+header.header-top,
+body > footer {
   display: none;
 }
 
@@ -324,13 +324,6 @@ footer{
 
 #admin-root button {
   appearance: none;
-}
-
-#admin-root .h-16 {
-  width: 3rem !important;
-  height: 4rem !important;
-  max-width: none !important;
-  object-fit: cover !important;
 }
 
 #admin-root .h-56 {
